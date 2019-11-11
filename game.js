@@ -4,5 +4,6 @@ window.onload=function(){
 var config = {
     width: 800,
     height: 600,
-    backgroundColor: 0x000000,
+    backgroundColor: "#65FF99",
+    scene: [EndScene,TitleScene,ResultScene,NotAVideoGameScene,GameplayScene]
 }
