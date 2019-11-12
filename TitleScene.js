@@ -4,17 +4,20 @@ class TitleScene extends Phaser.Scene {
         super("title");
     }
 
-    //preload(){
-    //    game.load.spritesheet('start','assets/UIpack/PNG/grey_button02.png', 193, 71);
-    //}
+    preload(){
+        this.load.image('start','assets/UIpack/PNG/grey_button02.png');
+    }
 
    create(){
-    //this.start = this.add.spritesheet(0,0, "start");
-    //this.start.setOrigin(0,0);    ;
-    this.add.text(20, 20, "Fake News, Real Bruise");
+    var start = this.add.image(640,500,'start').setInteractive();
+    var startText = this.add.text(640,500, "Start", {font: "20px Times", fill: "black"}).setOrigin(0.5);
+    var titleText = this.add.text(640, 200,"Fake News, Real Bruise", {font: "60px Times", fill: "black"}).setOrigin(0.5);
     
 
-    this.scene.start("gameplay");
+   
+    start.on('pointerdown', () => this.scene.start("gameplay"));
+    
 }
+
 }
 
