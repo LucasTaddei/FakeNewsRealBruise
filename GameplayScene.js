@@ -9,6 +9,12 @@ class GameplayScene extends Phaser.Scene {
     }
 
     create(){
+        this.time.addEvent({
+            delay: 184800,
+            callback: ()=>{
+                this.scene.start("result")
+            }
+        })
         let mainsong = this.sound.add("mainsong");
         mainsong.play();
         this.background = this.add.image(0,0, "background");
