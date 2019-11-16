@@ -4,7 +4,7 @@ class GameplayScene extends Phaser.Scene {
         super("gameplay");
 
         // création d'un tableau vide pour les flèches qui défilent
-        this.falling_arrows = [];
+        this.fallingArrows = [];
     }
 
     preload(){
@@ -18,7 +18,6 @@ class GameplayScene extends Phaser.Scene {
     }
 
     create(){
-
         this.time.addEvent({
             delay: 184800,
             callback: ()=>{
@@ -63,13 +62,33 @@ class GameplayScene extends Phaser.Scene {
     }
 
     update(time, delta){   
-        this.falling_arrows.forEach((arrow) => {
-            arrow.y += 5;
+        this.fallingArrows.forEach((currentArrow) => {
+            currentArrow.y += 5;
+            
+            // supprime l'objet du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
+            if (currentArrow.y > 720){
+                let arrowToBeDeleted = currentArrow;
+                this.fallingArrows.splice(this.fallingArrows.indexOf(arrowToBeDeleted), 1);
+                arrowToBeDeleted.destroy();        
+            }
           });
     }
 
     addArrow(){
-        // ajout des flèches dans le tableau
-        this.falling_arrows.push(this.add.image(500, 60, 'left').setOrigin(0));
+
+        let randomArrow = Math.floor(Math.random() * Math.floor(4));
+
+        // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
+        if (randomArrow == 0){
+            this.fallingArrows.push(this.add.image(500, 60, 'left').setOrigin(0));
+        } else if (randomArrow == 1){
+            this.fallingArrows.push(this.add.image(600, 60, 'up').setOrigin(0));
+        } else if (randomArrow == 2){
+            this.fallingArrows.push(this.add.image(700, 60, 'down').setOrigin(0));
+        } else if (randomArrow == 3){
+            this.fallingArrows.push(this.add.image(800, 60, 'right').setOrigin(0));
+        }
+
     }
+
 }
