@@ -30,7 +30,7 @@ class GameplayScene extends Phaser.Scene {
 
     create(){
         this.time.addEvent({
-            delay: 184800,
+            delay: 185000,
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows})
             }
