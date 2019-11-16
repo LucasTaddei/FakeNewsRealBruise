@@ -57,6 +57,9 @@ class GameplayScene extends Phaser.Scene {
         //ajout de flèches du clavier comme opérateurs
 
         
+
+
+
         
         
     }
