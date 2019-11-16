@@ -1,17 +1,20 @@
 class GameplayScene extends Phaser.Scene {
+
     constructor(){
         super("gameplay");
+
+        // création d'un tableau vide pour les flèches qui défilent
+        this.falling_arrows = [];
     }
-    
 
     preload(){
         this.load.image("left","assets/UIpack/PNG/yellow_sliderLeft.png");
         this.load.image("up","assets/UIpack/PNG/yellow_sliderUp.png");
         this.load.image("down","assets/UIpack/PNG/yellow_sliderDown.png");
         this.load.image("right","assets/UIpack/PNG/yellow_sliderRight.png");
+
         this.load.image("background", "assets/images/network.jpg");
         this.load.audio("mainsong", "assets/sounds/realbruise.m4a");
-        
     }
 
     create(){
@@ -20,6 +23,14 @@ class GameplayScene extends Phaser.Scene {
             delay: 184800,
             callback: ()=>{
                 this.scene.start("result")
+            }
+        })
+
+        this.time.addEvent({
+            delay: 500,
+            loop: true,
+            callback: ()=>{
+                this.addArrow();
             }
         })
         
@@ -33,35 +44,32 @@ class GameplayScene extends Phaser.Scene {
         var label = this.add.text(0, 0, '', { font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
 
-         
-        //création des 4 zones de collision des flèches
-         this.add.image(400,600,'left').setOrigin(0.5);
-         this.add.image(500,600,'up').setOrigin(0.5);
-         this.add.image(600,600,'down').setOrigin(0.5);
-         this.add.image(700,600,'right').setOrigin(0.5);
+        // création des 4 zones de collision des flèches
+         this.add.image(500,600,'left').setOrigin(0);
+         this.add.image(600,600,'up').setOrigin(0);
+         this.add.image(700,600,'down').setOrigin(0);
+         this.add.image(800,600,'right').setOrigin(0);
 
-         var zone1 = this.add.zone(400, 600, 50, 50).setOrigin(0.5).setName('left').setInteractive();
-         var zone2 = this.add.zone(500, 600, 50, 50).setOrigin(0.5).setName('up').setInteractive();
-         var zone3 = this.add.zone(600, 600, 50, 50).setOrigin(0.5).setName('down').setInteractive();
-         var zone4 = this.add.zone(700, 600, 50, 50).setOrigin(0.5).setName('down').setInteractive();
-
+         var zone1 = this.add.zone(500, 600, 50, 50).setOrigin(0).setName('left').setInteractive();
+         var zone2 = this.add.zone(600, 600, 50, 50).setOrigin(0).setName('up').setInteractive();
+         var zone3 = this.add.zone(700, 600, 50, 50).setOrigin(0).setName('down').setInteractive();
+         var zone4 = this.add.zone(800, 600, 50, 50).setOrigin(0).setName('down').setInteractive();
     
          this.input.on('gameobjectdown', function (pointer, gameObject) {
-
             label.setText(gameObject.name);
             label.x = gameObject.x;
             label.y = gameObject.y;
-    
-        });
-
-        //ajout de flèches du clavier comme opérateurs
-
-        
-
-
-
-        
-        
+        });  
     }
 
+    update(time, delta){   
+        this.falling_arrows.forEach((arrow) => {
+            arrow.y += 5;
+          });
+    }
+
+    addArrow(){
+        // ajout des flèches dans le tableau
+        this.falling_arrows.push(this.add.image(500, 60, 'left').setOrigin(0));
+    }
 }
