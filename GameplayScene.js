@@ -132,28 +132,22 @@ class gameplayScene extends Phaser.Scene {
                     this.removeArrow(currentArrow);
                 }
 
-                if (this.catchedArrows %5 ===0 && this.catchedArrows++){
+                if (this.catchedArrows % 5 == 0){
                     this.sharedNews++;
                 }
                 
             }
 
-            
-
-           
-            
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
                 this.missedArrows++;
                 this.removeArrow(currentArrow);
             }
-            
 
             // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
             
           });
-        
 
           // actualisation des scores
           this.scoreLabel.setText(this.catchedArrows);
