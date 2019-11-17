@@ -11,9 +11,11 @@ class gameplayScene extends Phaser.Scene {
 
         this.catchedArrows = 0;
         this.missedArrows = 0;
+        this.sharedNews= 0;
 
         this.scoreLabel;
         this.failLabel;
+        this.sharedLabel;
 
         this.newArrowsTimer;
     }
@@ -30,7 +32,7 @@ class gameplayScene extends Phaser.Scene {
 
     create(){
         this.time.addEvent({
-            delay: 185000,
+            delay: 188000,
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows})
             }
@@ -75,6 +77,7 @@ class gameplayScene extends Phaser.Scene {
 
         this.scoreLabel = this.add.text(20, 60, this.catchedArrows, {font: "25px Arial", fill: "white"});
         this.failLabel = this.add.text(20, 90, this.catchedArrows, {font: "25px Arial", fill: "red"});
+        this.sharedLabel = this.add.text(20, 120, this.sharedNews, { font: "25px Arial", fill: "green"});
 
         var label = this.add.text(0, 0, '', { font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
@@ -132,21 +135,29 @@ class gameplayScene extends Phaser.Scene {
                     this.catchedArrows++;
                     this.removeArrow(currentArrow);
                 }
+
+                
+                
             }
+
+           
             
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
                 this.missedArrows++;
                 this.removeArrow(currentArrow);
             }
+            
 
             // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
             
           });
+        
 
           this.scoreLabel.setText(this.catchedArrows);
           this.failLabel.setText(this.missedArrows);
+          this.sharedLabel.setText(this.sharedNews);
     }
 
     // suppression de la flèche du tableau ainsi que son index
