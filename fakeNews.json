@@ -1,0 +1,35 @@
+[{
+    "probleme": "si quelqu'un veut améliorer cette structure JSON merdique, c'est avec grand plaisir!",
+    "newspaper": "LEQUASIJOURNAL",
+    "content": [
+        {
+            "category":"PEOPLE",
+            "fakeNews": [
+                {
+                    "content": "La très célèbre écrivaine Léa Keller reçoit un château dans la Loire pour son anniversaire",
+                    "hashtag": [
+                        "#OMG",
+                        "#Leafanclubofficiel"
+                    ]
+                }
+                    ]}
+    ]
+},
+
+{
+    "newspaper": "THEALMOSTMAGAZINE",
+    "content": [
+        {
+            "category": "BREAKING NEWS",
+            "fakeNews":[
+                {
+                    "content": "Les personnes qui consomment des avocats BIO du Mexique peuvent voler!",
+                    "hashtag": [
+                        "superhero",
+                        "avocadoforlife"
+                    ]
+                }
+            ]
+        }
+    ]
+}]

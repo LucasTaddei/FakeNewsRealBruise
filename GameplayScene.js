@@ -45,6 +45,7 @@ class GameplayScene extends Phaser.Scene {
             }
         })
 
+        // suppression du timer précédent et en ajoute un nouveau qui augmente la vitesse de défilement et réduit le délai d'apparition des nouvelles flèches
         this.time.addEvent({
             delay: 10000,
             loop: true,
@@ -98,7 +99,7 @@ class GameplayScene extends Phaser.Scene {
 
     update(time, delta){  
         
-        // récupère la touche enfoncée lors de l'update
+        // récupération de la touche enfoncée lors de l'update
         var cursorKeys = this.input.keyboard.createCursorKeys();
 
         var isUpKeyPressed = cursorKeys.up.isDown;
@@ -133,13 +134,13 @@ class GameplayScene extends Phaser.Scene {
                 }
             }
             
-            // supprime la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
+            // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
                 this.missedArrows++;
                 this.removeArrow(currentArrow);
             }
 
-            //Déplacement de la flèche
+            // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
             
           });
@@ -148,15 +149,14 @@ class GameplayScene extends Phaser.Scene {
           this.failLabel.setText(this.missedArrows);
     }
 
-    // supprime une flèche du tableau
+    // suppression de la flèche du tableau ainsi que son index
     removeArrow(arrow) {
-
         var arrowToBeDeleted = arrow;
         this.fallingArrows.splice(this.fallingArrows.indexOf(arrowToBeDeleted), 1);
         arrowToBeDeleted.destroy();      
     }
 
-    // créé une flèche
+    // création une flèche
     addArrow(){
 
         var randomArrow = Math.floor(Math.random() * Math.floor(4));
