@@ -101,7 +101,7 @@ class gameplayScene extends Phaser.Scene {
     }
 
     update(time, delta){  
-        
+
         // récupération de la touche enfoncée lors de l'update
         var cursorKeys = this.input.keyboard.createCursorKeys();
 
@@ -119,19 +119,13 @@ class gameplayScene extends Phaser.Scene {
                 if (isLeftKeyPressed && currentArrow.name == "left") {
                     this.catchedArrows++;
                     this.removeArrow(currentArrow);
-                }
-
-                else if (isUpKeyPressed && currentArrow.name == "up") {
+                } else if (isUpKeyPressed && currentArrow.name == "up") {
                     this.catchedArrows++;
                     this.removeArrow(currentArrow);
-                }
-
-                else if (isDownKeyPressed && currentArrow.name == "down") {
+                } else if (isDownKeyPressed && currentArrow.name == "down") {
                     this.catchedArrows++;
                     this.removeArrow(currentArrow);
-                }
-
-                else if (isRightKeyPressed && currentArrow.name == "right") {
+                } else if (isRightKeyPressed && currentArrow.name == "right") {
                     this.catchedArrows++;
                     this.removeArrow(currentArrow);
                 }
@@ -169,38 +163,25 @@ class gameplayScene extends Phaser.Scene {
 
     // création une flèche
     addArrow(){
-
         var randomArrow = Math.floor(Math.random() * Math.floor(4));
-        
         var newImage;
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
         if (randomArrow == 0){
-
             newImage = this.add.image(500, 60, 'left').setOrigin(0);
             newImage.name = 'left';
-
             this.fallingArrows.push(newImage);
-
         } else if (randomArrow == 1){
-
             newImage = this.add.image(600, 60, 'up').setOrigin(0);
             newImage.name = 'up';
-
             this.fallingArrows.push(newImage);
-
         } else if (randomArrow == 2){
-
             newImage = this.add.image(700, 60, 'down').setOrigin(0);
             newImage.name = 'down';
-
             this.fallingArrows.push(newImage);
-
         } else if (randomArrow == 3){
-
             newImage = this.add.image(800, 60, 'right').setOrigin(0);
             newImage.name = 'right';
-
             this.fallingArrows.push(newImage);
         }
 

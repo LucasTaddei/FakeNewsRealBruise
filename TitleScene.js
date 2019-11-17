@@ -16,4 +16,3 @@ class titleScene extends Phaser.Scene {
     start.on('pointerdown', () => this.scene.start("gameplay"));
     }
 }
-
