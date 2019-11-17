@@ -130,9 +130,13 @@ class gameplayScene extends Phaser.Scene {
                     this.removeArrow(currentArrow);
                 }
 
-                
+                if (this.catchedArrows %5 ===0 && this.catchedArrows++){
+                    this.sharedNews++;
+                }
                 
             }
+
+            
 
            
             
