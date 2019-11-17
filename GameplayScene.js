@@ -6,9 +6,11 @@ class gameplayScene extends Phaser.Scene {
         // création d'un tableau vide pour les flèches qui défilent
         this.fallingArrows = [];
 
+        // initialisation des variables utilisées
         this.fallingSpeed = 5;
         this.fallingDelay = 500;
 
+        // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
 
@@ -139,6 +141,7 @@ class gameplayScene extends Phaser.Scene {
             
           });
 
+          // actualisation des scores
           this.scoreLabel.setText(this.catchedArrows);
           this.failLabel.setText(this.missedArrows);
     }
