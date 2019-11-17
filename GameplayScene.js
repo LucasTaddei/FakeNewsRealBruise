@@ -31,6 +31,7 @@ class gameplayScene extends Phaser.Scene {
 
         this.load.image("background", "assets/images/network.jpg");
         this.load.audio("mainsong", "assets/sounds/realbruise.m4a");
+        this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
     }
 
     create(){
@@ -82,7 +83,7 @@ class gameplayScene extends Phaser.Scene {
         this.failLabel = this.add.text(20, 90, this.catchedArrows, {font: "25px Arial", fill: "red"});
         this.sharedLabel = this.add.text(20, 120, this.sharedNews, {font: "25px Arial", fill: "green"});
 
-        //Text "Share"
+        //Text "Shared!"
         this.shared = this.add.text(400,400,"SHARED!",{font: "40px Arial", fill: "red"});
         this.shared.visible=false;
 
@@ -108,13 +109,9 @@ class gameplayScene extends Phaser.Scene {
             label.y = gameObject.y;
         });  
 
-        
-        
-        
-        
-        
 
     }
+
 
     update(time, delta){  
 
@@ -136,18 +133,22 @@ class gameplayScene extends Phaser.Scene {
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                 }
 
                 // enregistrement des combos + "Share" visible après la combo
@@ -160,8 +161,7 @@ class gameplayScene extends Phaser.Scene {
                 //"Share" ne plus visible après la combo
                 else if(this.consecutiveArrows != 5){
                     this.shared.visible=false
-                }
-                
+                }                
             
             
         }
