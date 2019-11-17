@@ -186,9 +186,6 @@ class gameplayScene extends Phaser.Scene {
 
     
         
-    removeShared(){
-        this.shared.visible=false;
-    }
 
     // suppression de la flèche du tableau ainsi que son index
     removeArrow(arrow) {
