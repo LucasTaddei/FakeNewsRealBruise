@@ -1,4 +1,4 @@
-class NotAVideoGameScene extends Phaser.Scene {
+class notAVideoGameScene extends Phaser.Scene {
     constructor(){
         super("not");
     }

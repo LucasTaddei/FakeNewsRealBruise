@@ -1,4 +1,4 @@
-class ResultScene extends Phaser.Scene {
+class resultScene extends Phaser.Scene {
 
     init(score){
         this.score = score;

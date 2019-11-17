@@ -1,6 +1,5 @@
-Le jeu est un jeu de rythme, avec une page titre, une page de jeu principale, et une page de résultat ponctuée d'un épilogue.
-
 CONVENTIONS DE CODAGE :
+
 - Arborescence en anglais, composé ainsi: codingRulesExample
 - Commentaires réguliers et en français, afin que les autres puissent vous comprendre!
 - Variables en anglais, et même intégralité en anglais, sauf le contenu brut des news.
