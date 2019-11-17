@@ -79,6 +79,9 @@ class gameplayScene extends Phaser.Scene {
         this.failLabel = this.add.text(20, 90, this.catchedArrows, {font: "25px Arial", fill: "red"});
         this.sharedLabel = this.add.text(20, 120, this.sharedNews, { font: "25px Arial", fill: "green"});
 
+        var sharedText = this.add.text(400,400, "SHARED!", {font:"40px Arial", fill:"pink"})
+        sharedText.visible = false;
+
         var label = this.add.text(0, 0, '', { font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
 
@@ -130,9 +133,8 @@ class gameplayScene extends Phaser.Scene {
                     this.removeArrow(currentArrow);
                 }
 
-                if (this.catchedArrows %5 ===0 && this.catchedArrows++){
-                    this.sharedNews++;
-                }
+                
+                    
                 
             }
 
