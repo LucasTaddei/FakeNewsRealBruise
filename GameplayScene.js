@@ -82,7 +82,10 @@ class gameplayScene extends Phaser.Scene {
         this.failLabel = this.add.text(20, 90, this.catchedArrows, {font: "25px Arial", fill: "red"});
         this.sharedLabel = this.add.text(20, 120, this.sharedNews, {font: "25px Arial", fill: "green"});
 
-        sharedText = this.add.text(400,400,"SHARED!",{font: "40px Arial", fill: "red"}).setVisible(false);
+        //Text "Share"
+        this.shared = this.add.text(400,400,"SHARED!",{font: "40px Arial", fill: "red"});
+        this.shared.visible=false;
+
     
 
         var label = this.add.text(0, 0, '', { font: "48px Arial Black", fill: "#c51b7d" });
@@ -104,6 +107,13 @@ class gameplayScene extends Phaser.Scene {
             label.x = gameObject.x;
             label.y = gameObject.y;
         });  
+
+        
+        
+        
+        
+        
+
     }
 
     update(time, delta){  
@@ -140,12 +150,16 @@ class gameplayScene extends Phaser.Scene {
                     this.removeArrow(currentArrow);
                 }
 
-                // enregistrement des combos
+                // enregistrement des combos + "Share" visible après la combo
                 if (this.consecutiveArrows == 5){
-                    this.sharedNews++;
-                    this.consecutiveArrows = 0;
-                                    
-                    
+                        this.sharedNews++;
+                        this.consecutiveArrows = 0;
+                        this.shared.visible=true;
+
+                }
+                //"Share" ne plus visible après la combo
+                else if(this.consecutiveArrows != 5){
+                    this.shared.visible=false
                 }
                 
             
@@ -168,6 +182,12 @@ class gameplayScene extends Phaser.Scene {
           this.scoreLabel.setText(this.catchedArrows);
           this.failLabel.setText(this.missedArrows);
           this.sharedLabel.setText(this.sharedNews);
+    }
+
+    
+        
+    removeShared(){
+        this.shared.visible=false;
     }
 
     // suppression de la flèche du tableau ainsi que son index
