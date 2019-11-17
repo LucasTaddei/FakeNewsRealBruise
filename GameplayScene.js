@@ -6,12 +6,15 @@ class gameplayScene extends Phaser.Scene {
         // création d'un tableau vide pour les flèches qui défilent
         this.fallingArrows = [];
 
+        // initialisation des variables utilisées
         this.fallingSpeed = 5;
         this.fallingDelay = 500;
 
+        // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
-        this.sharedNews= 0;
+        this.consecutiveArrows = 0;
+        this.sharedNews = 0;
 
         this.scoreLabel;
         this.failLabel;
@@ -77,10 +80,10 @@ class gameplayScene extends Phaser.Scene {
 
         this.scoreLabel = this.add.text(20, 60, this.catchedArrows, {font: "25px Arial", fill: "white"});
         this.failLabel = this.add.text(20, 90, this.catchedArrows, {font: "25px Arial", fill: "red"});
-        this.sharedLabel = this.add.text(20, 120, this.sharedNews, { font: "25px Arial", fill: "green"});
+        this.sharedLabel = this.add.text(20, 120, this.sharedNews, {font: "25px Arial", fill: "green"});
 
-        var sharedText = this.add.text(400,400, "SHARED!", {font:"40px Arial", fill:"pink"})
-        sharedText.visible = false;
+        sharedText = this.add.text(400,400,"SHARED!",{font: "40px Arial", fill: "red"}).setVisible(false);
+    
 
         var label = this.add.text(0, 0, '', { font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
@@ -121,40 +124,47 @@ class gameplayScene extends Phaser.Scene {
 
                 if (isLeftKeyPressed && currentArrow.name == "left") {
                     this.catchedArrows++;
+                    this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
                     this.catchedArrows++;
+                    this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
                     this.catchedArrows++;
+                    this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
                     this.catchedArrows++;
+                    this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                 }
 
-                
+                // enregistrement des combos
+                if (this.consecutiveArrows == 5){
+                    this.sharedNews++;
+                    this.consecutiveArrows = 0;
+                                    
                     
+                }
                 
-            }
-
             
-
-           
             
+        }
+
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
                 this.missedArrows++;
+                this.consecutiveArrows = 0;
                 this.removeArrow(currentArrow);
             }
-            
 
             // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
             
           });
-        
 
+          // actualisation des scores
           this.scoreLabel.setText(this.catchedArrows);
           this.failLabel.setText(this.missedArrows);
           this.sharedLabel.setText(this.sharedNews);
