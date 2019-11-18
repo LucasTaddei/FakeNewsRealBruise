@@ -30,6 +30,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.image("right","assets/UIpack/PNG/yellow_sliderRight.png");
 
         this.load.image("background", "assets/images/network.jpg");
+        this.load.image("lightGrey", "assets/images/lightGrey.jpg");
         this.load.audio("mainsong", "assets/sounds/realbruise.m4a");
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
     }
@@ -75,7 +76,7 @@ class gameplayScene extends Phaser.Scene {
         var mainsong = this.sound.add("mainsong");
         mainsong.play();
        
-        this.background = this.add.image(0,0, "background").setOrigin(0);
+        this.background = this.add.image(390,0, "lightGrey").setOrigin(0);
         this.background.setOrigin(0,0);
         this.add.text(20, 20, "Game Scene", {font: "25px Arial", fill: "black"});
 
@@ -93,15 +94,15 @@ class gameplayScene extends Phaser.Scene {
         label.setStroke('#de77ae', 8);
 
         // création des 4 zones de collision des flèches
-         this.add.image(500,600,'left').setOrigin(0);
-         this.add.image(600,600,'up').setOrigin(0);
-         this.add.image(700,600,'down').setOrigin(0);
-         this.add.image(800,600,'right').setOrigin(0);
+         this.add.image(490,600,'left').setOrigin(0.5);
+         this.add.image(590,600,'up').setOrigin(0.5);
+         this.add.image(690,600,'down').setOrigin(0.5);
+         this.add.image(790,600,'right').setOrigin(0.5);
 
-         var zone1 = this.add.zone(500, 600, 50, 50).setOrigin(0).setName('leftZone').setInteractive();
-         var zone2 = this.add.zone(600, 600, 50, 50).setOrigin(0).setName('upZone').setInteractive();
-         var zone3 = this.add.zone(700, 600, 50, 50).setOrigin(0).setName('downZone').setInteractive();
-         var zone4 = this.add.zone(800, 600, 50, 50).setOrigin(0).setName('downZone').setInteractive();
+         var zone1 = this.add.zone(490, 600, 50, 50).setOrigin(0.5).setName('leftZone').setInteractive();
+         var zone2 = this.add.zone(590, 600, 50, 50).setOrigin(0.5).setName('upZone').setInteractive();
+         var zone3 = this.add.zone(690, 600, 50, 50).setOrigin(0.5).setName('downZone').setInteractive();
+         var zone4 = this.add.zone(790, 600, 50, 50).setOrigin(0.5).setName('downZone').setInteractive();
     
          this.input.on('gameobjectdown', function (pointer, gameObject) {
             label.setText(gameObject.name);
@@ -201,19 +202,19 @@ class gameplayScene extends Phaser.Scene {
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
         if (randomArrow == 0){
-            newImage = this.add.image(500, 60, 'left').setOrigin(0);
+            newImage = this.add.image(490, 60, 'left').setOrigin(0.5);
             newImage.name = 'left';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 1){
-            newImage = this.add.image(600, 60, 'up').setOrigin(0);
+            newImage = this.add.image(590, 60, 'up').setOrigin(0.5);
             newImage.name = 'up';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 2){
-            newImage = this.add.image(700, 60, 'down').setOrigin(0);
+            newImage = this.add.image(690, 60, 'down').setOrigin(0.5);
             newImage.name = 'down';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 3){
-            newImage = this.add.image(800, 60, 'right').setOrigin(0);
+            newImage = this.add.image(790, 60, 'right').setOrigin(0.5);
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
         }
