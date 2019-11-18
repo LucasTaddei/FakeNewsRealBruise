@@ -28,8 +28,10 @@ class gameplayScene extends Phaser.Scene {
         this.load.image("up","assets/UIpack/PNG/yellow_sliderUp.png");
         this.load.image("down","assets/UIpack/PNG/yellow_sliderDown.png");
         this.load.image("right","assets/UIpack/PNG/yellow_sliderRight.png");
+        
+        this.load.image('logo','assets/images/LOGO.png')
 
-        this.load.image("background", "assets/images/network.jpg");
+
         this.load.image("lightGrey", "assets/images/lightGrey.jpg");
         this.load.audio("mainsong", "assets/sounds/realbruise.m4a");
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
@@ -84,11 +86,14 @@ class gameplayScene extends Phaser.Scene {
        
         this.background = this.add.image(390,0, "lightGrey").setOrigin(0);
         this.background.setOrigin(0,0);
-        this.add.text(20, 20, "Game Scene", {font: "25px Arial", fill: "black"});
 
-        this.scoreLabel = this.add.text(20, 60, this.catchedArrows, {font: "25px Arial", fill: "white"});
-        this.failLabel = this.add.text(20, 90, this.catchedArrows, {font: "25px Arial", fill: "red"});
-        this.sharedLabel = this.add.text(20, 120, this.sharedNews, {font: "25px Arial", fill: "green"});
+        //colonne de gauche
+        this.add.image(190, 100, 'logo').setOrigin(0.5).setScale(0.6);
+        this.add.text(190, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
+
+        this.scoreLabel = this.add.text(20, 500, this.catchedArrows, {font: "25px Arial", fill: "white"});
+        this.failLabel = this.add.text(20, 530, this.catchedArrows, {font: "25px Arial", fill: "red"});
+        this.sharedLabel = this.add.text(20, 560, this.sharedNews, {font: "25px Arial", fill: "green"});
 
         //Text "Shared!"
         this.shared = this.add.text(640,360,"SHARED!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
