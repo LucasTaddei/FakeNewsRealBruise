@@ -33,11 +33,12 @@ class gameplayScene extends Phaser.Scene {
         this.load.image("lightGrey", "assets/images/lightGrey.jpg");
         this.load.audio("mainsong", "assets/sounds/realbruise.m4a");
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
-        this.load.audio("realBruise2","assets/sounds/realbruise2.m4a");
+        this.load.audio("realBruise3","assets/sounds/realbruise3.m4a");
         this.load.audio("chants","assets/sounds/chants.wav");
         this.load.audio("mall","assets/sounds/mall.wav");
         this.load.audio("screams","assets/sounds/screams.wav");
-        this.load.audio("war","assets/sounds/war.wav")
+        this.load.audio("war","assets/sounds/war.wav");
+        this.load.audio("trump","assets/sounds/trump.wav");
     }
 
     create(){
@@ -78,7 +79,7 @@ class gameplayScene extends Phaser.Scene {
             }
         })
         
-        var mainsong = this.sound.add("realBruise2");
+        var mainsong = this.sound.add("realBruise3");
         mainsong.play();
        
         this.background = this.add.image(390,0, "lightGrey").setOrigin(0);
@@ -121,7 +122,7 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("mall", {loop: false})
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
-
+        this.sound.add("trump",{loop: false});
 
     }
 
@@ -186,11 +187,15 @@ class gameplayScene extends Phaser.Scene {
                     this.sound.play('chants');
                 }
 
-                if(this.sharedNews == 25 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 27 && this.consecutiveArrows == 0){
                     this.sound.play('screams',{volume: 0.5});
                 }
 
-                if(this.sharedNews == 30 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 40 && this.consecutiveArrows == 0){
+                    this.sound.play('trump',{detune: 0.5});
+                }
+
+                if(this.sharedNews == 45 && this.consecutiveArrows == 0){
                     this.sound.play('war');
                 }
                             
