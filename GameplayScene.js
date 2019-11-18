@@ -91,8 +91,16 @@ class gameplayScene extends Phaser.Scene {
         this.sharedLabel = this.add.text(20, 120, this.sharedNews, {font: "25px Arial", fill: "green"});
 
         //Text "Shared!"
-        this.shared = this.add.text(400,400,"SHARED!",{font: "40px Arial", fill: "red"});
+        this.shared = this.add.text(640,360,"SHARED!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
         this.shared.visible=false;
+
+        //Text "disorder!"
+        this.disorder = this.add.text(640,360,"DISORDER!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
+        this.disorder.visible=false;
+
+        //Text "death!
+        this.death = this.add.text(640,360,"DEATH!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
+        this.death.visible=false;
 
     
 
@@ -166,7 +174,7 @@ class gameplayScene extends Phaser.Scene {
                 }
 
                 // enregistrement des combos + "Share" visible après la combo
-                if (this.consecutiveArrows == 5){
+                if (this.consecutiveArrows == 5 && this.sharedNews <26){
                         this.sharedNews++;
                         this.consecutiveArrows = 0;
                         this.shared.visible=true;
@@ -175,8 +183,28 @@ class gameplayScene extends Phaser.Scene {
                 }
                 //"Share" ne plus visible après la combo
                 else if(this.consecutiveArrows != 5){
-                    this.shared.visible=false
+                    this.shared.visible=false;
+                    this.disorder.visible=false;
+                    this.death.visible=false
                 }
+
+                else if(this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44){
+                    this.sharedNews++;
+                    this.consecutiveArrows = 0;
+                    this.disorder.visible=true;
+                    this.sound.play('mouseClick')
+                }
+
+                else if(this.consecutiveArrows == 5 && this.sharedNews >=44){
+                    this.sharedNews++;
+                    this.consecutiveArrows = 0;
+                    this.death.visible=true;
+                    this.sound.play('mouseClick')
+                }
+
+
+
+
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
                 if(this.sharedNews == 5 && this.consecutiveArrows == 0){
@@ -189,7 +217,10 @@ class gameplayScene extends Phaser.Scene {
 
                 if(this.sharedNews == 27 && this.consecutiveArrows == 0){
                     this.sound.play('screams',{volume: 0.5});
+                    
                 }
+                
+                
 
                 if(this.sharedNews == 40 && this.consecutiveArrows == 0){
                     this.sound.play('trump',{detune: 0.5});
