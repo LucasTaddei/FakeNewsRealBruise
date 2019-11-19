@@ -51,7 +51,7 @@ class titleScene extends Phaser.Scene {
     
         resetCloudPos (cloud) {
             cloud.x = -200;
-            var randomY = Phaser.Math.Between(50, 400)
+            var randomY = Phaser.Math.Between(0, 420)
             cloud.y = randomY;
         }
 
