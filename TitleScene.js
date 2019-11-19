@@ -16,7 +16,7 @@ class titleScene extends Phaser.Scene {
     //ajouter le nuages
     this.cloud1 = this.add.image( 50, 100, 'cloud1');
     this.cloud2 = this.add.image(500, 300, 'cloud2');
-    this.cloud3 = this.add.image(700, 200, 'cloud3');
+    this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
     var titleTextLine1 = this.add.text(200, 80,"Fake News", {font: '90px jack', fill: "#112b1a"});
     var titleTextLine2 = this.add.text(550, 150,"Real Bruise", {font: '90px jack', fill: "#112b1a"});
@@ -34,11 +34,9 @@ class titleScene extends Phaser.Scene {
     }
     //faire bouger les nuages
     update(){
-        this.moveClouds(this.cloud1, 0.5);
-        this.moveClouds(this.cloud2, 0.3);
-        this.moveClouds(this.cloud3, 0.7);
-
-
+        this.moveClouds(this.cloud1, 0.4);
+        this.moveClouds(this.cloud2, 0.1);
+        this.moveClouds(this.cloud3, 0.3);
     }
 
     
@@ -46,14 +44,14 @@ class titleScene extends Phaser.Scene {
 
         moveClouds (cloud, speed) {
             cloud.x += speed;
-            if (cloud.x > config.width+100){
+            if (cloud.x > config.width+150){
             this.resetCloudPos(cloud);
             }
         }
     
         resetCloudPos (cloud) {
             cloud.x = -200;
-            var randomY = Phaser.Math.Between(50, 300)
+            var randomY = Phaser.Math.Between(50, 400)
             cloud.y = randomY;
         }
 
