@@ -202,6 +202,17 @@ class gameplayScene extends Phaser.Scene {
                     this.sound.play('mouseClick')
                 }
 
+                // jeu termine si tu ne clique rien
+                if(this.catchedArrows==0 && this.missedArrows == 15){
+                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px Arial", fill: "red"}).setOrigin(0.5);
+                    this.time.addEvent({
+                        delay: 3000,
+                        callback: ()=>{
+                            this.scene.start("end")
+                        }
+                    });
+                }
+                
 
 
 
