@@ -25,9 +25,9 @@ class titleScene extends Phaser.Scene {
     var gameExplanation = this.add.text(640, 490, "with the key arrows", {font: '35px jack', fill: "white"}).setOrigin(0.5);
     var start = this.add.text(640,570, "Start", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
     var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
-    
 
-        
+    
+            
     start.on('pointerdown', () => this.scene.start("gameplay"));
 
 
@@ -37,7 +37,11 @@ class titleScene extends Phaser.Scene {
         this.moveClouds(this.cloud1, 0.5);
         this.moveClouds(this.cloud2, 0.3);
         this.moveClouds(this.cloud3, 0.7);
+
+
     }
+
+    
 
 
         moveClouds (cloud, speed) {
@@ -52,4 +56,6 @@ class titleScene extends Phaser.Scene {
             var randomY = Phaser.Math.Between(50, 300)
             cloud.y = randomY;
         }
+
+
 }

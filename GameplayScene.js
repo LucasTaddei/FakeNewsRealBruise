@@ -33,7 +33,6 @@ class gameplayScene extends Phaser.Scene {
 
 
         this.load.image("lightGrey", "assets/images/lightGrey.jpg");
-        this.load.audio("mainsong", "assets/sounds/realbruise.m4a");
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
         this.load.audio("realBruise3","assets/sounds/realbruise3.m4a");
         this.load.audio("chants","assets/sounds/chants.wav");
@@ -118,10 +117,6 @@ class gameplayScene extends Phaser.Scene {
          this.add.image(690,600,'down').setOrigin(0.5);
          this.add.image(790,600,'right').setOrigin(0.5);
 
-         var zone1 = this.add.zone(490, 600, 50, 50).setOrigin(0.5).setName('leftZone').setInteractive();
-         var zone2 = this.add.zone(590, 600, 50, 50).setOrigin(0.5).setName('upZone').setInteractive();
-         var zone3 = this.add.zone(690, 600, 50, 50).setOrigin(0.5).setName('downZone').setInteractive();
-         var zone4 = this.add.zone(790, 600, 50, 50).setOrigin(0.5).setName('downZone').setInteractive();
     
          this.input.on('gameobjectdown', function (pointer, gameObject) {
             label.setText(gameObject.name);
