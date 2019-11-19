@@ -34,21 +34,21 @@ class titleScene extends Phaser.Scene {
     }
     //faire bouger les nuages
     update(){
-        this.moveClouds(this.cloud1, 0.5);
-        this.moveClouds(this.cloud2, 0.2);
-        this.moveClouds(this.cloud3, 0.4);
+        this.moveClouds(this.cloud1, 0.4);
+        this.moveClouds(this.cloud2, 0.1);
+        this.moveClouds(this.cloud3, 0.3);
     }
 
 
         moveClouds (cloud, speed) {
             cloud.x += speed;
-            if (cloud.x > config.width+100){
+            if (cloud.x > config.width+150){
             this.resetCloudPos(cloud);
             }
         }
     
         resetCloudPos (cloud) {
-            cloud.x = -250;
+            cloud.x = -200;
             var randomY = Phaser.Math.Between(50, 400)
             cloud.y = randomY;
         }
