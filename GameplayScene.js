@@ -89,7 +89,9 @@ class gameplayScene extends Phaser.Scene {
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
         var backgroundNews = this.add.rectangle(640,170,600,150,0xE5E5E5).setOrigin(0.5);
         var titreExample = this.add.text(350,120, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
-        var textExample = this.add.text(350,150, 'PEOPLE: Blalbla',{font:'20px jack', fill: '#112b1a'});
+        var textExample = this.add.text(350,150, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px jack', fill: '#112b1a'});
+        //pour que le texte ne dépasse pas le fond de la News
+        textExample.setWordWrapWidth(600, false);
        
         //titre de la page 
         var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
@@ -139,7 +141,6 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
-
     }
 
 

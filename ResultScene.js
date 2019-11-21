@@ -40,7 +40,7 @@ class resultScene extends Phaser.Scene {
             { key: 'bomb8', duration: 5 },
         ],
         frameRate: 9,
-        repeat: -1,
+        repeat: 0,
     });
     this.add.sprite(640, 360, 'bomb1').setOrigin(0.5).play('test');        
 
@@ -60,8 +60,6 @@ class resultScene extends Phaser.Scene {
             var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
         }
     })
-
-
 
         next.on('pointerdown', () => this.scene.start("not"));
     }
