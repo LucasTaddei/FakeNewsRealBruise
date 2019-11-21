@@ -6,5 +6,8 @@ var config = {
     width: 1280,
     height: 720,
     backgroundColor: "#65FF99",
-    scene: [titleScene,gameplayScene,resultScene,notAVideoGameScene,endScene]
+    dom: {
+        createContainer: true
+    },
+    scene: [gameplayScene,resultScene,notAVideoGameScene,endScene,titleScene]
 }
