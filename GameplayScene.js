@@ -79,7 +79,7 @@ class gameplayScene extends Phaser.Scene {
         })
         
         var mainsong = this.sound.add("realBruise3");
-        mainsong.play();
+        mainsong.play({volume: 0.5});
 
         //Fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
