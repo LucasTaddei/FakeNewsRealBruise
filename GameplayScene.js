@@ -81,7 +81,7 @@ class gameplayScene extends Phaser.Scene {
         })
         
         var mainsong = this.sound.add("realBruise3");
-        mainsong.play();
+        mainsong.play({volume: 0.5});
        
         this.background = this.add.image(390,0, "lightGrey").setOrigin(0);
         this.background.setOrigin(0,0);
