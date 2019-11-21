@@ -83,10 +83,10 @@ class gameplayScene extends Phaser.Scene {
         var mainsong = this.sound.add("realBruise3");
         mainsong.play({volume: 0.5});
 
-        
 
         //Fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
+
 
         //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
         //par contre les flèches passent encore devant...
@@ -260,6 +260,8 @@ class gameplayScene extends Phaser.Scene {
                 if(this.sharedNews == 45 && this.consecutiveArrows == 0){
                     this.sound.play('war');
                 }
+
+
                             
         }
 

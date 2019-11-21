@@ -59,10 +59,12 @@ class resultScene extends Phaser.Scene {
         callback: ()=>{
             var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
         }
+        
     })
 
+    next.on('pointerdown', () => this.scene.start("not"));
 
 
-        next.on('pointerdown', () => this.scene.start("not"));
+        
     }
 }
