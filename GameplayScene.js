@@ -40,6 +40,8 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("screams","assets/sounds/screams.wav");
         this.load.audio("war","assets/sounds/war.wav");
         this.load.audio("trump","assets/sounds/trump.wav");
+
+        this.load.json("news", "fakeNews.json")
     }
 
     create(){
@@ -131,6 +133,13 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
+
+
+
+        var news = this.cache.json.get('news');
+        this.text.fromJSON(news);
+
+        
 
     }
 
