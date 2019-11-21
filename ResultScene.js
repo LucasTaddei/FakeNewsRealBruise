@@ -40,7 +40,7 @@ class resultScene extends Phaser.Scene {
             { key: 'bomb8', duration: 5 },
         ],
         frameRate: 9,
-        repeat: 0,
+        repeat: -1,
     });
     this.add.sprite(640, 360, 'bomb1').setOrigin(0.5).play('test');        
 

@@ -31,8 +31,6 @@ class gameplayScene extends Phaser.Scene {
         
         this.load.image('logo','assets/images/LOGO.png')
 
-
-        this.load.image("lightGrey", "assets/images/lightGrey.jpg");
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
         this.load.audio("realBruise3","assets/sounds/realbruise3.m4a");
         this.load.audio("chants","assets/sounds/chants.wav");
@@ -84,9 +82,19 @@ class gameplayScene extends Phaser.Scene {
         
         var mainsong = this.sound.add("realBruise3");
         mainsong.play({volume: 0.5});
+
+        //Fond blanc "zone de jeu"
+        var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
+
+        //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
+        //par contre les flèches passent encore devant...
+        //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
+        var backgroundNews = this.add.rectangle(640,170,600,150,0xE5E5E5).setOrigin(0.5);
+        var titreExample = this.add.text(350,120, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
+        var textExample = this.add.text(350,150, 'PEOPLE: Blalbla',{font:'20px jack', fill: '#112b1a'});
        
-        this.background = this.add.image(390,0, "lightGrey").setOrigin(0);
-        this.background.setOrigin(0,0);
+        //titre de la page 
+        var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
 
         //colonne de gauche
         this.add.image(190, 100, 'logo').setOrigin(0.5).setScale(0.6);
