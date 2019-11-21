@@ -38,6 +38,8 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("screams","assets/sounds/screams.wav");
         this.load.audio("war","assets/sounds/war.wav");
         this.load.audio("trump","assets/sounds/trump.wav");
+
+        this.load.json("news", "fakeNews.json")
     }
 
     create(){
@@ -81,6 +83,8 @@ class gameplayScene extends Phaser.Scene {
         var mainsong = this.sound.add("realBruise3");
         mainsong.play({volume: 0.5});
 
+        
+
         //Fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
 
@@ -121,6 +125,8 @@ class gameplayScene extends Phaser.Scene {
         var label = this.add.text(0, 0, '', { font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
 
+        
+
         // création des 4 zones de collision des flèches
          this.add.image(490,600,'left').setOrigin(0.5);
          this.add.image(590,600,'up').setOrigin(0.5);
@@ -141,10 +147,17 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
+
+        
+        
+
+        
+
     }
 
 
     update(time, delta){  
+
 
         // récupération de la touche enfoncée lors de l'update
         var cursorKeys = this.input.keyboard.createCursorKeys();

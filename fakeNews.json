@@ -1,5 +1,4 @@
 [{
-    "probleme": "si quelqu'un veut améliorer cette structure JSON merdique, c'est avec grand plaisir!",
     "newspaper": "LEQUASIJOURNAL",
     "content": [
         {
@@ -32,4 +31,17 @@
             ]
         }
     ]
-}]
+
+    
+},
+{   
+    "news":[  
+    {"id":"01", "site":"The Washington Toast", "text":"La très célèbre écrivaine Léa Keller reçoit un château dans la Loire pour son anniversaire"},  
+    {"id":"02","site":"The New York Dime", "text":"Les personnes qui consomment des avocats BIO du Mexique peuvent voler!"},  
+    {"id":"03","site":"RealNewsISwear", "text":"blablablabalbalbalbalbala"}  
+
+]} 
+
+
+
+]
