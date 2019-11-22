@@ -101,8 +101,8 @@ class gameplayScene extends Phaser.Scene {
         var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
 
         //colonne de gauche
-        this.add.image(190, 100, 'logo').setOrigin(0.5).setScale(0.6);
-        this.add.text(190, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
+        this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.6);
+        this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         this.scoreLabel = this.add.text(20, 500, this.catchedArrows, {font: "25px Arial", fill: "white"});
         this.failLabel = this.add.text(20, 530, this.catchedArrows, {font: "25px Arial", fill: "red"});
@@ -147,12 +147,6 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
-
-        
-        
-
-        
-
     }
 
 
