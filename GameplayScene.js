@@ -104,6 +104,12 @@ class gameplayScene extends Phaser.Scene {
         this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.6);
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
+        //Prototype "Notifications"
+        var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5);
+        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px jack', fill: 'black'}).setOrigin(0.5);
+        notifications.setWordWrapWidth(300, false);
+        
+        //labels
         this.scoreLabel = this.add.text(20, 500, this.catchedArrows, {font: "25px Arial", fill: "white"});
         this.failLabel = this.add.text(20, 530, this.catchedArrows, {font: "25px Arial", fill: "red"});
         this.sharedLabel = this.add.text(20, 560, this.sharedNews, {font: "25px Arial", fill: "green"});
