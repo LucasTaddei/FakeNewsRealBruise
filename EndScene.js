@@ -3,6 +3,12 @@ class endScene extends Phaser.Scene {
         super("end");
     }
 
+    preload(){
+
+        this.load.audio("realBruise3","assets/sounds/realbruise3.m4a");
+    }
+
+
     create(){    
         var rectangle = this.add.rectangle(640,250,1200,150,0xffffff).setOrigin(0.5);
         var thinkBefore = this.add.text(640,250, "Think before you share",{font: "90px jack", fill: '#112b1a'}).setOrigin(0.5);
@@ -10,6 +16,15 @@ class endScene extends Phaser.Scene {
         var retry = this.add.text(640,620, "Retry", {font: "70px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
         //fonction pour rejouer ne pas fonctionnante
 
-        retry.on('pointerdown', () => this.restart("gameplay"));
+        var mainsong = this.sound.add("realBruise3");
+
+        
+        
+
+        retry.on('pointerdown', function () {
+            this.scene.start('gameplay');
+          },this)
+        
+        
     }
 }
