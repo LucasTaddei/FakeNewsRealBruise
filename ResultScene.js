@@ -28,10 +28,17 @@ class resultScene extends Phaser.Scene {
         this.load.image('bomb12', 'Bomb12.png');
         this.load.image('bomb13', 'Bomb13.png');
         this.load.image('bomb14', 'Bomb14.png');
+        this.load.audio("war","assets/sounds/war.wav");
         
     }
 
     create(){
+
+
+        this.sound.add('war', {loop: false});
+
+
+        
     // Ajout du texte
     this.time.addEvent({
             delay: 1000,
