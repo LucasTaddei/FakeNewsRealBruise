@@ -44,9 +44,17 @@ class gameplayScene extends Phaser.Scene {
 
     create(){
         this.time.addEvent({
-            delay: 188000,
+            delay: 188500,
             callback: ()=>{
-                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows})
+                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows});
+
+                //reset les scores et la vitesse lors d'un nouveau jeu
+            this.catchedArrows = 0;
+            this.missedArrows = -4;
+            this.consecutiveArrows = 0;
+            this.sharedNews = 0;
+            this.fallingSpeed = 5;
+            this.fallingDelay = 500;
             }
         })
 
@@ -81,7 +89,9 @@ class gameplayScene extends Phaser.Scene {
         })
         
         var mainsong = this.sound.add("realBruise3");
-        mainsong.play({volume: 0.5});
+        mainsong.play({volume: 0.7});
+
+        
 
 
         //Fond blanc "zone de jeu"
@@ -153,8 +163,10 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
-    }
 
+        
+    }
+    
 
     update(time, delta){  
 
@@ -276,6 +288,9 @@ class gameplayScene extends Phaser.Scene {
 
             // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
+
+            
+
             
           });
 
@@ -284,6 +299,8 @@ class gameplayScene extends Phaser.Scene {
           this.failLabel.setText(this.missedArrows);
           this.sharedLabel.setText(this.sharedNews);
     }
+
+
 
     
         
@@ -320,5 +337,7 @@ class gameplayScene extends Phaser.Scene {
         }
 
     }
+
+    
 
 }
