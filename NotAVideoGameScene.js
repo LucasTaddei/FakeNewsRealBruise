@@ -46,7 +46,7 @@ class notAVideoGameScene extends Phaser.Scene {
                 { key: 'bomb14', duration: 5 },
             ],
             frameRate: 10,
-            repeat: 0,
+            repeat: -1,
         });
         this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPart2');
 
