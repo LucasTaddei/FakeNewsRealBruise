@@ -1,14 +1,17 @@
 [{
-    "newspaper": "LEQUASIJOURNAL",
-    "content": [
+    "newsPaper": "LEQUASIJOURNAL",
+    "paperContent": [
         {
-            "category":"PEOPLE",
+            "category1":"PEOPLE",
+            "category2": "ECONOMIE",
             "fakeNews": [
                 {
-                    "content": "La très célèbre écrivaine Léa Keller reçoit un château dans la Loire pour son anniversaire",
+                    "content1": "La très célèbre écrivaine Léa Keller reçoit un château dans la Loire pour son anniversaire",
+                    "content2": "les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",
                     "hashtag": [
                         "#OMG",
                         "#Leafanclubofficiel"
+                    
                     ]
                 }
                     ]}
@@ -16,8 +19,8 @@
 },
 
 {
-    "newspaper": "THEALMOSTMAGAZINE",
-    "content": [
+    "newsPaper": "THEALMOSTMAGAZINE",
+    "paperContent": [
         {
             "category": "BREAKING NEWS",
             "fakeNews":[
