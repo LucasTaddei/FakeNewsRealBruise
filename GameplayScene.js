@@ -55,6 +55,9 @@ class gameplayScene extends Phaser.Scene {
             this.sharedNews = 0;
             this.fallingSpeed = 5;
             this.fallingDelay = 500;
+            trump.stop();
+            war.stop();
+            screams.stop();
             }
         })
 
@@ -179,6 +182,12 @@ class gameplayScene extends Phaser.Scene {
         var isLeftKeyPressed = cursorKeys.left.isDown;
         var isRightKeyPressed = cursorKeys.right.isDown;
 
+        var isUpKeyRelased = cursorKeys.up.isUp;
+        var isDownKeyRelased = cursorKeys.down.isUp;
+        var isLeftKeyRelased = cursorKeys.left.isUp;
+        var isRightKeyRelased = cursorKeys.right.isUp;
+
+
         // pour chaque flèche affichée actuellement
         this.fallingArrows.forEach((currentArrow) => {
 
@@ -206,6 +215,7 @@ class gameplayScene extends Phaser.Scene {
                     this.removeArrow(currentArrow);
                     
                 }
+
 
                 // enregistrement des combos + "Share" visible après la combo
                 if (this.consecutiveArrows == 5 && this.sharedNews <26){
@@ -235,6 +245,8 @@ class gameplayScene extends Phaser.Scene {
                     this.death.visible=true;
                     this.sound.play('mouseClick')
                 }
+
+            
 
                 // jeu termine si tu ne clique rien
                 if(this.catchedArrows==0 && this.missedArrows == 15){
@@ -278,6 +290,26 @@ class gameplayScene extends Phaser.Scene {
 
                             
         }
+
+    //     if (currentArrow.y < 600 && currentArrow.y > 650){
+
+    //         if(isUpKeyPressed){
+    //         this.consecutiveArrows=0;
+    //         this.missedArrows++;
+    //     }
+    //     else if(isDownKeyPressed){
+    //         this.consecutiveArrows=0;
+    //         this.missedArrows++;
+    //     }
+    //     else if(isLeftKeyPressed){
+    //         this.consecutiveArrows=0;
+    //         this.missedArrows++;
+    //     }
+    //     else if(isRightKeyPressed){
+    //         this.consecutiveArrows=0;
+    //         this.missedArrows++;
+    //     }
+    // }
 
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
