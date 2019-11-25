@@ -38,6 +38,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("screams","assets/sounds/screams.wav");
         this.load.audio("war","assets/sounds/war.wav");
         this.load.audio("trump","assets/sounds/trump.wav");
+        this.load.audio("bombDrop", "assets/sounds/bombDrop.wav")
 
         this.load.json("news", "fakeNews.json")
     }
@@ -48,7 +49,7 @@ class gameplayScene extends Phaser.Scene {
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows});
 
-                //reset les scores et la vitesse lors d'un nouveau jeu
+            //reset les scores et la vitesse lors d'un nouveau jeu
             this.catchedArrows = 0;
             this.missedArrows = -4;
             this.consecutiveArrows = 0;
@@ -57,7 +58,20 @@ class gameplayScene extends Phaser.Scene {
             this.fallingDelay = 500;
             }
         })
-
+        //ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
+        this.time.addEvent({
+            delay: 188000,
+            callback: ()=>{
+                this.cameras.main.shake(500, 0.03, 0.01); //Duration, intensity, force 
+            } 
+        })
+        //Ajouter bruit de bombe,timing à règler
+        this.time.addEvent({
+            delay: 100,
+            callback: ()=>{
+                this.sound.play("bombDrop",{loop: false});
+            } 
+        })
         // création du timer ajoutant de nouvelles flèches périodiquement
         this.newArrowsTimer = this.time.addEvent({
             delay: this.fallingDelay,
@@ -337,7 +351,6 @@ class gameplayScene extends Phaser.Scene {
         }
 
     }
-
-    
+  
 
 }

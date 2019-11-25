@@ -86,17 +86,13 @@ this.time.addEvent({
 })
 */
 
-//Créer le bouton next et lancer la phase 2 e l'animation
+//Créer le bouton next et lancer la phase 2 de l'animation
 var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
-next.on('pointerdown', () => this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPhase2'));
-/*L'idée est de supprimer la scène suivante pour passer directement à la scène de fin, pour la fluidité de l'animation 
-c'est mieux. Mais du coup on arrive pas à faire que l'animation phase1 soit supprimée et que la phase 2 soit lancée en un clic, 
-on arrive a faire soit l'un, soit l'autre. Quand on met la fonction ci-dessous dans le next.on, aucune animation ne fonctionne...
-
-function phase2(){       
-        this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPhase2')
-        phase1.destroy()
-    }*/
+next.on('pointerdown', function() {
+    this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPhase2');
+    phase1.destroy();
+    next.destroy();
+}, this);
     }
 
 }
