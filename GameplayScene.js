@@ -132,9 +132,16 @@ class gameplayScene extends Phaser.Scene {
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         //Prototype "Notifications"
-        var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5);
-        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px jack', fill: 'black'}).setOrigin(0.5);
+        var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px jack', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
+        this.tweens.add({
+            targets: [notifications, backgoundNotifications],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            yoyo: true, //effet pop up?
+            loop: 0,   
+        });
+
         
         //labels
         this.scoreLabel = this.add.text(20, 500, this.catchedArrows, {font: "25px Arial", fill: "white"});
@@ -268,7 +275,7 @@ class gameplayScene extends Phaser.Scene {
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
-                            this.scene.start("end")
+                            this.scene.start("ifNoClicks")
                         }
                     });
                 }
