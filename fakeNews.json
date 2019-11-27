@@ -1,50 +1,33 @@
-[{
-    "newsPaper": "LEQUASIJOURNAL",
-    "paperContent": [
-        {
-            "category1":"PEOPLE",
-            "category2": "ECONOMIE",
-            "fakeNews": [
-                {
-                    "content1": "La très célèbre écrivaine Léa Keller reçoit un château dans la Loire pour son anniversaire",
-                    "content2": "les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",
-                    "hashtag": [
-                        "#OMG",
-                        "#Leafanclubofficiel"
-                    
-                    ]
-                }
-                    ]}
-    ]
-},
-
 {
-    "newsPaper": "THEALMOSTMAGAZINE",
-    "paperContent": [
-        {
-            "category": "BREAKING NEWS",
-            "fakeNews":[
-                {
-                    "content": "Les personnes qui consomment des avocats BIO du Mexique peuvent voler!",
-                    "hashtag": [
-                        "superhero",
-                        "avocadoforlife"
-                    ]
-                }
-            ]
-        }
-    ]
 
-    
+"newsPaper": [{
+
+    "newspaperName": "The Washington Toast",
+    "titleNews":[{
+        "titleContent": "les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral"
+    },
+{       "titleContent": "Les personnes qui consomment des avocats BIO du Mexique peuvent voler!"
+    }]
 },
-{   
-    "news":[  
-    {"id":"01", "site":"The Washington Toast", "text":"La très célèbre écrivaine Léa Keller reçoit un château dans la Loire pour son anniversaire"},  
-    {"id":"02","site":"The New York Dime", "text":"Les personnes qui consomment des avocats BIO du Mexique peuvent voler!"},  
-    {"id":"03","site":"RealNewsISwear", "text":"blablablabalbalbalbalbala"}  
+{
+    "newspaperName":"The New York Dime"
+},
+{
+    "newspaperName":"LEQUASIJOURNAL"
+}
 
-]} 
+
 
 
 
 ]
+
+
+
+
+
+
+
+
+
+}
