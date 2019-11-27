@@ -7,7 +7,14 @@
         "titleContent": "les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral"
     },
 {       "titleContent": "Les personnes qui consomment des avocats BIO du Mexique peuvent voler!"
-    }]
+    },
+{
+    "newsCategory": [{
+
+        "categoryNews": "ECONOMIE"
+    },
+{        "categoryNews": "BREAKINGNEWS"}]
+}]
 },
 {
     "newspaperName":"The New York Dime"
