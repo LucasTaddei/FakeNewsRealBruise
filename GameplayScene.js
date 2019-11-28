@@ -120,9 +120,9 @@ class gameplayScene extends Phaser.Scene {
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
         var backgroundNews = this.add.rectangle(640,170,600,150,0xE5E5E5).setOrigin(0.5);
         var titreExample = this.add.text(350,120, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
-        var textExample = this.add.text(350,150, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px jack', fill: '#112b1a'});
+        var textExample = this.add.text(350,150, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px imperator', fill: '#112b1a'});
         //pour que le texte ne dépasse pas le fond de la News
-        textExample.setWordWrapWidth(600, false);
+        textExample.setWordWrapWidth(550, false);
        
         //titre de la page 
         var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
@@ -133,12 +133,14 @@ class gameplayScene extends Phaser.Scene {
 
         //Prototype "Notifications"
         var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
-        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px jack', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
+        //animation des notifications
         this.tweens.add({
             targets: [notifications, backgoundNotifications],
             alpha: { value: 1, duration: 500, ease: 'Power1' },
-            yoyo: true, //effet pop up?
+            hold: 1500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
             loop: 0,   
         });
 
