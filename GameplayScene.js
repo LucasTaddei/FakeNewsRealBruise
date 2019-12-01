@@ -114,18 +114,18 @@ class gameplayScene extends Phaser.Scene {
         //Fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
 
+        //titre de la page 
+        var home = this.add.text(350,20,'home', {font:'45px jack', fill: '#112b1a'});
 
         //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
         //par contre les flèches passent encore devant...
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
-        var backgroundNews = this.add.rectangle(640,170,600,150,0xE5E5E5).setOrigin(0.5);
-        var titreExample = this.add.text(350,120, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
-        var textExample = this.add.text(350,150, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px imperator', fill: '#112b1a'});
+        var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
+        var titreExample = this.add.text(350,90, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
+        var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px imperator', fill: '#112b1a'});
         //pour que le texte ne dépasse pas le fond de la News
         textExample.setWordWrapWidth(550, false);
-       
-        //titre de la page 
-        var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
+
 
         //colonne de gauche
         this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.6);
@@ -374,19 +374,19 @@ class gameplayScene extends Phaser.Scene {
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
         if (randomArrow == 0){
-            newImage = this.add.image(490, 60, 'left').setOrigin(0.5);
+            newImage = this.add.image(490, 170, 'left').setOrigin(0.5);
             newImage.name = 'left';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 1){
-            newImage = this.add.image(590, 60, 'up').setOrigin(0.5);
+            newImage = this.add.image(590, 170, 'up').setOrigin(0.5);
             newImage.name = 'up';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 2){
-            newImage = this.add.image(690, 60, 'down').setOrigin(0.5);
+            newImage = this.add.image(690, 170, 'down').setOrigin(0.5);
             newImage.name = 'down';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 3){
-            newImage = this.add.image(790, 60, 'right').setOrigin(0.5);
+            newImage = this.add.image(790, 170, 'right').setOrigin(0.5);
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
         }
