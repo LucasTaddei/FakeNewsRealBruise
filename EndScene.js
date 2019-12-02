@@ -13,14 +13,17 @@ class endScene extends Phaser.Scene {
         var rectangle = this.add.rectangle(640,250,1200,150,0xffffff).setOrigin(0.5);
         var thinkBefore = this.add.text(640,250, "Think before you share",{font: "90px jack", fill: '#112b1a'}).setOrigin(0.5);
         var saveLives = this.add.text(640,360, "Save lives, don't spread fake news.",{font: "50px jack", fill: '#112b1a'}).setOrigin(0.5);
-        var retry = this.add.text(640,620, "Retry", {font: "70px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
-        //fonction pour rejouer ne pas fonctionnante
-
+        var retry = this.add.text(640,580, "Retry", {font: "70px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
+    
         var mainsong = this.sound.add("realBruise3");
+        //création du bouton qui renvoit à la page Hero
+        var hero = this.add.text(1070,700, "How to become a hero", {font: "35px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
+        hero.on('pointerdown', function () {
+            this.scene.start('hero');
+          },this)
 
-        
-        
 
+    //fonction pour rejouer ne pas fonctionnante
         retry.on('pointerdown', function () {
             this.scene.start('gameplay');
           },this)
