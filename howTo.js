@@ -19,7 +19,10 @@ class howTo extends Phaser.Scene {
     this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
     //ajouter les textes et images fixes
-    var bravo = this.add.text(640, 200,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
+    var bravo = this.add.text(640, 100,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
+
+    var howToText = this.add.text(950, 350, "Click the arrows of your keyboard when the falling arrow is on the right spot. After 5 consecutives right clicks, a NEWS is shared.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5);
+    howToText.setWordWrapWidth(600, false);
 
 
     //ajouter la ville
