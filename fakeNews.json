@@ -3,14 +3,14 @@
         {
         "id": 1,
         "newspaperTitle":"Le Temps du journal",
-        "title":"les avocats d'une certaine région du Mexique rendent les cheveux bleus",
+        "title":"Les avocats d'une certaine région du Mexique rendent les cheveux bleus",
         "category":"beauté & santé",
         "hashtag":"#cheveuxbleus"  
         },
         {
         "id": 2,
         "newspaperTitle":"Le canard volant",
-        "title":"les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",
+        "title":"Les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",
         "category":"économie",
         "hashtag":"#1000chftropdebol"  
         },
@@ -24,25 +24,25 @@
     {
     "id": 4,
     "newspaperTitle":"The Washington Toast",
-    "title":"",
-    "category":"",
-    "hashtag":""},
+    "title":"Un job de rêve promis par Donald Trump, pour toutes personnes se présentant le premier lundi de chaque mois devant la Maison Blanche",
+    "category":"breaking news",
+    "hashtag":"#Trumpbestpresident"},
     {
     "id": 5,
     "newspaperTitle":"Le Courriel",
-    "title":"",
-    "category":"",
-    "hashtag":""},
+    "title":"Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid ",
+    "category":"Suisse",
+    "hashtag":"#chienbrévine"},
     {
     "id": 6,
     "newspaperTitle":"LEQUASIJOURNAL",
-    "title":"",
-    "category":"",
-    "hashtag":""},
+    "title":"Selon une étude très sérieuse de l'université de Stafford, les personnes aux grands pieds et aux longs nez seraient suceptibles de trouver plus difficilement chaussures à leurs pieds",
+    "category":"Science",
+    "hashtag":"#étudesstaffordutiles"},
     {
-    "id":"",
-    "newspaperTitle":"",
-    "title":"",
+    "id":"7",
+    "newspaperTitle":"The New York Dime",
+    "title":"D'après une enquête du New York Lost",
     "category":"",
     "hashtag":""},
     {
