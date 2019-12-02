@@ -45,7 +45,7 @@ class gameplayScene extends Phaser.Scene {
 
     create(){
         this.time.addEvent({
-            delay: 188500,
+            delay: 189000,
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows});
 
@@ -56,9 +56,9 @@ class gameplayScene extends Phaser.Scene {
             this.sharedNews = 0;
             this.fallingSpeed = 5;
             this.fallingDelay = 500;
-            trump.stop();
-            war.stop();
-            screams.stop();
+            // trump.stop();
+            // war.stop();
+            // screams.stop();
             }
         })
         //ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
