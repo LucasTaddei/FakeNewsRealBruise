@@ -1,7 +1,7 @@
-class hero extends Phaser.Scene {
+class learnMore2 extends Phaser.Scene {
 
     constructor(){
-        super("hero");
+        super("learnMore2");
     }
 
     preload(){
@@ -19,15 +19,15 @@ class hero extends Phaser.Scene {
     this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
     //ajouter les textes et images fixes
-    var bravo = this.add.text(640, 200,"How to become a hero", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
+    var bravo = this.add.text(640, 200,"2", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
 
 
     //ajouter la ville
     var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
 
-    var returnButton2 = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
-    returnButton2.on('pointerdown', function() {
-        this.scene.start('end')
+    var nextButton2 = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
+    nextButton2.on('pointerdown', function() {
+        this.scene.start('learnMore3')
     }, this);
     }
 

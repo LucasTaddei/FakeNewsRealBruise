@@ -1,7 +1,7 @@
-class howTo extends Phaser.Scene {
+class learnMore3 extends Phaser.Scene {
 
     constructor(){
-        super("howTo");
+        super("learnMore3");
     }
 
     preload(){
@@ -19,18 +19,15 @@ class howTo extends Phaser.Scene {
     this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
     //ajouter les textes et images fixes
-    var bravo = this.add.text(640, 100,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
-
-    var howToText = this.add.text(950, 350, "Click the arrows of your keyboard when the falling arrow is on the right spot. After 5 consecutives right clicks, a NEWS is shared.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5);
-    howToText.setWordWrapWidth(600, false);
+    var bravo = this.add.text(640, 200,"3", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
 
 
     //ajouter la ville
     var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
 
-    var returnButton = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
-    returnButton.on('pointerdown', function() {
-        this.scene.start('title')
+    var returnButton2 = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
+    returnButton2.on('pointerdown', function() {
+        this.scene.start('end')
     }, this);
     }
 
