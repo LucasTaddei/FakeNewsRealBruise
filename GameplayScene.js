@@ -45,7 +45,7 @@ class gameplayScene extends Phaser.Scene {
 
     create(){
         this.time.addEvent({
-            delay: 188500,
+            delay: 189000,
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows});
 
@@ -56,9 +56,9 @@ class gameplayScene extends Phaser.Scene {
             this.sharedNews = 0;
             this.fallingSpeed = 5;
             this.fallingDelay = 500;
-            trump.stop();
-            war.stop();
-            screams.stop();
+            // trump.stop();
+            // war.stop();
+            // screams.stop();
             }
         })
         //ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
@@ -288,27 +288,27 @@ class gameplayScene extends Phaser.Scene {
 
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
-                if(this.sharedNews == 5 && this.consecutiveArrows == 0){
-                    this.sound.play('mall',);
+                if(this.sharedNews == 5 && this.consecutiveArrows == 1){
+                    this.sound.play('mall',{loop: false});
                 }
 
-                if(this.sharedNews == 15 && this.consecutiveArrows == 0){
-                    this.sound.play('chants');
+                if(this.sharedNews == 15 && this.consecutiveArrows == 1){
+                    this.sound.play('chants', {loop: false});
                 }
 
-                if(this.sharedNews == 27 && this.consecutiveArrows == 0){
-                    this.sound.play('screams',{volume: 0.5});
+                if(this.sharedNews == 27 && this.consecutiveArrows == 1){
+                    this.sound.play('screams',{volume: 0.5}, {loop: false});
                     
                 }
                 
                 
 
-                if(this.sharedNews == 40 && this.consecutiveArrows == 0){
-                    this.sound.play('trump',{detune: 0.5});
+                if(this.sharedNews == 40 && this.consecutiveArrows == 1){
+                    this.sound.play('trump',{detune: 0.5}, {loop: false});
                 }
 
-                if(this.sharedNews == 45 && this.consecutiveArrows == 0){
-                    this.sound.play('war');
+                if(this.sharedNews == 45 && this.consecutiveArrows == 1){
+                    this.sound.play('war',{loop: false});
                 }
 
 
