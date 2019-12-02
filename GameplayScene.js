@@ -38,6 +38,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("screams","assets/sounds/screams.wav");
         this.load.audio("war","assets/sounds/war.wav");
         this.load.audio("trump","assets/sounds/trump.wav");
+        this.load.audio("bombDrop", "assets/sounds/bombDrop.wav")
 
         this.load.json("news", "fakeNews.json")
     }
@@ -48,7 +49,7 @@ class gameplayScene extends Phaser.Scene {
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows});
 
-                //reset les scores et la vitesse lors d'un nouveau jeu
+            //reset les scores et la vitesse lors d'un nouveau jeu
             this.catchedArrows = 0;
             this.missedArrows = -4;
             this.consecutiveArrows = 0;
@@ -60,7 +61,20 @@ class gameplayScene extends Phaser.Scene {
             screams.stop();
             }
         })
-
+        //ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
+        this.time.addEvent({
+            delay: 188000,
+            callback: ()=>{
+                this.cameras.main.shake(500, 0.03, 0.01); //Duration, intensity, force 
+            } 
+        })
+        //Ajouter bruit de bombe,timing à règler
+        this.time.addEvent({
+            delay: 100,
+            callback: ()=>{
+                this.sound.play("bombDrop",{loop: false});
+            } 
+        })
         // création du timer ajoutant de nouvelles flèches périodiquement
         this.newArrowsTimer = this.time.addEvent({
             delay: this.fallingDelay,
@@ -100,15 +114,19 @@ class gameplayScene extends Phaser.Scene {
         //Fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
 
+        //titre de la page 
+        var home = this.add.text(350,20,'home', {font:'45px jack', fill: '#112b1a'});
 
         //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
         //par contre les flèches passent encore devant...
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
-        var backgroundNews = this.add.rectangle(640,170,600,150,0xE5E5E5).setOrigin(0.5);
-        var titreExample = this.add.text(350,120, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
-        var textExample = this.add.text(350,150, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px jack', fill: '#112b1a'});
+        var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
+        var titreExample = this.add.text(350,90, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
+        var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px imperator', fill: '#112b1a'});
         //pour que le texte ne dépasse pas le fond de la News
-        textExample.setWordWrapWidth(600, false);
+        textExample.setWordWrapWidth(550, false);
+        //il semblerait que pour intégrer le fichier json il faille utiliser JSON.parse() 
+        //pour le moment cela ne fonctionne pas mais j'essaie..
        
         //titre de la page 
         var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
@@ -118,9 +136,18 @@ class gameplayScene extends Phaser.Scene {
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         //Prototype "Notifications"
-        var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5);
-        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px jack', fill: 'black'}).setOrigin(0.5);
+        var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
+        //animation des notifications
+        this.tweens.add({
+            targets: [notifications, backgoundNotifications],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            hold: 1500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
+            loop: 0,   
+        });
+
         
         //labels
         this.scoreLabel = this.add.text(20, 500, this.catchedArrows, {font: "25px Arial", fill: "white"});
@@ -254,7 +281,7 @@ class gameplayScene extends Phaser.Scene {
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
-                            this.scene.start("end")
+                            this.scene.start("ifNoClicks")
                         }
                     });
                 }
@@ -351,25 +378,24 @@ class gameplayScene extends Phaser.Scene {
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
         if (randomArrow == 0){
-            newImage = this.add.image(490, 60, 'left').setOrigin(0.5);
+            newImage = this.add.image(490, 170, 'left').setOrigin(0.5);
             newImage.name = 'left';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 1){
-            newImage = this.add.image(590, 60, 'up').setOrigin(0.5);
+            newImage = this.add.image(590, 170, 'up').setOrigin(0.5);
             newImage.name = 'up';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 2){
-            newImage = this.add.image(690, 60, 'down').setOrigin(0.5);
+            newImage = this.add.image(690, 170, 'down').setOrigin(0.5);
             newImage.name = 'down';
             this.fallingArrows.push(newImage);
         } else if (randomArrow == 3){
-            newImage = this.add.image(790, 60, 'right').setOrigin(0.5);
+            newImage = this.add.image(790, 170, 'right').setOrigin(0.5);
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
         }
 
     }
-
-    
+  
 
 }
