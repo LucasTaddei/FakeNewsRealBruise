@@ -19,9 +19,7 @@ class hero extends Phaser.Scene {
     this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
     //ajouter les textes et images fixes
-    var youreAHero = this.add.text(640, 200,"Qu'est-ce qu'une Fake News", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
-    var whatIsFN = this.add.text(640,300, "C’est une information volontairement mensongère et qui est destinée à tromper ou à manipuler la personne qui la lira. L’idée d’intention, de manipulation, est importante.", {font: '16px jack', fill: '#112b1a'}).setOrigin(0.5);
-    whatIsFN.setWordWrapWidth(1000, false).setAlign('center');
+    var bravo = this.add.text(640, 200,"How to become a hero", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
 
 
     //ajouter la ville
