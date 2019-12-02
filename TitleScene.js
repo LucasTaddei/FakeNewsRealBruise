@@ -33,6 +33,10 @@ class titleScene extends Phaser.Scene {
 
     var elevator = this.sound.add("elevator");
         elevator.play({volume: 0.7});
+        
+    //lancer How to play
+    var howToPlay = this.add.text(1150, 20, "How to play", {font: '35px jack', fill: "white"}).setOrigin(0.5).setInteractive();
+    howToPlay.on('pointerdown', () => this.scene.start("howTo"));
 
     //lancer le jeu            
     start.on('pointerdown', () => this.scene.start("gameplay"));
