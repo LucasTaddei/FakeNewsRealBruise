@@ -127,9 +127,6 @@ class gameplayScene extends Phaser.Scene {
         textExample.setWordWrapWidth(550, false);
         //il semblerait que pour intégrer le fichier json il faille utiliser JSON.parse() 
         //pour le moment cela ne fonctionne pas mais j'essaie..
-       
-        //titre de la page 
-        var home = this.add.text(350,35,'home', {font:'45px jack', fill: '#112b1a'});
 
         //colonne de gauche
         this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.6);

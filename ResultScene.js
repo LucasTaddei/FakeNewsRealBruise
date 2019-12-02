@@ -59,28 +59,27 @@ class resultScene extends Phaser.Scene {
                 congratsText.destroy();
                 scoreText.destroy();
                 failText.destroy();
+                this.tweens.add({
+                    targets: [congrats],
+                    alpha: { value: 1, duration: 300, ease: 'Power1' },          
+                    delay: 700,  
+                });
                 //ajouter le texte de la phase 2 à la fin de l'explosions
-                this.time.addEvent({
-                    delay:1000,
-                    callback: ()=>{
-                        var lifeIs = this.add.text(450,50,"LIFE IS", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5);
-                        var not = this.add.text(640,50,"NOT", {font: "60px jack", fill: "#277D44"}).setOrigin(0.5);
-                        var AGame = this.add.text(830,50,"A GAME", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5);
-                        var lesson = this.add.text(640,160,"There is no timer and no replay. The consequences of your acts are real and can affect people. Don’t act stupidly. ", {font: "40px imperator", fill: "#112b1a", lineSpacing:5}).setOrigin(0.5);
-                        lesson.setWordWrapWidth(800, false).setAlign('center');
-                        var next3 = this.add.text(640,660, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
-                        next3.on('pointerdown', function() {
-                            this.scene.start('end')
-                        }, this);
-                    }
-                })
-                
-                /* this.tweens.add({
-                    targets: [congrats, congratsText],
-                    alpha: { value: 1, duration: 500, ease: 'Power1' },
-                    yoyo: false,
-                    loop: 0, 
-                });*/
+                var lifeIs = this.add.text(450,50,"LIFE IS", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
+                var not = this.add.text(640,50,"NOT", {font: "60px jack", fill: "#277D44"}).setOrigin(0.5).setAlpha(0);
+                var AGame = this.add.text(830,50,"A GAME", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
+                var lesson = this.add.text(640,160,"There is no timer and no replay. The consequences of your acts are real and can affect people. Don’t act stupidly. ", {font: "40px imperator", fill: "#112b1a", lineSpacing:5}).setOrigin(0.5).setAlpha(0);
+                lesson.setWordWrapWidth(800, false).setAlign('center').setAlpha(0);
+                var next3 = this.add.text(640,660, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+                next3.on('pointerdown', function() {
+                    this.scene.start('end')
+                }, this);
+                // délai pour l'arrivée du texte + fondu d'entrée
+                this.tweens.add({
+                    targets: [lifeIs, not, AGame, lesson, next3],
+                    alpha: { value: 1, duration: 300, ease: 'Power1' },          
+                    delay: 700,  
+                });
 
 }, this);
             }
