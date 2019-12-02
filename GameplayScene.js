@@ -44,6 +44,12 @@ class gameplayScene extends Phaser.Scene {
     }
 
     create(){
+
+        // var trump=this.add.sound('trump');
+        // var war=this.add.sound('war');
+        // var screams=this.add.sound('screams');
+
+
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
@@ -70,7 +76,7 @@ class gameplayScene extends Phaser.Scene {
         })
         //Ajouter bruit de bombe,timing à règler
         this.time.addEvent({
-            delay: 100,
+            delay: 188000,
             callback: ()=>{
                 this.sound.play("bombDrop",{loop: false});
             } 
