@@ -291,26 +291,26 @@ class gameplayScene extends Phaser.Scene {
 
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
-                if(this.sharedNews == 5 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 5 && this.consecutiveArrows == 1){
                     this.sound.play('mall',{loop: false});
                 }
 
-                if(this.sharedNews == 15 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 15 && this.consecutiveArrows == 1){
                     this.sound.play('chants', {loop: false});
                 }
 
-                if(this.sharedNews == 27 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 27 && this.consecutiveArrows == 1){
                     this.sound.play('screams',{volume: 0.5}, {loop: false});
                     
                 }
                 
                 
 
-                if(this.sharedNews == 40 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 40 && this.consecutiveArrows == 1){
                     this.sound.play('trump',{detune: 0.5}, {loop: false});
                 }
 
-                if(this.sharedNews == 45 && this.consecutiveArrows == 0){
+                if(this.sharedNews == 45 && this.consecutiveArrows == 1){
                     this.sound.play('war',{loop: false});
                 }
 
