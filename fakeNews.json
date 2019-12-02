@@ -1,25 +1,25 @@
 {
     "fakeNews":[
-        {
-        "id": 1,
-        "newspaperTitle":"Le Temps du journal",
-        "title":"Les avocats d'une certaine région du Mexique rendent les cheveux bleus",
-        "category":"beauté & santé",
-        "hashtag":"#cheveuxbleus"  
-        },
-        {
-        "id": 2,
-        "newspaperTitle":"Le canard volant",
-        "title":"Les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",
-        "category":"économie",
-        "hashtag":"#1000chftropdebol"  
-        },
-        {
-        "id": 3,
-        "newspaperTitle":"Le presque matin",
-        "title":"Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",
-        "category":"people",
-        "hashtag":"#JessicaUkulélé"  
+    {
+    "id": 1,
+    "newspaperTitle":"Le Temps du journal",
+    "title":"Les avocats d'une certaine région du Mexique rendent les cheveux bleus",
+    "category":"beauté & santé",
+    "hashtag":"#cheveuxbleus"  
+    },
+    {
+    "id": 2,
+    "newspaperTitle":"Le canard volant",
+    "title":"Les billets de mille francs suisse sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",
+    "category":"économie",
+    "hashtag":"#1000chftropdebol"  
+    },
+    {
+    "id": 3,
+    "newspaperTitle":"Le presque matin",
+    "title":"Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",
+    "category":"people",
+    "hashtag":"#JessicaUkulélé"  
     },
     {
     "id": 4,
