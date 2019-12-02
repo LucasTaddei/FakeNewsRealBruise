@@ -26,7 +26,7 @@ class gameplayScene extends Phaser.Scene {
     preload(){
         this.load.image("left","assets/UIpack/PNG/yellow_sliderLeft.png");
         this.load.image("up","assets/UIpack/PNG/yellow_sliderUp.png");
-        this.load.image("down","assets/UIpack/PNG/yellow_sliderDown.png");
+        this.load.image("down","assets/images/arrows/arrowDownFilled.png");
         this.load.image("right","assets/UIpack/PNG/yellow_sliderRight.png");
         
         this.load.image('logo','assets/images/LOGO.png')
@@ -122,7 +122,7 @@ class gameplayScene extends Phaser.Scene {
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
         var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
         var titreExample = this.add.text(350,90, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
-        var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px imperator', fill: '#112b1a'});
+        var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px timeless', fill: '#112b1a'});
         //pour que le texte ne dépasse pas le fond de la News
         textExample.setWordWrapWidth(550, false);
         //il semblerait que pour intégrer le fichier json il faille utiliser JSON.parse() 

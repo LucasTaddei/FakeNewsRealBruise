@@ -1,7 +1,7 @@
-class titleScene extends Phaser.Scene {
+class howTo extends Phaser.Scene {
 
     constructor(){
-        super("title");
+        super("howTo");
     }
 
     preload(){
@@ -19,20 +19,16 @@ class titleScene extends Phaser.Scene {
     this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
     //ajouter les textes et images fixes
-    var titleTextLine1 = this.add.text(200, 80,"Fake News", {font: '90px jack', fill: "#112b1a"});
-    var titleTextLine2 = this.add.text(550, 150,"Real Bruise", {font: '90px jack', fill: "#112b1a"});
-    var logo = this.add.image(640,330,'logo').setScale(0.45);
-    var gameExplanation = this.add.text(640, 450, "Share the posts in rhythms", {font: '35px jack', fill: "white"}).setOrigin(0.5);
-    var gameExplanation = this.add.text(640, 490, "with the key arrows", {font: '35px jack', fill: "white"}).setOrigin(0.5);
-    var start = this.add.text(640,570, "Start", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
+    var bravo = this.add.text(640, 200,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
+
+
+    //ajouter la ville
     var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
 
-    //lancer How to play
-    var howToPlay = this.add.text(1150, 20, "How to play", {font: '35px jack', fill: "white"}).setOrigin(0.5).setInteractive();
-    howToPlay.on('pointerdown', () => this.scene.start("howTo"));
-
-    //lancer le jeu            
-    start.on('pointerdown', () => this.scene.start("gameplay"));
+    var returnButton = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
+    returnButton.on('pointerdown', function() {
+        this.scene.start('title')
+    }, this);
     }
 
     //faire se déplacer les nuages
