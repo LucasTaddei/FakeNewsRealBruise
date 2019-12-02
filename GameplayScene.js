@@ -24,10 +24,16 @@ class gameplayScene extends Phaser.Scene {
     }
 
     preload(){
-        this.load.image("left","assets/UIpack/PNG/yellow_sliderLeft.png");
-        this.load.image("up","assets/UIpack/PNG/yellow_sliderUp.png");
-        this.load.image("down","assets/images/arrows/arrowDownFilled.png");
-        this.load.image("right","assets/UIpack/PNG/yellow_sliderRight.png");
+        //Arrows filled
+        this.load.image("left","assets/images/arrows/leftFilledRed.png");
+        this.load.image("up","assets/images/arrows/upFilledYellow.png");
+        this.load.image("down","assets/images/arrows/downFilledPurple.png");
+        this.load.image("right","assets/images/arrows/rightFilledBlue.png");
+        //Arrows outline
+        this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
+        this.load.image("upOutline","assets/images/arrows/upOutlineDark.png");
+        this.load.image("downOutline","assets/images/arrows/downOutlinePurple.png");
+        this.load.image("rightOutline","assets/images/arrows/rightOutlineDark.png");
         
         this.load.image('logo','assets/images/LOGO.png')
 
@@ -76,7 +82,7 @@ class gameplayScene extends Phaser.Scene {
         })
         //Ajouter bruit de bombe,timing à règler
         this.time.addEvent({
-            delay: 188000,
+            delay: 180000,
             callback: ()=>{
                 this.sound.play("bombDrop",{loop: false});
             } 
@@ -176,10 +182,10 @@ class gameplayScene extends Phaser.Scene {
         
 
         // création des 4 zones de collision des flèches
-         this.add.image(490,600,'left').setOrigin(0.5);
-         this.add.image(590,600,'up').setOrigin(0.5);
-         this.add.image(690,600,'down').setOrigin(0.5);
-         this.add.image(790,600,'right').setOrigin(0.5);
+         this.add.image(490,600,'leftOutline').setOrigin(0.5);
+         this.add.image(590,600,'upOutline').setOrigin(0.5);
+         this.add.image(690,600,'downOutline').setOrigin(0.5);
+         this.add.image(790,600,'rightOutline').setOrigin(0.5);
 
     
          this.input.on('gameobjectdown', function (pointer, gameObject) {
