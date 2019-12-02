@@ -131,8 +131,7 @@ class gameplayScene extends Phaser.Scene {
         var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px timeless', fill: '#112b1a'});
         //pour que le texte ne dépasse pas le fond de la News
         textExample.setWordWrapWidth(550, false);
-        //il semblerait que pour intégrer le fichier json il faille utiliser JSON.parse() 
-        //pour le moment cela ne fonctionne pas mais j'essaie..
+       
 
         //colonne de gauche
         this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.6);
