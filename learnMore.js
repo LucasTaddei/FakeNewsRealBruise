@@ -23,8 +23,8 @@ class learnMore extends Phaser.Scene {
     var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
 
     //ajouter texte phase 1
-    var learnMoreTitle1 = this.add.text(640, 200, 'What is a fake news', {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
-    var learnMoreText1 = this.add.text(640, 300, 'Blabla blablablabla blabla blablabla bla blablablab lablabla blablabla blab labladbklf dfjn fhn défklh dfhn dfhakdjfh adfh jdéflkh dfhnjlksdfh', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
+    var learnMoreTitle1 = this.add.text(640, 200, "Qu'est-ce qu'une fake news", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
+    var learnMoreText1 = this.add.text(640, 300, 'C’est une information volontairement mensongère et qui est destinée à tromper ou à manipuler la personne qui la lira. L’idée d’intention, de manipulation, est importante.Dans le but de manipuler et dans une finalité idéologique ou une volonté de faire le buzz, la force des fake news est de mimer une véritable information. On copie de vrais sites en formatant les infos pour qu’elles puissent passer pour vraies.', {font: '20px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
     learnMoreText1.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var nextButton1 = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
     this.tweens.add({

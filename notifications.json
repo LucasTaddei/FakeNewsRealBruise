@@ -1,6 +1,19 @@
-{
-"notif1":"You've got 10'000 new likes",
-"notif2":"Barack Obama follows you",
-"notif3":"You are the world influencer",
-"notif4":"You've got 40'000 new likes"
+{ "notificationNovices":[
+
+{"notif1":"You've got 10'000 new likes", "id": 1},
+{"notif2":"Barack Obama follows you", "id": 2},
+{"notif3":"You are the world influencer", "id": 3},
+{"notif4":"You've got 40'000 new likes", "id":4},
+{"notif5":"vdrgvdrtfg", "id": 5},
+{"notif6":"", "id": 6},
+{"notif7":"", "id": 7},
+{"notif8":"", "id":8},
+{"notif9":"", "id":9},
+{"notif10":"", "id": 10}
+
+]
+
 }
+
+
+
