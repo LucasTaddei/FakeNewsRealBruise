@@ -32,6 +32,7 @@ class learnMore extends Phaser.Scene {
         alpha: { value: 1, duration: 300, ease: 'Power1' },          
         delay: 300,  
     });
+
     //ajouter texte phase 2
     var learnMoreTitle2 = this.add.text(640, 200, 'Titre 2', {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
     var learnMoreText2 = this.add.text(640, 300, 'Blabla 2', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
@@ -44,7 +45,7 @@ class learnMore extends Phaser.Scene {
     learnMoreText3.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var returnButton3 = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
     
-    //Lier les boutons à des fonctions
+    //Lier les boutons à des fonctions pour lancer la phase suivante ou retourner à la page de fin
     nextButton1.on('pointerdown', function() {
         learnMoreText1.destroy();
         learnMoreTitle1.destroy();
