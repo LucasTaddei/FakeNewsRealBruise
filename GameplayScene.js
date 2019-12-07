@@ -21,6 +21,7 @@ class gameplayScene extends Phaser.Scene {
         this.sharedLabel;
 
         this.newArrowsTimer;
+
         
     }
 
@@ -38,7 +39,7 @@ class gameplayScene extends Phaser.Scene {
         
         this.load.image('logo','assets/images/LOGO.png');
 
-        this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
+        this.load.audio("mouseClick","assets/sounds/woop2.m4a");
         this.load.audio("realBruise4","assets/sounds/realbruise4.m4a");
         this.load.audio("chants","assets/sounds/chants.wav");
         this.load.audio("mall","assets/sounds/mall.wav");
@@ -48,11 +49,10 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
 
         this.load.json("newsData", "fakeNews.json");
-
-        this.load.plugin('fade', 'soundfade-plugin', true);
     }
 
     create(){
+
 
         // var trump=this.add.sound('trump');
         // var war=this.add.sound('war');
@@ -136,10 +136,25 @@ class gameplayScene extends Phaser.Scene {
         //par contre les flèches passent encore devant...
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
         var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
-        var titreExample = this.add.text(350,90, '1',{font:'25px jack', fill: '#112b1a'});
-        var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px timeless', fill: '#112b1a'});
+
+        
+        var title1 = this.add.text(350,90, "Le Temps du journal",{font:'25px jack', fill: '#112b1a'}).setAlpha(1);
+        var text1 = this.add.text(350,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px timeless', fill: '#112b1a'}).setAlpha(1);
         //pour que le texte ne dépasse pas le fond de la News
-        textExample.setWordWrapWidth(550, false);
+        text1.setWordWrapWidth(550, false);
+
+        //travailler eventuellement avec les tweens pour remplacer le texte des news
+        // this.tweens.add({
+        //     targets: [title1, text1],
+        //     alpha: { value: 1, duration: 300, ease: 'Power1' },
+        //     delay: 300,  
+        // });
+        // var title2 = this.add.text(350,90, "Le canard volant",{font:'25px jack', fill: '#112b1a'}).setAlpha(0);
+        // var text2 = this.add.text(350,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",{font:'20px timeless', fill: '#112b1a'}).setAlpha(0);
+        // text2.setWordWrapWidth(550, false);
+
+
+        
        
 
         //colonne de gauche
@@ -209,6 +224,7 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
 
+
         
     }
     
@@ -224,14 +240,18 @@ class gameplayScene extends Phaser.Scene {
         var isLeftKeyPressed = cursorKeys.left.isDown;
         var isRightKeyPressed = cursorKeys.right.isDown;
 
-        var isUpKeyRelased = cursorKeys.up.isUp;
-        var isDownKeyRelased = cursorKeys.down.isUp;
-        var isLeftKeyRelased = cursorKeys.left.isUp;
-        var isRightKeyRelased = cursorKeys.right.isUp;
+
+
+
+        // var isUpKeyRelased = cursorKeys.up.isUp;
+        // var isDownKeyRelased = cursorKeys.down.isUp;
+        // var isLeftKeyRelased = cursorKeys.left.isUp;
+        // var isRightKeyRelased = cursorKeys.right.isUp;
 
 
         // pour chaque flèche affichée actuellement
         this.fallingArrows.forEach((currentArrow) => {
+
 
             // si la flèche est dans la zone de validation et que la touche correspondante est enfoncée: suppression de la flèche
             if (currentArrow.y >= 600 && currentArrow.y <= 650) {
@@ -288,6 +308,8 @@ class gameplayScene extends Phaser.Scene {
                     this.sound.play('mouseClick')
                 }
 
+                
+                
             
 
                 // jeu termine si tu ne clique rien
@@ -300,8 +322,22 @@ class gameplayScene extends Phaser.Scene {
                         }
                     });
                 }
-                
 
+
+
+
+            //     if(this.sharedNews == 1){
+            //         title1.destroy();
+            //         text1.destroy();
+            //         this.tweens.add({
+            //             targets: [text2, title2],
+            //             alpha: { value: 1, duration: 200, ease: 'Power1' },
+            //             delay: 200,
+            //     })
+            // }
+
+                
+                
 
 
 
@@ -333,6 +369,8 @@ class gameplayScene extends Phaser.Scene {
                             
         }
 
+        
+
     //     if (currentArrow.y < 600 && currentArrow.y > 650){
 
     //         if(isUpKeyPressed){
@@ -352,6 +390,7 @@ class gameplayScene extends Phaser.Scene {
     //         this.missedArrows++;
     //     }
     // }
+    
 
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
