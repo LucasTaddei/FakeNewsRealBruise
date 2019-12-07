@@ -34,14 +34,14 @@ class learnMore extends Phaser.Scene {
     });
 
     //ajouter texte phase 2
-    var learnMoreTitle2 = this.add.text(640, 200, 'Titre 2', {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
-    var learnMoreText2 = this.add.text(640, 300, 'Blabla 2', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
+    var learnMoreTitle2 = this.add.text(540, 200, 'Quel danger représentent les fake news?', {font: '60px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
+    var learnMoreText2 = this.add.text(640, 400, "Dans un premier temps et dans une optique individuelle, la fake news que l'on partage impact notre crédibilité propre et nous place dans la manipulation involontaire de nos proches. Si à présent nous considérons cette question des fake news de manière globale chacun/ne se fait l'outil de diffusion d'informations volontairement mensongères dans une optique de manipulation. Le danger se situe ainsi dans une diffusion large et rapide de ces fake news qui peuvent dans le pire des cas profondément destabiliser les processus démocratiques et affecter nos sociétés. Souhaitons-nous vraiment être les acteurs d'un désordre qui ne sert pas nos intérêts mais les intérêts de ceux qui souhaitent manipuler notre environnement? Si vous souhaitez demeurer libres et vous faire votre opinions sur des informations qui tentent de se rapprocher le plus des faits, alors lisez notre petit guide!", {font: '20px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
     learnMoreText2.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var nextButton2 = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
    
     //ajouter texte phase 3
-    var learnMoreTitle3 = this.add.text(640, 200, 'Titre 3', {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
-    var learnMoreText3 = this.add.text(640, 300, 'Blabla 3', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
+    var learnMoreTitle3 = this.add.text(640, 200, 'Comment se prémunir contre les fake news', {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
+    var learnMoreText3 = this.add.text(640, 300, 'blablabla', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
     learnMoreText3.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var returnButton3 = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
     
