@@ -21,6 +21,7 @@ class gameplayScene extends Phaser.Scene {
         this.sharedLabel;
 
         this.newArrowsTimer;
+        
     }
 
     preload(){
@@ -35,18 +36,20 @@ class gameplayScene extends Phaser.Scene {
         this.load.image("downOutline","assets/images/arrows/downOutlinePurple.png");
         this.load.image("rightOutline","assets/images/arrows/rightOutlineDark.png");
         
-        this.load.image('logo','assets/images/LOGO.png')
+        this.load.image('logo','assets/images/LOGO.png');
 
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
         this.load.audio("realBruise4","assets/sounds/realbruise4.m4a");
         this.load.audio("chants","assets/sounds/chants.wav");
         this.load.audio("mall","assets/sounds/mall.wav");
-        this.load.audio("screams","assets/sounds/screams.wav");
+        this.load.audio("screams","assets/sounds/screams.m4a");
         this.load.audio("war","assets/sounds/war.wav");
         this.load.audio("trump","assets/sounds/trump.wav");
-        this.load.audio("bombDrop", "assets/sounds/bombDrop.wav")
+        this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
 
-        this.load.json("news", "fakeNews.json")
+        this.load.json("news", "fakeNews.json");
+
+        this.load.plugin('fade', 'soundfade-plugin', true);
     }
 
     create(){
@@ -195,6 +198,10 @@ class gameplayScene extends Phaser.Scene {
         });  
 
         //ajout de sons qui vont servir pour les événements 
+
+
+
+
         this.sound.add('mouseClick', {loop: false});
         this.sound.add('war', {loop: false});
         this.sound.add("mall", {loop: false})
@@ -299,26 +306,26 @@ class gameplayScene extends Phaser.Scene {
 
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
-                if(this.sharedNews == 5 && this.consecutiveArrows == 1){
-                    this.sound.play('mall',{loop: false});
+                if(this.sharedNews == 5 && this.consecutiveArrows == 4){
+                    this.sound.play('mall',{loop: false, volume: 0.5});
                 }
 
-                if(this.sharedNews == 15 && this.consecutiveArrows == 1){
-                    this.sound.play('chants', {loop: false});
+                if(this.sharedNews == 15 && this.consecutiveArrows == 4){
+                    this.sound.play('chants', {loop: false, volume: 0.5});
                 }
 
-                if(this.sharedNews == 27 && this.consecutiveArrows == 1){
-                    this.sound.play('screams',{volume: 0.5}, {loop: false});
+                if(this.sharedNews == 27 && this.consecutiveArrows == 4){
+                    this.sound.play('screams',{volume: 0.5}, {loop: false, volume: 0.1});
                     
                 }
                 
                 
 
-                if(this.sharedNews == 40 && this.consecutiveArrows == 1){
+                if(this.sharedNews == 36 && this.consecutiveArrows == 4){
                     this.sound.play('trump',{detune: 0.5}, {loop: false});
                 }
 
-                if(this.sharedNews == 45 && this.consecutiveArrows == 1){
+                if(this.sharedNews == 42 && this.consecutiveArrows == 4){
                     this.sound.play('war',{loop: false});
                 }
 
