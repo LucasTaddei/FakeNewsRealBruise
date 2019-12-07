@@ -38,7 +38,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.image('logo','assets/images/LOGO.png')
 
         this.load.audio("mouseClick","assets/sounds/mouseClick.m4a");
-        this.load.audio("realBruise3","assets/sounds/realbruise3.m4a");
+        this.load.audio("realBruise4","assets/sounds/realbruise4.m4a");
         this.load.audio("chants","assets/sounds/chants.wav");
         this.load.audio("mall","assets/sounds/mall.wav");
         this.load.audio("screams","assets/sounds/screams.wav");
@@ -117,7 +117,7 @@ class gameplayScene extends Phaser.Scene {
             }
         })
         
-        var mainsong = this.sound.add("realBruise3");
+        var mainsong = this.sound.add("realBruise4");
         mainsong.play({volume: 0.7});
 
         
