@@ -6,7 +6,7 @@ var config = {
     width: 1280,
     height: 720,
     backgroundColor: "#65FF99",
-    scene: [endScene,titleScene,gameplayScene,ifNoClicks,resultScene,learnMore,notAVideoGameScene,],
+    scene: [titleScene,gameplayScene,ifNoClicks,resultScene,learnMore,notAVideoGameScene,endScene],
     
 }
 

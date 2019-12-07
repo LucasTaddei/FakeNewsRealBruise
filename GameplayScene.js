@@ -47,7 +47,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("trump","assets/sounds/trump.wav");
         this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
 
-        this.load.json("news", "fakeNews.json");
+        this.load.json("newsData", "fakeNews.json");
 
         this.load.plugin('fade', 'soundfade-plugin', true);
     }
@@ -136,7 +136,7 @@ class gameplayScene extends Phaser.Scene {
         //par contre les flèches passent encore devant...
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
         var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
-        var titreExample = this.add.text(350,90, 'LEQUASIJOURNAL',{font:'25px jack', fill: '#112b1a'});
+        var titreExample = this.add.text(350,90, '1',{font:'25px jack', fill: '#112b1a'});
         var textExample = this.add.text(350,120, 'PEOPLE: La très célébre écrivaine Léa Keller reçoit un chateau dans la Loire pour son anniversaire',{font:'20px timeless', fill: '#112b1a'});
         //pour que le texte ne dépasse pas le fond de la News
         textExample.setWordWrapWidth(550, false);
