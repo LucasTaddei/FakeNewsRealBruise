@@ -79,7 +79,7 @@ class gameplayScene extends Phaser.Scene {
         })
         //ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
         this.time.addEvent({
-            delay: 188000,
+            delay: 188500,
             callback: ()=>{
                 this.cameras.main.shake(500, 0.03, 0.01); //Duration, intensity, force 
             } 
@@ -137,69 +137,69 @@ class gameplayScene extends Phaser.Scene {
         //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
         //par contre les flèches passent encore devant...
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
-        var backgroundNews = this.add.rectangle(640,135,580,130,0x65FF99).setOrigin(0.5);
+        var backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
 
         //travailler avec les visibles pour les news
         this.title1 = this.add.text(360,90, "Le Temps du Journal",{font:'25px jack', fill: 'black'}).setVisible(true);
-        this.text1 = this.add.text(360,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px timeless', fill: 'black'}).setVisible(true);
+        this.text1 = this.add.text(360,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px imperator', fill: 'black'}).setVisible(true);
         //pour que le texte ne dépasse pas le fond de la News
-        this.text1.setWordWrapWidth(550, false);
+        this.text1.setWordWrapWidth(570, false);
 
         this.title2 = this.add.text(360,90, "Le Canard Volant",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text2 = this.add.text(360,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais Fédéral",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text2.setWordWrapWidth(550, false);
+        this.text2 = this.add.text(360,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération à ceux et celles qui se présenteront devant le Palais Fédéral",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text2.setWordWrapWidth(570, false);
 
         this.title3 = this.add.text(360,90, "Le Presque Matin",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text3 = this.add.text(360,120, "Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text3.setWordWrapWidth(550, false);
+        this.text3 = this.add.text(360,120, "Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text3.setWordWrapWidth(570, false);
 
         this.title4 = this.add.text(360,90, "The Washington Toast",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text4 = this.add.text(360,120, "Un job de rêve promis par Donald Trump, pour toutes personnes se présentant le premier lundi de chaque mois devant la Maison Blanche",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text4.setWordWrapWidth(550, false);
+        this.text4 = this.add.text(360,120, "Un job de rêve promis par Donald Trump, pour toutes personnes se présentant le premier lundi de chaque mois devant la Maison Blanche",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text4.setWordWrapWidth(570, false);
 
         this.title5 = this.add.text(360,90, "Le Courriel",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text5 = this.add.text(360,120, "Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text5.setWordWrapWidth(550, false);
+        this.text5 = this.add.text(360,120, "Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text5.setWordWrapWidth(570, false);
 
         this.title6 = this.add.text(360,90, "LEQUASIJOURNAL",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text6 = this.add.text(360,120, "Selon une étude très sérieuse de l'université de Stafford, les personnes aux grands pieds et aux longs nez seraient suceptibles de trouver plus difficilement chaussures à leurs pieds",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text6.setWordWrapWidth(550, false);
+        this.text6 = this.add.text(360,120, "Selon une étude très sérieuse de l'université de Stafford, les personnes aux grands pieds et aux longs nez seraient suceptibles de trouver plus difficilement chaussures à leurs pieds",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text6.setWordWrapWidth(570, false);
 
         this.title7 = this.add.text(360,90, "The New York Dime",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text7 = this.add.text(360,120, "D'après une enquête du New York Lost, les Fake news ne constitueraient pas un si grand danger pour nos démocraties",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text7.setWordWrapWidth(550, false);
+        this.text7 = this.add.text(360,120, "D'après une enquête du New York Lost, les Fake news ne constitueraient pas un si grand danger pour nos démocraties",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text7.setWordWrapWidth(570, false);
 
         this.title8 = this.add.text(360,90, "Daily Bruise",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text8 = this.add.text(360,120, "Le poids total des châteaux de la Loire, représentent la consommation moyenne de vin par habitant de Suisse",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text8.setWordWrapWidth(550, false);
+        this.text8 = this.add.text(360,120, "Le poids total des châteaux de la Loire, représentent la consommation moyenne de vin par habitant de Suisse",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text8.setWordWrapWidth(570, false);
 
         this.title9 = this.add.text(360,90, "24 Leurres",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text9 = this.add.text(360,120, "Le vacherin fribourgeois, surtout en fondue, aurait des pouvoirs apaisant",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text9.setWordWrapWidth(550, false);
+        this.text9 = this.add.text(360,120, "Le vacherin fribourgeois, surtout en fondue, aurait des pouvoirs apaisant",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text9.setWordWrapWidth(570, false);
 
         this.title10 = this.add.text(360,90, "New York Lost",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text10 = this.add.text(360,120, "L'existence de Peter Pan serait véridique selon les dires de la fée Clochette",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text10.setWordWrapWidth(550, false);
+        this.text10 = this.add.text(360,120, "L'existence de Peter Pan serait véridique selon les dires de la fée Clochette",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text10.setWordWrapWidth(570, false);
 
         this.title11 = this.add.text(360,90, "Le Temps du Journal",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text11 = this.add.text(360,120, "Après des années d'attentes les trains suisse seront dorénavant gratuits pour toutes personnes désirant les utiliser",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text11.setWordWrapWidth(550, false);
+        this.text11 = this.add.text(360,120, "Après des années d'attentes les trains suisse seront dorénavant gratuits pour toutes personnes désirant les utiliser",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text11.setWordWrapWidth(570, false);
 
         this.title12 = this.add.text(360,90, "Le Canard Volant",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text12 = this.add.text(360,120, "Avancer sur les mains rejetterait moins de CO2 dans l'atmosphère selon une étude de l'université de la Chaux-de-fonds",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text12.setWordWrapWidth(550, false);
+        this.text12 = this.add.text(360,120, "Avancer sur les mains rejetterait moins de CO2 dans l'atmosphère selon une étude de l'université de la Chaux-de-fonds",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text12.setWordWrapWidth(570, false);
 
         this.title13 = this.add.text(360,90, "Le presque matin",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text13 = this.add.text(360,120, "Manger cinq carambars par jour donne la banane",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text13.setWordWrapWidth(550, false);
+        this.text13 = this.add.text(360,120, "Manger cinq carambars par jour donne la banane",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text13.setWordWrapWidth(570, false);
 
         this.title14 = this.add.text(360,90, "The Washington Toast",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text14 = this.add.text(360,120, "La pollution des eaux et des sols, serait une invention de plus de notre 21ème siècle afin de créer la panique",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text14.setWordWrapWidth(550, false);
+        this.text14 = this.add.text(360,120, "La pollution des eaux et des sols, serait une invention de plus de notre 21ème siècle afin de créer la panique",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text14.setWordWrapWidth(570, false);
 
         this.title15 = this.add.text(360,90, "Le Courriel",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text15 = this.add.text(360,120, "La fatigue exprimé par les étudiants d'université ne serait qu'un prétexte pour en faire de moins en moins",{font:'20px timeless', fill: 'black'}).setVisible(false);
-        this.text15.setWordWrapWidth(550, false);
+        this.text15 = this.add.text(360,120, "La fatigue exprimé par les étudiants d'université ne serait qu'un prétexte pour en faire de moins en moins",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text15.setWordWrapWidth(570, false);
 
 
 
@@ -217,22 +217,16 @@ class gameplayScene extends Phaser.Scene {
         //     targets: [title1, text1],
         //     alpha: { value: 1, duration: 300, ease: 'Power1' },
         //     delay: 300,  
-        // });
-
-
-        
-
-
-        
+        // });    
        
 
         //colonne de gauche
-        this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.6);
+        this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.4);
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         //Prototype "Notifications"
         var backgoundNotifications = this.add.rectangle(170,300,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
-        var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        var notifications = this.add.text(170, 300, 'Your news was shared ', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
         //animation des notifications
         this.tweens.add({
@@ -240,17 +234,79 @@ class gameplayScene extends Phaser.Scene {
             alpha: { value: 1, duration: 500, ease: 'Power1' },
             hold: 1500, //temps avant que la notification disparaisse
             yoyo: true, //effet miroir de l'animation
-            loop: 0,   
+            loop: -1,   
         });
 
+        var backgoundNotifications = this.add.rectangle(170,420,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var notifications = this.add.text(170, 420, 'Your have 10 new followers', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        notifications.setWordWrapWidth(300, false);
+        //animation des notifications
+        this.tweens.add({
+            targets: [notifications, backgoundNotifications],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            hold: 1500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
+            delay: 800,
+            loop: -1,  
+        });
+
+        var backgoundNotifications = this.add.rectangle(170,540,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var notifications = this.add.text(170, 540, 'Your news was shared', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        notifications.setWordWrapWidth(300, false);
+        //animation des notifications
+        this.tweens.add({
+            targets: [notifications, backgoundNotifications],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            hold: 1500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
+            delay: 1600,
+            loop: -1,
+        });
+
+        //colonne de droite 
+        this.add.text(1100, 100, 'Hot', {font:'50px jack', fill: 'black'}).setOrigin(0.5);
+
+        var hashtag1 = this.add.text(1100, 200, '#lemondeestbeau', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        var hashtag2 = this.add.text(1100, 270, '#savetheworld', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        var hashtag3 = this.add.text(1100, 340, '#avocat', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        var hashtag4 = this.add.text(1100, 410, '#lovetrump', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        var hashtag5 = this.add.text(1100, 480, '#helloworld', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+
+        this.tweens.add({
+            targets: [hashtag1,hashtag4],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            hold: 2500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
+            loop: -1,   
+        });
+
+        this.tweens.add({
+            targets: [hashtag2,hashtag5],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            hold: 2500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
+            loop: -1,  
+            delay: 1500, 
+        });
+
+        this.tweens.add({
+            targets: [hashtag3],
+            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            hold: 2500, //temps avant que la notification disparaisse
+            yoyo: true, //effet miroir de l'animation
+            loop: -1,   
+            delay: 2000,
+        });
+
+    
         
         //labels
-        this.scoreLabel = this.add.text(20, 500, this.catchedArrows, {font: "25px Arial", fill: "white"});
-        this.failLabel = this.add.text(20, 530, this.catchedArrows, {font: "25px Arial", fill: "red"});
-        this.sharedLabel = this.add.text(20, 560, this.sharedNews, {font: "25px Arial", fill: "green"});
+        this.scoreLabel = this.add.text(1100, 550, this.catchedArrows, {font: "25px imperator", fill: "white"});
+        this.failLabel = this.add.text(1100, 580, this.catchedArrows, {font: "25px imperator", fill: "red"});
+        this.sharedLabel = this.add.text(1050, 610, this.sharedNews, {font: "25px imperator", fill: "black", align: 'center'});
 
         //Text "Shared!"
-        this.shared = this.add.text(640,200,"SHARED!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
+        this.shared = this.add.text(640,200,"SHARED!",{font: "50px jack", fill: "#da3e52"}).setOrigin(0.5);
         this.shared.visible=false;
         this.shared.setAngle(-15);
 
@@ -583,7 +639,7 @@ class gameplayScene extends Phaser.Scene {
           // actualisation des scores
           this.scoreLabel.setText(this.catchedArrows);
           this.failLabel.setText(this.missedArrows);
-          this.sharedLabel.setText(this.sharedNews);
+          this.sharedLabel.setText('You shared\n' + this.sharedNews + '\nnews');
     }
 
 

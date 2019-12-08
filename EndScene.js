@@ -17,7 +17,7 @@ class endScene extends Phaser.Scene {
     
         var mainsong = this.sound.add("realBruise3");
         //création du bouton qui renvoit à la page Hero
-        var hero = this.add.text(1070,700, "How to become a hero", {font: "35px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
+        var hero = this.add.text(1140,700, "Become a hero", {font: "35px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
         hero.on('pointerdown', function () {
             this.scene.start('learnMore');
           },this)

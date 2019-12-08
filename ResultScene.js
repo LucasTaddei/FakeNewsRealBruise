@@ -41,14 +41,14 @@ class resultScene extends Phaser.Scene {
     this.time.addEvent({
             delay: 1000,
             callback: ()=>{
-                var congrats = this.add.text(640,100, "CONGRATS! You've shared " + this.score.sharedNews + " news", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5);
+                var congrats = this.add.text(640,100, "CONGRATS! You've shared " + this.score.sharedNews + " news", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
                 var congratsText = this.add.text(640,250, "Thanks to your talent at sharing fake news quickly " + "birthdays have been canceled forever, 100 people overdosed on avocado and fruits are banned from Switzerland... As a result, the third world war started and 98% of the population got killed", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
                 congratsText.setWordWrapWidth(600, false).setAlign('center');
                 var scoreText = this.add.text(20, 350, "Catched: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
                 var failText = this.add.text(20, 400, "Missed: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
                 var sharedText = this.add.text(20, 450, "Shared News: " + this.score.sharedNews, {font: "30px jack", fill: "#112b1a"});
                 //Créer le bouton next et lancer la phase 2 de l'animation
-                var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
+                var next = this.add.text(640,570, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
                 next.on('pointerdown', function() {
                 this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPhase2');
                 //supprimer les éléments de la phase 1
@@ -70,7 +70,7 @@ class resultScene extends Phaser.Scene {
                 var AGame = this.add.text(830,50,"A GAME", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
                 var lesson = this.add.text(640,160,"There is no timer and no replay. The consequences of your acts are real and can affect people. Don’t act stupidly. ", {font: "40px imperator", fill: "#112b1a", lineSpacing:5}).setOrigin(0.5).setAlpha(0);
                 lesson.setWordWrapWidth(800, false).setAlign('center').setAlpha(0);
-                var next3 = this.add.text(640,660, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+                var next3 = this.add.text(640,660, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
                 next3.on('pointerdown', function() {
                     this.scene.start('end')
                 }, this);
