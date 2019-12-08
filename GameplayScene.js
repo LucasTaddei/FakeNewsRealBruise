@@ -137,11 +137,36 @@ class gameplayScene extends Phaser.Scene {
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
         var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
 
-        
-        var title1 = this.add.text(350,90, "Le Temps du journal",{font:'25px jack', fill: '#112b1a'}).setAlpha(1);
-        var text1 = this.add.text(350,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px timeless', fill: '#112b1a'}).setAlpha(1);
+        //travailler avec les visibles pour les news
+        this.title1 = this.add.text(350,90, "Le Temps du journal",{font:'25px jack', fill: '#112b1a'}).setVisible(true);
+        this.text1 = this.add.text(350,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px timeless', fill: '#112b1a'}).setVisible(true);
         //pour que le texte ne dépasse pas le fond de la News
-        text1.setWordWrapWidth(550, false);
+        this.text1.setWordWrapWidth(550, false);
+
+        this.title2 = this.add.text(350,90, "Le canard volant",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
+        this.text2 = this.add.text(350,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.text2.setWordWrapWidth(550, false);
+
+        this.title3 = this.add.text(350,90, "Le presque matin",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
+        this.text3 = this.add.text(350,120, "Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.text3.setWordWrapWidth(550, false);
+
+        this.title4 = this.add.text(350,90, "The Washington Toast",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
+        this.text4 = this.add.text(350,120, "Un job de rêve promis par Donald Trump, pour toutes personnes se présentant le premier lundi de chaque mois devant la Maison Blanche",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.text4.setWordWrapWidth(550, false);
+
+        this.title5 = this.add.text(350,90, "Le Courriel",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
+        this.text5 = this.add.text(350,120, "Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.text5.setWordWrapWidth(550, false);
+
+
+
+
+
+
+
+
+
 
         //travailler eventuellement avec les tweens pour remplacer le texte des news
         // this.tweens.add({
@@ -149,9 +174,9 @@ class gameplayScene extends Phaser.Scene {
         //     alpha: { value: 1, duration: 300, ease: 'Power1' },
         //     delay: 300,  
         // });
-        // var title2 = this.add.text(350,90, "Le canard volant",{font:'25px jack', fill: '#112b1a'}).setAlpha(0);
-        // var text2 = this.add.text(350,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",{font:'20px timeless', fill: '#112b1a'}).setAlpha(0);
-        // text2.setWordWrapWidth(550, false);
+
+
+        
 
 
         
@@ -284,7 +309,7 @@ class gameplayScene extends Phaser.Scene {
                         this.sharedNews++;
                         this.consecutiveArrows = 0;
                         this.shared.visible=true;
-                        this.sound.play('mouseClick');
+                        this.sound.play('mouseClick',{volume: 0.2});
 
                 }
                 //"Share" ne plus visible après la combo
@@ -298,14 +323,14 @@ class gameplayScene extends Phaser.Scene {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.disorder.visible=true;
-                    this.sound.play('mouseClick')
+                    this.sound.play('mouseClick',{volume: 0.2})
                 }
 
                 else if(this.consecutiveArrows == 5 && this.sharedNews >=44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.death.visible=true;
-                    this.sound.play('mouseClick')
+                    this.sound.play('mouseClick',{volume: 0.2})
                 }
 
                 
@@ -323,6 +348,35 @@ class gameplayScene extends Phaser.Scene {
                     });
                 }
 
+
+                //travailler avec les visibles pour le news
+                if(this.sharedNews == 1){
+                    this.text1.visible=false;
+                    this.title1.visible=false;
+                    this.text2.visible=true;
+                    this.title2.visible=true;
+                }
+
+                if(this.sharedNews == 2){
+                    this.text2.visible=false;
+                    this.title2.visible=false;
+                    this.text3.visible=true;
+                    this.title3.visible=true;
+                }
+
+                if(this.sharedNews == 3){
+                    this.text3.visible=false;
+                    this.title3.visible=false;
+                    this.text4.visible=true;
+                    this.title4.visible=true;
+                }
+
+                if(this.sharedNews == 4){
+                    this.text4.visible=false;
+                    this.title4.visible=false;
+                    this.text5.visible=true;
+                    this.title5.visible=true;
+                }
 
 
 
