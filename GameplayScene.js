@@ -47,6 +47,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("war","assets/sounds/war.wav");
         this.load.audio("trump","assets/sounds/trump.wav");
         this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
+        this.load.audio("impact","assets/sounds/impact.m4a");
 
         this.load.json("newsData", "fakeNews.json");
     }
@@ -127,36 +128,37 @@ class gameplayScene extends Phaser.Scene {
 
 
         //Fond blanc "zone de jeu"
-        var backgroundRectangle = this.add.rectangle(640,360,600,720,0xffffff).setOrigin(0.5);
+        
+        var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);
 
         //titre de la page 
-        var home = this.add.text(350,20,'home', {font:'45px jack', fill: '#112b1a'});
+        var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
 
         //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
         //par contre les flèches passent encore devant...
         //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
-        var backgroundNews = this.add.rectangle(640,135,600,130,0xE5E5E5).setOrigin(0.5);
+        var backgroundNews = this.add.rectangle(640,135,580,130,0x65FF99).setOrigin(0.5);
 
         //travailler avec les visibles pour les news
-        this.title1 = this.add.text(350,90, "Le Temps du journal",{font:'25px jack', fill: '#112b1a'}).setVisible(true);
-        this.text1 = this.add.text(350,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px timeless', fill: '#112b1a'}).setVisible(true);
+        this.title1 = this.add.text(360,90, "Le Temps du Journal",{font:'25px jack', fill: 'black'}).setVisible(true);
+        this.text1 = this.add.text(360,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px timeless', fill: 'black'}).setVisible(true);
         //pour que le texte ne dépasse pas le fond de la News
         this.text1.setWordWrapWidth(550, false);
 
-        this.title2 = this.add.text(350,90, "Le canard volant",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
-        this.text2 = this.add.text(350,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais fédéral",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.title2 = this.add.text(360,90, "Le Canard Volant",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text2 = this.add.text(360,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération aux citoyens et citoyennes qui se présenteront sur la place devant le Palais Fédéral",{font:'20px timeless', fill: 'black'}).setVisible(false);
         this.text2.setWordWrapWidth(550, false);
 
-        this.title3 = this.add.text(350,90, "Le presque matin",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
-        this.text3 = this.add.text(350,120, "Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.title3 = this.add.text(360,90, "Le Presque Matin",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text3 = this.add.text(360,120, "Jessica, la très célèbre réalisatrice de humanités numérique: définition a déclaré détester le Ukulélé depuis le succès inespéré de son court-métrage",{font:'20px timeless', fill: 'black'}).setVisible(false);
         this.text3.setWordWrapWidth(550, false);
 
-        this.title4 = this.add.text(350,90, "The Washington Toast",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
-        this.text4 = this.add.text(350,120, "Un job de rêve promis par Donald Trump, pour toutes personnes se présentant le premier lundi de chaque mois devant la Maison Blanche",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.title4 = this.add.text(360,90, "The Washington Toast",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text4 = this.add.text(360,120, "Un job de rêve promis par Donald Trump, pour toutes personnes se présentant le premier lundi de chaque mois devant la Maison Blanche",{font:'20px timeless', fill: 'black'}).setVisible(false);
         this.text4.setWordWrapWidth(550, false);
 
-        this.title5 = this.add.text(350,90, "Le Courriel",{font:'25px jack', fill: '#112b1a'}).setVisible(false);
-        this.text5 = this.add.text(350,120, "Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid",{font:'20px timeless', fill: '#112b1a'}).setVisible(false);
+        this.title5 = this.add.text(360,90, "Le Courriel",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text5 = this.add.text(360,120, "Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid",{font:'20px timeless', fill: 'black'}).setVisible(false);
         this.text5.setWordWrapWidth(550, false);
 
 
@@ -187,7 +189,7 @@ class gameplayScene extends Phaser.Scene {
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         //Prototype "Notifications"
-        var backgoundNotifications = this.add.rectangle(170,300,340,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var backgoundNotifications = this.add.rectangle(170,300,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
         var notifications = this.add.text(170, 300, 'Barack Obama follows you', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
         //animation des notifications
@@ -206,15 +208,16 @@ class gameplayScene extends Phaser.Scene {
         this.sharedLabel = this.add.text(20, 560, this.sharedNews, {font: "25px Arial", fill: "green"});
 
         //Text "Shared!"
-        this.shared = this.add.text(640,360,"SHARED!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
+        this.shared = this.add.text(640,200,"SHARED!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
         this.shared.visible=false;
+        this.shared.setAngle(-15);
 
         //Text "disorder!"
-        this.disorder = this.add.text(640,360,"DISORDER!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
+        this.disorder = this.add.text(640,360,"DISORDER!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
         this.disorder.visible=false;
 
         //Text "death!
-        this.death = this.add.text(640,360,"DEATH!",{font: "40px Arial", fill: "red"}).setOrigin(0.5);
+        this.death = this.add.text(640,360,"DEATH!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
         this.death.visible=false;
 
     
@@ -248,6 +251,7 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("screams", {loop: false});
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
+        this.sound.add("impact");
 
 
         
@@ -282,24 +286,32 @@ class gameplayScene extends Phaser.Scene {
             if (currentArrow.y >= 600 && currentArrow.y <= 650) {
 
                 if (isLeftKeyPressed && currentArrow.name == "left") {
+                    this.sound.play('impact', {volume:0.3});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                     
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
+                    this.sound.play('impact', {volume:0.3});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                     
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
+                    this.sound.play('impact', {volume:0.3});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                     
+                    
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
+                    this.sound.play('impact', {volume:0.3});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
+                    
                     
                 }
 
