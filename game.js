@@ -7,6 +7,11 @@ var config = {
     height: 720,
     backgroundColor: "#65FF99",
     scene: [titleScene,gameplayScene,ifNoClicks,resultScene,learnMore,notAVideoGameScene,endScene],
+    audio:{disableWebAudio: true}
     
 }
 
+game.onload(
+    this.load.audio("war","assets/sounds/war.wav"),
+        this.load.audio("trump","assets/sounds/trump.wav")
+)

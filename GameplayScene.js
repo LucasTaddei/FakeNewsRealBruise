@@ -63,7 +63,7 @@ class gameplayScene extends Phaser.Scene {
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
-                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows});
+                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews});
 
             //reset les scores et la vitesse lors d'un nouveau jeu
             this.catchedArrows = 0;
@@ -161,6 +161,48 @@ class gameplayScene extends Phaser.Scene {
         this.text5 = this.add.text(360,120, "Un chien a été vu remettre des amendes à la Brévine, aux citoyens et citoyennes affirmant ne pas aimer le froid",{font:'20px timeless', fill: 'black'}).setVisible(false);
         this.text5.setWordWrapWidth(550, false);
 
+        this.title6 = this.add.text(360,90, "LEQUASIJOURNAL",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text6 = this.add.text(360,120, "Selon une étude très sérieuse de l'université de Stafford, les personnes aux grands pieds et aux longs nez seraient suceptibles de trouver plus difficilement chaussures à leurs pieds",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text6.setWordWrapWidth(550, false);
+
+        this.title7 = this.add.text(360,90, "The New York Dime",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text7 = this.add.text(360,120, "D'après une enquête du New York Lost, les Fake news ne constitueraient pas un si grand danger pour nos démocraties",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text7.setWordWrapWidth(550, false);
+
+        this.title8 = this.add.text(360,90, "Daily Bruise",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text8 = this.add.text(360,120, "Le poids total des châteaux de la Loire, représentent la consommation moyenne de vin par habitant de Suisse",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text8.setWordWrapWidth(550, false);
+
+        this.title9 = this.add.text(360,90, "24 Leurres",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text9 = this.add.text(360,120, "Le vacherin fribourgeois, surtout en fondue, aurait des pouvoirs apaisant",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text9.setWordWrapWidth(550, false);
+
+        this.title10 = this.add.text(360,90, "New York Lost",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text10 = this.add.text(360,120, "L'existence de Peter Pan serait véridique selon les dires de la fée Clochette",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text10.setWordWrapWidth(550, false);
+
+        this.title11 = this.add.text(360,90, "Le Temps du Journal",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text11 = this.add.text(360,120, "Après des années d'attentes les trains suisse seront dorénavant gratuits pour toutes personnes désirant les utiliser",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text11.setWordWrapWidth(550, false);
+
+        this.title12 = this.add.text(360,90, "Le Canard Volant",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text12 = this.add.text(360,120, "Avancer sur les mains rejetterait moins de CO2 dans l'atmosphère selon une étude de l'université de la Chaux-de-fonds",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text12.setWordWrapWidth(550, false);
+
+        this.title13 = this.add.text(360,90, "Le presque matin",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text13 = this.add.text(360,120, "Manger cinq carambars par jour donne la banane",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text13.setWordWrapWidth(550, false);
+
+        this.title14 = this.add.text(360,90, "The Washington Toast",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text14 = this.add.text(360,120, "La pollution des eaux et des sols, serait une invention de plus de notre 21ème siècle afin de créer la panique",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text14.setWordWrapWidth(550, false);
+
+        this.title15 = this.add.text(360,90, "Le Courriel",{font:'25px jack', fill: 'black'}).setVisible(false);
+        this.text15 = this.add.text(360,120, "La fatigue exprimé par les étudiants d'université ne serait qu'un prétexte pour en faire de moins en moins",{font:'20px timeless', fill: 'black'}).setVisible(false);
+        this.text15.setWordWrapWidth(550, false);
+
+
+
 
 
 
@@ -213,12 +255,13 @@ class gameplayScene extends Phaser.Scene {
         this.shared.setAngle(-15);
 
         //Text "disorder!"
-        this.disorder = this.add.text(640,360,"DISORDER!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
+        this.disorder = this.add.text(640,200,"DISORDER!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
         this.disorder.visible=false;
-
+        this.disorder.setAngle(-15);
         //Text "death!
-        this.death = this.add.text(640,360,"DEATH!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
+        this.death = this.add.text(640,200,"DEATH!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
         this.death.visible=false;
+        this.death.setAngle(-15);
 
     
 
@@ -286,28 +329,28 @@ class gameplayScene extends Phaser.Scene {
             if (currentArrow.y >= 600 && currentArrow.y <= 650) {
 
                 if (isLeftKeyPressed && currentArrow.name == "left") {
-                    this.sound.play('impact', {volume:0.3});
+                    this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                     
                     
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
-                    this.sound.play('impact', {volume:0.3});
+                    this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                     
                     
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
-                    this.sound.play('impact', {volume:0.3});
+                    this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                     
                     
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
-                    this.sound.play('impact', {volume:0.3});
+                    this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
@@ -362,33 +405,97 @@ class gameplayScene extends Phaser.Scene {
 
 
                 //travailler avec les visibles pour le news
-                if(this.sharedNews == 1){
+                if(this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57){
                     this.text1.visible=false;
                     this.title1.visible=false;
+                    this.title15.visible=false;
+                    this.text15.visible=false;
                     this.text2.visible=true;
                     this.title2.visible=true;
                 }
 
-                if(this.sharedNews == 2){
+                if(this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58){
                     this.text2.visible=false;
                     this.title2.visible=false;
                     this.text3.visible=true;
                     this.title3.visible=true;
                 }
 
-                if(this.sharedNews == 3){
+                if(this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59){
                     this.text3.visible=false;
                     this.title3.visible=false;
                     this.text4.visible=true;
                     this.title4.visible=true;
                 }
 
-                if(this.sharedNews == 4){
+                if(this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60){
                     this.text4.visible=false;
                     this.title4.visible=false;
                     this.text5.visible=true;
                     this.title5.visible=true;
                 }
+                if(this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61){
+                    this.text5.visible=false;
+                    this.title5.visible=false;
+                    this.text6.visible=true;
+                    this.title6.visible=true;
+                }
+                if(this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62){
+                    this.text6.visible=false;
+                    this.title6.visible=false;
+                    this.text7.visible=true;
+                    this.title7.visible=true;
+                }
+                if(this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63){
+                    this.text7.visible=false;
+                    this.title7.visible=false;
+                    this.text8.visible=true;
+                    this.title8.visible=true;
+                }
+                if(this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64){
+                    this.text8.visible=false;
+                    this.title8.visible=false;
+                    this.text9.visible=true;
+                    this.title9.visible=true;
+                }
+                if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65){
+                    this.text9.visible=false;
+                    this.title9.visible=false;
+                    this.text10.visible=true;
+                    this.title11.visible=true;
+                }
+                if(this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66){
+                    this.text10.visible=false;
+                    this.title10.visible=false;
+                    this.text11.visible=true;
+                    this.title11.visible=true;
+                }
+                if(this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67){
+                    this.text11.visible=false;
+                    this.title11.visible=false;
+                    this.text12.visible=true;
+                    this.title12.visible=true;
+                }
+                if(this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68){
+                    this.text12.visible=false;
+                    this.title12.visible=false;
+                    this.text13.visible=true;
+                    this.title13.visible=true;
+                }
+                if(this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69){
+                    this.text13.visible=false;
+                    this.title13.visible=false;
+                    this.text14.visible=true;
+                    this.title14.visible=true;
+                }
+                if(this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70){
+                    this.text14.visible=false;
+                    this.title14.visible=false;
+                    this.text15.visible=true;
+                    this.title15.visible=true;
+                }
+                
+                
 
 
 

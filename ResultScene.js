@@ -28,14 +28,12 @@ class resultScene extends Phaser.Scene {
         this.load.image('bomb12', 'Bomb12.png');
         this.load.image('bomb13', 'Bomb13.png');
         this.load.image('bomb14', 'Bomb14.png');
-        this.load.audio("war","assets/sounds/war.wav");
         
     }
 
     create(){
 
 
-        this.sound.add('war', {loop: false});
 
 
         
@@ -43,11 +41,12 @@ class resultScene extends Phaser.Scene {
     this.time.addEvent({
             delay: 1000,
             callback: ()=>{
-                var congrats = this.add.text(640,100, "CONGRATS!", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5);
+                var congrats = this.add.text(640,100, "CONGRATS! You've shared " + this.score.sharedNews + " news", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5);
                 var congratsText = this.add.text(640,250, "Thanks to your talent at sharing fake news quickly " + "birthdays have been canceled forever, 100 people overdosed on avocado and fruits are banned from Switzerland... As a result, the third world war started and 98% of the population got killed", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
                 congratsText.setWordWrapWidth(600, false).setAlign('center');
                 var scoreText = this.add.text(20, 350, "Catched: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
                 var failText = this.add.text(20, 400, "Missed: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
+                var sharedText = this.add.text(20, 450, "Shared News: " + this.score.sharedNews, {font: "30px jack", fill: "#112b1a"});
                 //Créer le bouton next et lancer la phase 2 de l'animation
                 var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
                 next.on('pointerdown', function() {
@@ -59,6 +58,7 @@ class resultScene extends Phaser.Scene {
                 congratsText.destroy();
                 scoreText.destroy();
                 failText.destroy();
+                sharedText.destroy();
                 this.tweens.add({
                     targets: [congrats],
                     alpha: { value: 1, duration: 300, ease: 'Power1' },          
