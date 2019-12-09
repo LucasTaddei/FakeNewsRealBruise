@@ -24,7 +24,7 @@ class learnMore extends Phaser.Scene {
 
     //ajouter texte phase 1
     var learnMoreTitle1 = this.add.text(640, 150, "Qu'est-ce qu'une fake news", {font: '55px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
-    var learnMoreText1 = this.add.text(640, 350, 'C’est une information volontairement mensongère et qui est destinée à tromper ou à manipuler la personne qui la lira. L’idée d’intention, de manipulation, est importante.Dans le but de manipuler et dans une finalité idéologique ou une volonté de faire le buzz, la force des fake news est de mimer une véritable information. On copie de vrais sites en formatant les infos pour qu’elles puissent passer pour vraies.', {font: '30px imperator', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5);
+    var learnMoreText1 = this.add.text(640, 350, 'C’est une information volontairement mensongère et qui est destinée à tromper ou à manipuler la personne qui la lira. L’idée d’intention, de manipulation, est importante.\n Dans le but de manipuler et dans une finalité idéologique ou une volonté de faire le buzz, la force des fake news est de mimer une véritable information. On copie de vrais sites en formatant les infos pour qu’elles puissent passer pour vraies.\n Les fake news utilisent des ressorts très émotionnels qui favorisent les clics, le partage, l’engagement.', {font: '25px imperator', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5);
     learnMoreText1.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var nextButton1 = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
     this.tweens.add({
@@ -41,7 +41,7 @@ class learnMore extends Phaser.Scene {
    
     //ajouter texte phase 3
     var learnMoreTitle3 = this.add.text(640, 150, 'Comment se prémunir contre les fake news?', {font: '55px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
-    var learnMoreText3 = this.add.text(640, 300, 'texte', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
+    var learnMoreText3 = this.add.text(640, 350, '1. en cas de doute, ne partagez pas\n 2. lisez les commentaires\n 3. regardez les détails\n 4. copiez/collez le texte \n5. effectuez une recherche inversée \n 6. vérifiez la source\n\n Donc vérifie cette source avant de partager!', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
     learnMoreText3.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var returnButton3 = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
     
