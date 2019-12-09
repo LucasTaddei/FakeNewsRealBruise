@@ -49,6 +49,12 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
         this.load.audio("impact","assets/sounds/impact.m4a");
 
+        this.load.image("flame1","assets/animations/flame1.png")
+        this.load.image("flame2","assets/animations/flame2.png")
+        this.load.image("flame3","assets/animations/flame3.png")
+        this.load.image("flame4","assets/animations/flame4.png")
+        this.load.image("flame5","assets/animations/flame5.png")
+
         this.load.json("newsData", "fakeNews.json");
     }
 
@@ -265,6 +271,22 @@ class gameplayScene extends Phaser.Scene {
 
         //colonne de droite 
         this.add.text(1100, 100, 'Hot', {font:'50px jack', fill: 'black'}).setOrigin(0.5);
+        
+
+        this.anims.create({
+            key: 'flames',
+            frames: [
+                { key: 'flame1' },
+                { key: 'flame2' },
+                { key: 'flame3' },
+                { key: 'flame4' },
+                { key: 'flame5' }
+            ],
+            frameRate: 10,
+            repeat: -1
+        });
+    
+        this.add.sprite(1180, 100, 'flame1').play('flames');
 
         var hashtag1 = this.add.text(1100, 200, '#lemondeestbeau', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         var hashtag2 = this.add.text(1100, 270, '#savetheworld', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
