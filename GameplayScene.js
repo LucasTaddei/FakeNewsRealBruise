@@ -286,7 +286,7 @@ class gameplayScene extends Phaser.Scene {
             repeat: -1
         });
     
-        this.add.sprite(1180, 100, 'flame1').play('flames');
+        this.add.sprite(1180, 80, 'flame1').setScale(3.4).play('flames');
 
         var hashtag1 = this.add.text(1100, 200, '#lemondeestbeau', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         var hashtag2 = this.add.text(1100, 270, '#savetheworld', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
@@ -483,7 +483,7 @@ class gameplayScene extends Phaser.Scene {
 
 
                 //travailler avec les visibles pour le news
-                if(this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57){
+                if(this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57 || this.sharedNews == 71 || this.sharedNews == 85){
                     this.text1.visible=false;
                     this.title1.visible=false;
                     this.title15.visible=false;
@@ -492,81 +492,81 @@ class gameplayScene extends Phaser.Scene {
                     this.title2.visible=true;
                 }
 
-                if(this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58){
+                if(this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58 || this.sharedNews == 72 || this.sharedNews == 86){
                     this.text2.visible=false;
                     this.title2.visible=false;
                     this.text3.visible=true;
                     this.title3.visible=true;
                 }
 
-                if(this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59){
+                if(this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59 || this.sharedNews == 73 || this.sharedNews == 87){
                     this.text3.visible=false;
                     this.title3.visible=false;
                     this.text4.visible=true;
                     this.title4.visible=true;
                 }
 
-                if(this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60){
+                if(this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60 || this.sharedNews == 74 || this.sharedNews == 88){
                     this.text4.visible=false;
                     this.title4.visible=false;
                     this.text5.visible=true;
                     this.title5.visible=true;
                 }
-                if(this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61){
+                if(this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61 || this.sharedNews == 75 || this.sharedNews == 89){
                     this.text5.visible=false;
                     this.title5.visible=false;
                     this.text6.visible=true;
                     this.title6.visible=true;
                 }
-                if(this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62){
+                if(this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62 || this.sharedNews == 76 || this.sharedNews == 90){
                     this.text6.visible=false;
                     this.title6.visible=false;
                     this.text7.visible=true;
                     this.title7.visible=true;
                 }
-                if(this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63){
+                if(this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63 || this.sharedNews == 77 || this.sharedNews == 91){
                     this.text7.visible=false;
                     this.title7.visible=false;
                     this.text8.visible=true;
                     this.title8.visible=true;
                 }
-                if(this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64){
+                if(this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64 || this.sharedNews == 78 || this.sharedNews == 92){
                     this.text8.visible=false;
                     this.title8.visible=false;
                     this.text9.visible=true;
                     this.title9.visible=true;
                 }
-                if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65){
+                if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
                     this.text9.visible=false;
                     this.title9.visible=false;
                     this.text10.visible=true;
                     this.title11.visible=true;
                 }
-                if(this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66){
+                if(this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66 || this.sharedNews == 80 || this.sharedNews == 94){
                     this.text10.visible=false;
                     this.title10.visible=false;
                     this.text11.visible=true;
                     this.title11.visible=true;
                 }
-                if(this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67){
+                if(this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67 || this.sharedNews == 81 || this.sharedNews == 95){
                     this.text11.visible=false;
                     this.title11.visible=false;
                     this.text12.visible=true;
                     this.title12.visible=true;
                 }
-                if(this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68){
+                if(this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68 || this.sharedNews == 82 || this.sharedNews == 96){
                     this.text12.visible=false;
                     this.title12.visible=false;
                     this.text13.visible=true;
                     this.title13.visible=true;
                 }
-                if(this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69){
+                if(this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69 || this.sharedNews == 83 || this.sharedNews == 97){
                     this.text13.visible=false;
                     this.title13.visible=false;
                     this.text14.visible=true;
                     this.title14.visible=true;
                 }
-                if(this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70){
+                if(this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70 || this.sharedNews == 84 || this.sharedNews == 98){
                     this.text14.visible=false;
                     this.title14.visible=false;
                     this.text15.visible=true;
