@@ -333,11 +333,11 @@ class gameplayScene extends Phaser.Scene {
         this.shared.setAngle(-15);
 
         //Text "disorder!"
-        this.disorder = this.add.text(640,200,"DISORDER!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
+        this.disorder = this.add.text(640,200,"DISORDER!",{font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
         this.disorder.visible=false;
         this.disorder.setAngle(-15);
         //Text "death!
-        this.death = this.add.text(640,200,"DEATH!",{font: "40px jack", fill: "red"}).setOrigin(0.5);
+        this.death = this.add.text(640,200,"DEATH!",{font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
         this.death.visible=false;
         this.death.setAngle(-15);
 
