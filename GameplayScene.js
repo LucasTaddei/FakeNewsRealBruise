@@ -33,9 +33,9 @@ class gameplayScene extends Phaser.Scene {
         this.load.image("right","assets/images/arrows/rightFilledBlue.png");
         //Arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
-        this.load.image("upOutline","assets/images/arrows/upOutlineDark.png");
+        this.load.image("upOutline","assets/images/arrows/upOutlineYellow.png");
         this.load.image("downOutline","assets/images/arrows/downOutlinePurple.png");
-        this.load.image("rightOutline","assets/images/arrows/rightOutlineDark.png");
+        this.load.image("rightOutline","assets/images/arrows/rightOutlineblue.png");
         
         this.load.image('logo','assets/images/LOGO.png');
 
@@ -470,7 +470,7 @@ class gameplayScene extends Phaser.Scene {
 
                 // jeu termine si tu ne clique rien
                 if(this.catchedArrows==0 && this.missedArrows == 15){
-                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px Arial", fill: "red"}).setOrigin(0.5);
+                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "red"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
