@@ -432,8 +432,6 @@ class gameplayScene extends Phaser.Scene {
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
-                    
-                    
                 }
 
 
@@ -641,7 +639,6 @@ class gameplayScene extends Phaser.Scene {
     //         this.missedArrows++;
     //     }
     // }
-    
 
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720){
