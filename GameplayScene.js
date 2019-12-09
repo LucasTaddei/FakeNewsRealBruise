@@ -470,7 +470,7 @@ class gameplayScene extends Phaser.Scene {
 
                 // jeu termine si tu ne clique rien
                 if(this.catchedArrows==0 && this.missedArrows == 15){
-                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "red"}).setOrigin(0.5);
+                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
