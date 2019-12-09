@@ -83,9 +83,9 @@ class titleScene extends Phaser.Scene {
 
     //faire se déplacer les nuages
     update(){
-        this.moveClouds(this.cloud1, 0.4);
+        this.moveClouds(this.cloud1, 0.3);
         this.moveClouds(this.cloud2, 0.1);
-        this.moveClouds(this.cloud3, 0.3);
+        this.moveClouds(this.cloud3, 0.2);
     }
         moveClouds (cloud, speed) {
             cloud.x += speed;
