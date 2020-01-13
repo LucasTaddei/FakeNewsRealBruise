@@ -152,7 +152,7 @@ class gameplayScene extends Phaser.Scene {
         this.text1.setWordWrapWidth(570, false);
 
         this.title2 = this.add.text(360,90, "Le Canard Volant",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text2 = this.add.text(360,120, "Les avocats d'une Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération à ceux et celles qui se présenteront devant le Palais Fédéral",{font:'20px imperator', fill: 'black'}).setVisible(false);
+        this.text2 = this.add.text(360,120, "Les billets de mille francs suisse, sous utilisés, vont être distribués par la confédération à ceux et celles qui se présenteront devant le Palais Fédéral",{font:'20px imperator', fill: 'black'}).setVisible(false);
         this.text2.setWordWrapWidth(570, false);
 
         this.title3 = this.add.text(360,90, "Le Presque Matin",{font:'25px jack', fill: 'black'}).setVisible(false);
