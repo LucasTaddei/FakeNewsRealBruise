@@ -22,7 +22,6 @@ class notAVideoGameScene extends Phaser.Scene {
         this.load.image('bomb12', 'Bomb12.png');
         this.load.image('bomb13', 'Bomb13.png');
         this.load.image('bomb14', 'Bomb14.png');
-        
     }
 
     create(){
@@ -49,7 +48,5 @@ class notAVideoGameScene extends Phaser.Scene {
             repeat: -1,
         });
         this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPart2');
-
     }
 }
-
