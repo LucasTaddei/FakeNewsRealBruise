@@ -199,7 +199,7 @@ class gameplayScene extends Phaser.Scene {
         this.text15 = this.add.text(360,120, "La fatigue exprimé par les étudiants d'université ne serait qu'un prétexte pour en faire de moins en moins",{font:'20px imperator', fill: 'black'}).setVisible(false);
         this.text15.setWordWrapWidth(570, false);
 
-        //travailler eventuellement avec les tweens pour remplacer le texte des news
+        // travailler eventuellement avec les tweens pour remplacer le texte des news
         // this.tweens.add({
         //     targets: [title1, text1],
         //     alpha: { value: 1, duration: 300, ease: 'Power1' },
@@ -369,6 +369,7 @@ class gameplayScene extends Phaser.Scene {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
+                    this.newImage.left 
                     this.removeArrow(currentArrow);
                     
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
