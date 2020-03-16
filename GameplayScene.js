@@ -328,14 +328,14 @@ class gameplayScene extends Phaser.Scene {
         label.setStroke('#de77ae', 8);
 
         // création de la zones de collision des flèches
-        this.add.rectangle(640,600,580,60,0xF7F7F7).setOrigin(0.5);
+        this.add.rectangle(640,601,580,60,0xF7F7F7).setOrigin(0.5);
 
-        //  this.add.image(490,600,'leftOutline').setOrigin(0.5);
-        //  this.add.image(590,600,'upOutline').setOrigin(0.5);
-        //  this.add.image(690,600,'downOutline').setOrigin(0.5);
-        //  this.add.image(790,600,'rightOutline').setOrigin(0.5);
+        // this.add.image(490,600,'leftOutline').setOrigin(0.5);
+        // this.add.image(590,600,'upOutline').setOrigin(0.5);
+        // this.add.image(690,600,'downOutline').setOrigin(0.5);
+        // this.add.image(790,600,'rightOutline').setOrigin(0.5);
 
-         this.input.on('gameobjectdown', function (pointer, gameObject) {
+        this.input.on('gameobjectdown', function (pointer, gameObject) {
             label.setText(gameObject.name);
             label.x = gameObject.x;
             label.y = gameObject.y;
@@ -366,29 +366,28 @@ class gameplayScene extends Phaser.Scene {
 
             /* ||| RULES ||| */
 
-            // si la flèche est dans la zone de validation et que la touche correspondante est enfoncée: suppression de la flèche
+            // flèche correctement capturée par le clic
             if (currentArrow.y >= 600 && currentArrow.y <= 650) {
 
-                if (isLeftKeyPressed && currentArrow.name == "left") {
-                    this.sound.play('impact', {volume:0.2});
-                    this.catchedArrows++;
-                    this.consecutiveArrows++
-                    this.newImage.left 
-                    this.removeArrow(currentArrow);
-                    
-                } else if (isUpKeyPressed && currentArrow.name == "up") {
+                if (isLeftKeyPressed && currentArrow.name == "leftOutline") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                     
-                } else if (isDownKeyPressed && currentArrow.name == "down") {
+                } else if (isUpKeyPressed && currentArrow.name == "upOutline") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
                     this.removeArrow(currentArrow);
                     
-                } else if (isRightKeyPressed && currentArrow.name == "right") {
+                } else if (isDownKeyPressed && currentArrow.name == "downOutline") {
+                    this.sound.play('impact', {volume:0.2});
+                    this.catchedArrows++;
+                    this.consecutiveArrows++
+                    this.removeArrow(currentArrow);
+                    
+                } else if (isRightKeyPressed && currentArrow.name == "rightOutline") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++
@@ -397,27 +396,24 @@ class gameplayScene extends Phaser.Scene {
 
                 // enregistrement des combos + "Share" visible après combo
                 if (this.consecutiveArrows == 5 && this.sharedNews <26){
-                        this.sharedNews++;
-                        this.consecutiveArrows = 0;
-                        this.shared.visible=true;
-                        this.sound.play('mouseClick',{volume: 0.2});
-                }
+                    this.sharedNews++;
+                    this.consecutiveArrows = 0;
+                    this.shared.visible=true;
+                    this.sound.play('mouseClick',{volume: 0.2});
 
-                // "Share" n'est plus visible après combo
-                else if(this.consecutiveArrows != 5){
+                } else if (this.consecutiveArrows != 5){
+                    // "Share" n'est plus visible après combo
                     this.shared.visible=false;
                     this.disorder.visible=false;
                     this.death.visible=false
-                }
 
-                else if(this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44){
+                } else if (this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.disorder.visible=true;
                     this.sound.play('mouseClick',{volume: 0.2})
-                }
 
-                else if(this.consecutiveArrows == 5 && this.sharedNews >=44){
+                } else if (this.consecutiveArrows == 5 && this.sharedNews >=44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.death.visible=true;
@@ -585,20 +581,23 @@ class gameplayScene extends Phaser.Scene {
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
         if (randomArrow == 0){
-            newImage = this.add.image(490, 170, 'left').setOrigin(0.5);
-            newImage.name = 'left';
+            newImage = this.add.image(490, 170, 'leftOutline').setOrigin(0.5);
+            newImage.name = 'leftOutline';
             this.fallingArrows.push(newImage);
+
         } else if (randomArrow == 1){
-            newImage = this.add.image(590, 170, 'up').setOrigin(0.5);
-            newImage.name = 'up';
+            newImage = this.add.image(590, 170, 'upOutline').setOrigin(0.5);
+            newImage.name = 'upOutline';
             this.fallingArrows.push(newImage);
+
         } else if (randomArrow == 2){
-            newImage = this.add.image(690, 170, 'down').setOrigin(0.5);
-            newImage.name = 'down';
+            newImage = this.add.image(690, 170, 'downOutline').setOrigin(0.5);
+            newImage.name = 'downOutline';
             this.fallingArrows.push(newImage);
+
         } else if (randomArrow == 3){
-            newImage = this.add.image(790, 170, 'right').setOrigin(0.5);
-            newImage.name = 'right';
+            newImage = this.add.image(790, 170, 'rightOutline').setOrigin(0.5);
+            newImage.name = 'rightOutline';
             this.fallingArrows.push(newImage);
         }
     }
