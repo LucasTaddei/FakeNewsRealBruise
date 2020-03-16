@@ -24,16 +24,17 @@ class gameplayScene extends Phaser.Scene {
     }
 
     preload(){
-        // arrows filled
-        this.load.image("left","assets/images/arrows/leftFilledRed.png");
-        this.load.image("up","assets/images/arrows/upFilledYellow.png");
-        this.load.image("down","assets/images/arrows/downFilledPurple.png");
-        this.load.image("right","assets/images/arrows/rightFilledBlue.png");
         // arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
         this.load.image("upOutline","assets/images/arrows/upOutlineYellow.png");
         this.load.image("downOutline","assets/images/arrows/downOutlinePurple.png");
         this.load.image("rightOutline","assets/images/arrows/rightOutlineblue.png");
+        
+        // arrows filled
+        this.load.image("left","assets/images/arrows/leftFilledRed.png");
+        this.load.image("up","assets/images/arrows/upFilledYellow.png");
+        this.load.image("down","assets/images/arrows/downFilledPurple.png");
+        this.load.image("right","assets/images/arrows/rightFilledBlue.png");
         
         this.load.image('logo','assets/images/LOGO.png');
 
@@ -132,14 +133,15 @@ class gameplayScene extends Phaser.Scene {
         // titre de la page 
         var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
 
-        //Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
-        //par contre les flèches passent encore devant...
-        //lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/
+        /* Prototype "News" => attention le texte s'il est long n'est pas limité, je travaille dessus ;)
+        par contre les flèches passent encore devant...
+        lien qui pourrait aider pour le json: https://rexrainbow.github.io/phaser3-rex-notes/docs/site/text/ */
         var backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
 
         // travailler avec les visibles pour les news
         this.title1 = this.add.text(360,90, "Le Temps du Journal",{font:'25px jack', fill: 'black'}).setVisible(true);
         this.text1 = this.add.text(360,120, "Les avocats d'une certaine région du Mexique rendent les cheveux bleus",{font:'20px imperator', fill: 'black'}).setVisible(true);
+        
         // pour que le texte ne dépasse pas le fond de la News
         this.text1.setWordWrapWidth(570, false);
 
@@ -325,11 +327,13 @@ class gameplayScene extends Phaser.Scene {
         var label = this.add.text(0, 0, '', {font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
 
-        // création des 4 zones de collision des flèches
-         this.add.image(490,600,'leftOutline').setOrigin(0.5);
-         this.add.image(590,600,'upOutline').setOrigin(0.5);
-         this.add.image(690,600,'downOutline').setOrigin(0.5);
-         this.add.image(790,600,'rightOutline').setOrigin(0.5);
+        // création de la zones de collision des flèches
+        this.add.rectangle(640,600,580,60,0xF7F7F7).setOrigin(0.5);
+
+        //  this.add.image(490,600,'leftOutline').setOrigin(0.5);
+        //  this.add.image(590,600,'upOutline').setOrigin(0.5);
+        //  this.add.image(690,600,'downOutline').setOrigin(0.5);
+        //  this.add.image(790,600,'rightOutline').setOrigin(0.5);
 
          this.input.on('gameobjectdown', function (pointer, gameObject) {
             label.setText(gameObject.name);
