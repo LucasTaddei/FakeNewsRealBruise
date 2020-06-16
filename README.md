@@ -25,3 +25,13 @@ Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérie
 <h2> Difficultés rencontrés </h2>
 
 <h2> License et modules </h2>
+
+<p>Ce programme est un logiciel gratuit.  Fake News, Real Bruise a été développé avec le framework de développement web en Javascript Phaser 3 dans sa version 3.22.0
+
+Les modules utilisés sont les suivants:
+
+    node.js
+
+Le package suivant doit être installé par le terminal pour que l'application marche: 
+
+Copyright © 2019 - l'équipe de développement: Jessica Chautems, Marielle Grass, Lucas Taddei & Léa Keller. </p>
