@@ -38,7 +38,7 @@ Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérie
     
 <h2> Assets : </h2>
 
-<p>Tous les contenus de ce jeu, c'est-à-dire la musique, les textes ainsi que le design, sont des créations originales développées par l'équipe.<>/p>
+<p>Tous les contenus de ce jeu, c'est-à-dire la musique, les textes ainsi que le design, sont des créations originales développées par l'équipe.</p>
 
 <h2> License et modules : </h2>
 
