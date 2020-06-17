@@ -12,7 +12,7 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
 <p>Pour le cours <i>Développement de jeux vidéo 2D</i>, offert dans le cursus du master d’Humanités Numériques, l’objectif était de faire un jeu de médiation culturelle sur un sujet à choix. On a choisi de faire un jeu sur les fake news, sur leur culture et leur violence.</p>
     <p><i>Fake News, Real Bruise</i> est un jeu de rythme dans lequel on est poussé à partager le plus de news possibles. Le jeu veut simuler de manière exagérée le processus d’impulsivité créée par la culture du partage, qui nous amène toujours à partager les nouvelles le plus vite possible (en déterminant le rythme), sans se préoccuper de leur véridicité. Enfin, le but du jeu est de montrer que le partage sans <i>fact checking</i> peut être très dangereux, en expliquant les raisons et les conséquences.</p>
 
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/commit/f92037f147930f97fd258ba1ec182ab0875f6d09#commitcomment-39976578" alt="alt text" width="350" height="350">
+<img src="" alt="alt text" width="350" height="350">
 <h2> Gameplay : </h2>
 
 <p> À l’aide des flèches directionnelles, le joueur ou la joueuse doit appuyer au bon moment sur la flèche correspondante qui tombe du haut de l’écran vers le bas (suivant la recette des jeux de rythme classique, à l'instar de Guitar Hero, etc...). Chaque combo de 5 flèches consécutives permet de partager une nouvelle.</p>
