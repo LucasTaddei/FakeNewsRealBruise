@@ -19,6 +19,10 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
 
 <p> À l’aide des flèches directionnelles, le joueur ou la joueuse doit appuyer au bon moment sur la flèche correspondante qui tombe du haut de l’écran vers le bas (suivant la recette des jeux de rythme classique, à l'instar de Guitar Hero, etc...). Chaque combo de 5 flèches consécutives permet de partager une nouvelle.</p>
 
+<p align="center">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_to_play.png" alt="alt text" width="450" height="350">
+
+
 <h2> Mécaniques : </h2>
 
 <p> Si au début le rythme de la musique coïncide avec le rythme des flèches qui tombent, cela va vite changer. En fait, le jeu joue sur la divergence toujours majeure entre le rythme des flèches qui tombent et le rythme de la musique. Les flèches, de manière automatique, vont de plus en plus vite, en symbolisant le rythme accéléré poussé par la culture du partage. Les titres des news apparaissent à l’écran, mais de cette manière on est poussé à ne pas les lires. La musique, au contraire, reste toujours avec le même rythme, en symbolisant la société.</p>
