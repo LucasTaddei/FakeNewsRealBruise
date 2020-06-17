@@ -13,12 +13,12 @@ class ifNoClicks extends Phaser.Scene {
     }
 
    create(){
-    //ajouter les nuages
+    // ajouter les nuages
     this.cloud1 = this.add.image(50, 100, 'cloud1');
     this.cloud2 = this.add.image(500, 300, 'cloud2');
     this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
-    //ajouter les textes et images fixes
+    // ajouter les textes et images fixes
     var bravo = this.add.text(640, 200,"You're a hero", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
     var congratulations1 = this.add.text(640, 300, "It seems you don't play by the rules... ", {font: '35px imperator', fill:'#112b1a'}).setOrigin(0.5);
     var congratulations2 = this.add.text(640, 350, "Good for you! You didn't let the system fool you into sharing fake news.", {font: '35px imperator', fill:'#112b1a'}).setOrigin(0.5);
@@ -31,7 +31,7 @@ class ifNoClicks extends Phaser.Scene {
     }, this);
     }
 
-    //faire se déplacer les nuages
+    // faire se déplacer les nuages
     update(){
         this.moveClouds(this.cloud1, 0.4);
         this.moveClouds(this.cloud2, 0.1);

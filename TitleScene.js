@@ -15,7 +15,7 @@ class titleScene extends Phaser.Scene {
     }
 
    create(){
-    //ajouter les nuages, skyline et musique
+    // ajouter les nuages, skyline et musique
     
     this.cloud1 = this.add.image(50, 100, 'cloud1');
     this.cloud2 = this.add.image(500, 300, 'cloud2');
@@ -27,7 +27,7 @@ class titleScene extends Phaser.Scene {
         titleBruise.play({volume: 0.7, loop: true});
 
 
-    //ajouter les textes et images fixes de la page 1.1
+    // ajouter les textes et images fixes de la page 1.1
     var titleTextLine1 = this.add.text(200, 80,"Fake News", {font: '90px jack', fill: "#112b1a"}).setAlpha(0);
     var titleTextLine2 = this.add.text(550, 150,"Real Bruise", {font: '90px jack', fill: "#112b1a"}).setAlpha(0);
     var logo = this.add.image(640,330,'logo').setScale(0.45).setAlpha(0);
@@ -41,10 +41,7 @@ class titleScene extends Phaser.Scene {
         delay: 300,  
     });
 
-    
-        
-    
-    //Ajouter les flèches du clavier de la page 1.2
+    // ajouter les flèches du clavier de la page 1.2
     var bravo = this.add.text(640, 100,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
 
     var howToText = this.add.text(900, 350, "Click the arrows of your keyboard when the falling arrow is on the right spot. After 5 consecutives right clicks, a NEWS is shared.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5).setAlpha(0);
@@ -53,9 +50,7 @@ class titleScene extends Phaser.Scene {
 
     var playButton = this.add.text(640,570, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
 
-
-
-    //changement entre 1.1 et 1.2
+    // changement entre 1.1 et 1.2
     start.on('pointerdown', function() {
         titleTextLine1.destroy();
         titleTextLine2.destroy();
@@ -78,10 +73,9 @@ class titleScene extends Phaser.Scene {
         this.scene.start('gameplay');
         titleBruise.stop();
     }, this);
-
 }
 
-    //faire se déplacer les nuages
+    // faire se déplacer les nuages
     update(){
         this.moveClouds(this.cloud1, 0.3);
         this.moveClouds(this.cloud2, 0.1);
@@ -98,5 +92,4 @@ class titleScene extends Phaser.Scene {
             var randomY = Phaser.Math.Between(0, 420)
             cloud.y = randomY;
         }
-
 }
