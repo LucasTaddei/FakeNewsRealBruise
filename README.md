@@ -13,14 +13,14 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
     <p><i>Fake News, Real Bruise</i> est un jeu de rythme dans lequel on est poussé à partager le plus de news possibles. Le jeu veut simuler de manière exagérée le processus d’impulsivité créée par la culture du partage, qui nous amène toujours à partager les nouvelles le plus vite possible (en déterminant le rythme), sans se préoccuper de leur véridicité. Enfin, le but du jeu est de montrer que le partage sans <i>fact checking</i> peut être très dangereux, en expliquant les raisons et les conséquences.</p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/page_accueil.png" alt="alt text" width="450" height="350">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/page_accueil.png" alt="alt text" width="450" height="350"></p>
     
 <h2> Gameplay : </h2>
 
 <p> À l’aide des flèches directionnelles, le joueur ou la joueuse doit appuyer au bon moment sur la flèche correspondante qui tombe du haut de l’écran vers le bas (suivant la recette des jeux de rythme classique, à l'instar de Guitar Hero, etc...). Chaque combo de 5 flèches consécutives permet de partager une nouvelle.</p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_to_play.png" alt="alt text" width="450" height="350">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_to_play.png" alt="alt text" width="450" height="350"></p>
 
 
 <h2> Mécaniques : </h2>
@@ -28,15 +28,19 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
 <p> Si au début le rythme de la musique coïncide avec le rythme des flèches qui tombent, cela va vite changer. En fait, le jeu joue sur la divergence toujours majeure entre le rythme des flèches qui tombent et le rythme de la musique. Les flèches, de manière automatique, vont de plus en plus vite, en symbolisant le rythme accéléré poussé par la culture du partage. Les titres des news apparaissent à l’écran, mais de cette manière on est poussé à ne pas les lires. La musique, au contraire, reste toujours avec le même rythme, en symbolisant la société.</p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/game.png" alt="alt text" width="450" height="350">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/game.png" alt="alt text" width="450" height="350"></p>
     
 <p> Pourtant ces deux mondes, celui du partage obsessif et celui de la "vraie" société, s’influencent. Après avoir partagé 5 news, un élément sonore s’ajoute à la musique de fond. De même, après avoir partagé 15/35/40/50 news. La nature de ces éléments sonores supplémentaires s’aggrave de manière proportionnelle au partage des fake news. Cela débute avec des bruits de « grand magasin » à des bruits des « révoltes dans la rue », pour finir avec des bruits de bombardements. Ces bruits se superposent à la musique en créant une sensation de chaos et de confusion, qui éventuellement peut amener le joueur ou la joueuse à faire des erreurs. On peut dire, donc, que les conséquences des partages de fake news (bien sûr portés à l’extrême pour le jeu) rendent plus difficile le jeu.
 Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérience. En fait, accompagné par des bruits de guerre distants et des animations qui illustrent la destruction, le joueur ou la joueuse est amené·e à lire des informations concernant les fake news, le danger qu’elles peuvent causer et la procédure à suivre pour partager des contenus de manière correct. </p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_become_hero.png" alt="alt text" width="450" height="350">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_become_hero.png" alt="alt text" width="450" height="350"></p>
+    
+<h2> Assets : </h2>
 
-<h2> License et modules </h2>
+<p>Tous les contenus de ce jeu, c'est-à-dire la musique, les textes ainsi que le design, sont des créations originales développées par l'équipe.<>/p>
+
+<h2> License et modules : </h2>
 
 <p>Ce programme est un logiciel gratuit.  Fake News, Real Bruise a été développé avec le framework de développement web en Javascript Phaser 3 dans sa version 3.22.0
 
