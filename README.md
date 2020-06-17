@@ -34,7 +34,7 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
 Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérience. En fait, accompagné par des bruits de guerre distants et des animations qui illustrent la destruction, le joueur ou la joueuse est amené·e à lire des informations concernant les fake news, le danger qu’elles peuvent causer et la procédure à suivre pour partager des contenus de manière correct. </p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_to_play.png" alt="alt text" width="450" height="350">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_become_hero.png" alt="alt text" width="450" height="350">
 
 <h2> License et modules </h2>
 
