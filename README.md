@@ -30,6 +30,6 @@ Les modules utilisés sont les suivants:
 
     node.js
 
-Le package suivant doit être installé par le terminal pour que l'application marche: 
+Le package suivant doit être installé par le terminal pour que l'application marche: npm install phaser@3.22.0
 
 Copyright © 2019 - l'équipe de développement: Jessica Chautems, Marielle Grass, Lucas Taddei & Léa Keller. </p>
