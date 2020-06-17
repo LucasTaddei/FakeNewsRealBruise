@@ -40,7 +40,7 @@ class learnMore extends Phaser.Scene {
    
     // ajouter texte phase 3
     var learnMoreTitle3 = this.add.text(640, 150, 'How to hedge against fake news?', {font: '55px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
-    var learnMoreText3 = this.add.text(640, 350, '1. en cas de doute, ne partagez pas\n 2. lisez les commentaires\n 3. regardez les détails\n 4. copiez/collez le texte \n5. effectuez une recherche inversée \n 6. vérifiez la source\n\n Donc vérifie cette source avant de partager!', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
+    var learnMoreText3 = this.add.text(640, 350, '1. when in doubt, do not share\n 2. read the comments\n 3. look at the details\n 4. copy/paste text \n5. do a reverse search  \n 6. check the source \n\n so check this source before you share!', {font: '30px imperator', fill: '#112b1a', lineSpacin: 10}).setOrigin(0.5);
     learnMoreText3.setWordWrapWidth(1000, false).setAlign('center').setAlpha(0);
     var returnButton3 = this.add.text(640,570, "Return", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
     
