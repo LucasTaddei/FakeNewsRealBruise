@@ -13,7 +13,7 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
     <p><i>Fake News, Real Bruise</i> est un jeu de rythme dans lequel on est poussé à partager le plus de news possibles. Le jeu veut simuler de manière exagérée le processus d’impulsivité créée par la culture du partage, qui nous amène toujours à partager les nouvelles le plus vite possible (en déterminant le rythme), sans se préoccuper de leur véridicité. Enfin, le but du jeu est de montrer que le partage sans <i>fact checking</i> peut être très dangereux, en expliquant les raisons et les conséquences.</p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/page_accueil.png" alt="alt text" width="350" height="400">
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/page_accueil.png" alt="alt text" width="450" height="350">
     
 <h2> Gameplay : </h2>
 
