@@ -13,7 +13,7 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
     <p><i>Fake News, Real Bruise</i> est un jeu de rythme dans lequel on est poussé à partager le plus de news possibles. Le jeu veut simuler de manière exagérée le processus d’impulsivité créée par la culture du partage, qui nous amène toujours à partager les nouvelles le plus vite possible (en déterminant le rythme), sans se préoccuper de leur véridicité. Enfin, le but du jeu est de montrer que le partage sans <i>fact checking</i> peut être très dangereux, en expliquant les raisons et les conséquences.</p>
 
 <p align="center">
-<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/page_accueil.png" alt="alt text" width="450" height="350"></p>
+<img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/assets/images/README/FNRB_title" alt="alt text" width="450" height="350"></p>
     
 <h2> Gameplay : </h2>
 
@@ -30,8 +30,10 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
 <p align="center">
 <img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/game.png" alt="alt text" width="450" height="350"></p>
     
-<p> Pourtant ces deux mondes, celui du partage obsessif et celui de la "vraie" société, s’influencent. Après avoir partagé 5 news, un élément sonore s’ajoute à la musique de fond. De même, après avoir partagé 15/35/40/50 news. La nature de ces éléments sonores supplémentaires s’aggrave de manière proportionnelle au partage des fake news. Cela débute avec des bruits de « grand magasin » à des bruits des « révoltes dans la rue », pour finir avec des bruits de bombardements. Ces bruits se superposent à la musique en créant une sensation de chaos et de confusion, qui éventuellement peut amener le joueur ou la joueuse à faire des erreurs. On peut dire, donc, que les conséquences des partages de fake news (bien sûr portés à l’extrême pour le jeu) rendent plus difficile le jeu.
-Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérience. En fait, accompagné par des bruits de guerre distants et des animations qui illustrent la destruction, le joueur ou la joueuse est amené·e à lire des informations concernant les fake news, le danger qu’elles peuvent causer et la procédure à suivre pour partager des contenus de manière correct. </p>
+<p> Pourtant ces deux mondes, celui du partage obsessif et celui de la "vraie" société, s’influencent. Après avoir partagé 5 news, un élément sonore s’ajoute à la musique de fond. De même, après avoir partagé 15/35/40/50 news. La nature de ces éléments sonores supplémentaires s’aggrave de manière proportionnelle au partage des fake news. Cela débute avec des bruits de « grand magasin » à des bruits des « révoltes dans la rue », pour finir avec des bruits de bombardements. Ces bruits se superposent à la musique en créant une sensation de chaos et de confusion, qui éventuellement peut amener le joueur ou la joueuse à faire des erreurs. On peut dire, donc, que les conséquences des partages de fake news (bien sûr portés à l’extrême pour le jeu) augmente la difficulté du jeu.
+Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérience. Accompagné par des bruits de guerre distants et des animations qui illustrent la destruction, le joueur ou la joueuse est amené·e à lire des informations concernant les fake news, le danger qu’elles peuvent causer et la procédure à suivre pour partager des contenus de manière correct. </p>
+
+<p>Ainsi,<i>Fake News, Real Bruise</i> se réapprorie les conventions du jeu de rythme classique pour amener le joueur ou la joueuse à réfléchir aux conséquences du partage impulsif.</p>
 
 <p align="center">
 <img src="https://github.com/LucasTaddei/FakeNewsRealBruise/blob/master/how_become_hero.png" alt="alt text" width="450" height="350"></p>

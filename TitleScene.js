@@ -28,15 +28,13 @@ class titleScene extends Phaser.Scene {
 
 
     // ajouter les textes et images fixes de la page 1.1
-    var titleTextLine1 = this.add.text(200, 80,"Fake News", {font: '90px jack', fill: "#112b1a"}).setAlpha(0);
-    var titleTextLine2 = this.add.text(550, 150,"Real Bruise", {font: '90px jack', fill: "#112b1a"}).setAlpha(0);
-    var logo = this.add.image(640,330,'logo').setScale(0.45).setAlpha(0);
-    var gameExplanation = this.add.text(640, 450, "Share the posts in rhythms", {font: '35px jack', fill: "white"}).setOrigin(0.5).setAlpha(0);
-    var gameExplanation2 = this.add.text(640, 490, "with the key arrows", {font: '35px jack', fill: "white"}).setOrigin(0.5).setAlpha(0);
-    var start = this.add.text(640,570, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+    var titleTextLine1 = this.add.text(200, 100,"Fake News", {font: '90px jack', fill: "#112b1a"}).setAlpha(0);
+    var titleTextLine2 = this.add.text(550, 170,"Real Bruise", {font: '90px jack', fill: "#112b1a"}).setAlpha(0);
+    var logo = this.add.image(640,370,'logo').setScale(0.45).setAlpha(0);
+    var start = this.add.text(640,520, "Start", {font: "60px jack", fill: "white"}).setOrigin(0.5).setInteractive().setAlpha(0);
 
     this.tweens.add({
-        targets: [titleTextLine1, titleTextLine2,logo, gameExplanation, gameExplanation2, start],
+        targets: [titleTextLine1, titleTextLine2,logo, start],
         alpha: { value: 1, duration: 300, ease: 'Power1' },
         delay: 300,  
     });
@@ -44,19 +42,17 @@ class titleScene extends Phaser.Scene {
     // ajouter les flèches du clavier de la page 1.2
     var bravo = this.add.text(640, 100,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
 
-    var howToText = this.add.text(900, 350, "Click the arrows of your keyboard when the falling arrow is on the right spot. After 5 consecutives right clicks, a NEWS is shared.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5).setAlpha(0);
+    var howToText = this.add.text(900, 350, "Hit the arrows of your keyboard when the falling arrow is aligned with its outline. After 5 consecutives hits, a NEWS is shared.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5).setAlpha(0);
     howToText.setWordWrapWidth(600, false);
     var arrowKeys = this.add.image(300, 350, 'arrowKeys').setAlpha(0);
 
-    var playButton = this.add.text(640,570, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+    var playButton = this.add.text(640,520, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
 
     // changement entre 1.1 et 1.2
     start.on('pointerdown', function() {
         titleTextLine1.destroy();
         titleTextLine2.destroy();
         logo.destroy();
-        gameExplanation.destroy();
-        gameExplanation2.destroy(); 
         start.destroy(); 
         this.tweens.add({
         targets: [bravo, howToText, playButton, arrowKeys],
