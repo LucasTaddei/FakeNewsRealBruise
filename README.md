@@ -42,10 +42,10 @@ Faculté des Lettres - Université de Lausanne - Semestre d'automne 2019.
 
 <p>Tous les contenus de ce jeu, c'est-à-dire la musique, les textes ainsi que le design, sont des créations originales développées par l'équipe.</p>
 
-<p>Léa : Concept, Gameplay, Programmation
-Lucas : Concept, Musique & sons, Gameplay, Programmation
-Marielle : Concept, Recherches, Textes, (Programmation)
-Jessica : Concept, Design visuel, Animations, (Programmation)</p>
+<p>Léa : Concept, Gameplay, Programmation</p>
+<p>Lucas : Concept, Musique & sons, Gameplay, Programmation</p>
+<p>Marielle : Concept, Recherches, Textes, (Programmation)</p>
+<p>Jessica : Concept, Design visuel, Animations, (Programmation)</p>
 
 
 <h2> License et modules : </h2>
