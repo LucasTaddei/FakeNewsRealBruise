@@ -42,10 +42,10 @@ Une fois le morceau musical terminé, le gameplay termine, mais pas l’expérie
 
 <p>Tous les contenus de ce jeu, c'est-à-dire la musique, les textes ainsi que le design, sont des créations originales développées par l'équipe.</p>
 
-<p>Léa : Concept, Gameplay, Programmation</p>
-Lucas : <p>Concept, Musique & sons, Gameplay, Programmation</p>
-Marielle : <p>Concept, Recherches, Textes, (Programmation)</p>
-Jessica : <p>Concept, Design visuel, Animations, (Programmation)</p>
+<p>Léa : Concept, Gameplay, Programmation
+Lucas : Concept, Musique & sons, Gameplay, Programmation
+Marielle : Concept, Recherches, Textes, (Programmation)
+Jessica : Concept, Design visuel, Animations, (Programmation)</p>
 
 
 <h2> License et modules : </h2>
