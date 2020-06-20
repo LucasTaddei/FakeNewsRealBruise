@@ -132,7 +132,7 @@ class gameplayScene extends Phaser.Scene {
 
                     this.level++;
 
-                    if (this.level == 5) {
+                    if (this.level == 20) {
 
                         this.fallingSpeed = 5;
                         this.fallingDelay = 500;
