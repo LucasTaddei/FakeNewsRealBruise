@@ -10,9 +10,16 @@ class ifNoClicks extends Phaser.Scene {
         this.load.image('cloud1', 'assets/images/cloud1.png');
         this.load.image('cloud2', 'assets/images/cloud2.png');
         this.load.image('cloud3', 'assets/images/cloud3.png');
+
+        this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
     }
 
    create(){
+
+    this.endsong = this.sound.add("titleBruise");
+
+    this.endsong.play();
+
     // ajouter les nuages
     this.cloud1 = this.add.image(50, 100, 'cloud1');
     this.cloud2 = this.add.image(500, 300, 'cloud2');
@@ -27,7 +34,7 @@ class ifNoClicks extends Phaser.Scene {
 
     var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
     next.on('pointerdown', function() {
-        this.scene.start('end')
+        this.scene.start('end', {endSong: this.endsong});
     }, this);
     }
 

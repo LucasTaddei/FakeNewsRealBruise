@@ -28,11 +28,16 @@ class resultScene extends Phaser.Scene {
         this.load.image('bomb12', 'Bomb12.png');
         this.load.image('bomb13', 'Bomb13.png');
         this.load.image('bomb14', 'Bomb14.png');
+
+        this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
         
     }
 
     create(){
 
+        this.endsong = this.sound.add("titleBruise");
+
+        this.endsong.play();
         
     // Ajout du délai
     this.time.addEvent({
@@ -71,7 +76,7 @@ class resultScene extends Phaser.Scene {
                 lesson.setWordWrapWidth(800, false).setAlign('center').setAlpha(0);
                 var next3 = this.add.text(640,660, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
                 next3.on('pointerdown', function() {
-                    this.scene.start('end')
+                    this.scene.start('end', {endSong: this.endsong})
                 }, this);
 
                 // délai pour l'arrivée du texte + fondu d'entrée

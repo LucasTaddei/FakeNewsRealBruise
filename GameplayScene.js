@@ -2,7 +2,6 @@ class gameplayScene extends Phaser.Scene {
 
     constructor(){
         super("gameplay");
-        
     }
 
     preload(){
@@ -147,7 +146,9 @@ class gameplayScene extends Phaser.Scene {
             }
         })
 
-        this.sound.play("realBruise4",{loop: true});
+        this.mainsong = this.sound.add("realBruise4");
+
+        this.mainsong.play();
 
         // fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);
@@ -493,6 +494,7 @@ class gameplayScene extends Phaser.Scene {
                         delay: 3000,
                         callback: ()=>{
                             this.scene.start("ifNoClicks")
+                            this.mainsong.stop();
                         }
                     });
                 }

@@ -1,11 +1,16 @@
 class endScene extends Phaser.Scene {
+
+    init(song){
+        this.song = song;
+    }
+
     constructor(){
         super("end");
     }
 
     preload(){
 
-        this.load.audio("realBruise3","assets/sounds/realbruise3.m4a");
+        
     }
 
 
@@ -22,10 +27,11 @@ class endScene extends Phaser.Scene {
             this.scene.start('learnMore');
           },this)
 
-
     //fonction pour rejouer
         retry.on('pointerdown', function () {
-            
+
+            this.song.endSong.stop();
+
             this.scene.start('gameplay');
           },this)
         
