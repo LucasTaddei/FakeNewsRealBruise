@@ -25,6 +25,7 @@ class endScene extends Phaser.Scene {
 
     //fonction pour rejouer
         retry.on('pointerdown', function () {
+            
             this.scene.start('gameplay');
           },this)
         

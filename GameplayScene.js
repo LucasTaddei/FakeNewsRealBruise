@@ -2,6 +2,10 @@ class gameplayScene extends Phaser.Scene {
 
     constructor(){
         super("gameplay");
+        
+    }
+
+    preload(){
 
         // création d'un tableau vide pour les flèches qui défilent
         this.fallingArrows = [];
@@ -18,6 +22,9 @@ class gameplayScene extends Phaser.Scene {
         // type de la dernière flèche créée afin d'éviter une superposition de flèches identiques
         this.lastArrowType = 0;
 
+        // capture le score de flèches manquées depuis la dernière accélération de la vitesse
+        this.lastScoreMissedArrows = 0;
+
         // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
@@ -29,10 +36,7 @@ class gameplayScene extends Phaser.Scene {
         this.sharedLabel;
 
         this.newArrowsTimer; 
-        
-    }
 
-    preload(){
         // arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
         this.load.image("upOutline","assets/images/arrows/upOutlineYellow.png");
@@ -57,16 +61,15 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
         this.load.audio("impact","assets/sounds/impact.m4a");
 
-        this.load.image("flame1","assets/animations/flame1.png")
-        this.load.image("flame2","assets/animations/flame2.png")
-        this.load.image("flame3","assets/animations/flame3.png")
-        this.load.image("flame4","assets/animations/flame4.png")
-        this.load.image("flame5","assets/animations/flame5.png")
+        this.load.image("flame1","assets/animations/flame1.png");
+        this.load.image("flame2","assets/animations/flame2.png");
+        this.load.image("flame3","assets/animations/flame3.png");
+        this.load.image("flame4","assets/animations/flame4.png");
+        this.load.image("flame5","assets/animations/flame5.png");
 
-        this.load.image('heart', 'assets/images/reactions/heart.png')
-        this.load.image('like', 'assets/images/reactions/like.png')
-        this.load.image('skullHeart', 'assets/images/reactions/skullHeart.png')
-
+        this.load.image('heart', 'assets/images/reactions/heart.png');
+        this.load.image('like', 'assets/images/reactions/like.png');
+        this.load.image('skullHeart', 'assets/images/reactions/skullHeart.png');
     }
 
     create(){
@@ -75,14 +78,6 @@ class gameplayScene extends Phaser.Scene {
             delay: 189000,
             callback: ()=>{
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews});
-
-            // reset les scores et la vitesse lors d'un nouveau jeu
-            this.catchedArrows = 0;
-            this.missedArrows = -4;
-            this.consecutiveArrows = 0;
-            this.sharedNews = 0;
-            this.fallingSpeed = 5;
-            this.fallingDelay = 500;
             }
         })
 
@@ -118,18 +113,24 @@ class gameplayScene extends Phaser.Scene {
         })
 
         // Deux choses à faire: si le joueur loupe plusieurs flèches, le timer décroit
-        // À partir d'un certain temps, le nombre de flèches qui tombent double
 
         // suppression du timer précédent et en ajoute un nouveau qui augmente la vitesse de défilement et réduit le délai d'apparition des nouvelles flèches
         this.time.addEvent({
+
             delay: 10000,
             loop: true,
             callback: ()=>{
 
                 this.newArrowsTimer.remove();
 
-                this.fallingSpeed *= 1.05;
-                this.fallingDelay /= 1.05;
+                if (this.missedArrows - this.lastScoreMissedArrows < 10){
+
+                    // ajuste la vitesse en fonction du nombre de flèches capturées par le joueur
+                    this.fallingSpeed *= 1.5;
+                    this.fallingDelay /= 1.5;
+                }
+
+                this.lastScoreMissedArrows = this.missedArrows;
 
                 this.newArrowsTimer = this.time.addEvent({
                     delay: this.fallingDelay,
@@ -145,9 +146,8 @@ class gameplayScene extends Phaser.Scene {
                 })
             }
         })
-        
-        var mainsong = this.sound.add("realBruise4");
-        mainsong.play({volume: 0.7});
+
+        this.sound.play("realBruise4",{loop: true});
 
         // fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);

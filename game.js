@@ -10,8 +10,3 @@ var config = {
     audio:{disableWebAudio: false}
     
 }
-
-game.onload(
-    this.load.audio("war","assets/sounds/war.wav"),
-        this.load.audio("trump","assets/sounds/trump.wav")
-)
