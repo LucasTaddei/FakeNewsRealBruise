@@ -26,8 +26,8 @@ class titleScene extends Phaser.Scene {
 
     var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
 
-    var titleBruise = this.sound.add("titleBruise");
-        titleBruise.play({volume: 0.7, loop: true});
+    this.titleBruise = this.sound.add("titleBruise");
+    this.titleBruise.play({volume: 0.7, loop: true});
 
 
     // ajouter les textes et images fixes de la page 1.1
@@ -69,8 +69,8 @@ class titleScene extends Phaser.Scene {
         howToText.destroy();
         playButton.destroy();
         bravo.destroy(); 
+        this.titleBruise.stop();
         this.scene.start('gameplay');
-        titleBruise.stop();
     }, this);
 
 }

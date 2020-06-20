@@ -24,6 +24,8 @@ class gameplayScene extends Phaser.Scene {
         // capture le score de flèches manquées depuis la dernière accélération de la vitesse
         this.lastScoreMissedArrows = 0;
 
+        this.level = 1;
+
         // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
@@ -125,8 +127,18 @@ class gameplayScene extends Phaser.Scene {
                 if (this.missedArrows - this.lastScoreMissedArrows < 10){
 
                     // ajuste la vitesse en fonction du nombre de flèches capturées par le joueur
-                    this.fallingSpeed *= 1.5;
-                    this.fallingDelay /= 1.5;
+                    this.fallingSpeed *= 1.05;
+                    this.fallingDelay /= 1.05;
+
+                    this.level++;
+
+                    if (this.level == 5) {
+
+                        this.fallingSpeed = 5;
+                        this.fallingDelay = 500;
+
+                        this.isDoubleArrowTime = true;
+                    }
                 }
 
                 this.lastScoreMissedArrows = this.missedArrows;
@@ -317,6 +329,7 @@ class gameplayScene extends Phaser.Scene {
         });
 
         // labels
+        this.levelLabel = this.add.text(1015, 550, this.catchedArrows, {font: "22px imperator", fill: "blue"});
         this.scoreLabel = this.add.text(1015, 580, this.catchedArrows, {font: "22px imperator", fill: "white"});
         this.failLabel = this.add.text(1015, 610, this.catchedArrows, {font: "22px imperator", fill: "red"});
         this.sharedLabel = this.add.text(990, 650, this.sharedNews, {font: "35px imperator bold", fill: "black", align: 'center', backgroundColor: "white"});
@@ -652,6 +665,7 @@ class gameplayScene extends Phaser.Scene {
         });
 
         // actualisation des scores
+        this.levelLabel.setText('Level : ' + this.level);
         this.scoreLabel.setText('Catched Arrows : ' + this.catchedArrows);
         this.failLabel.setText('Missed Arrows : ' + this.missedArrows);
         this.sharedLabel.setText(' Shared News : ' + this.sharedNews + ' ');
