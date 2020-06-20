@@ -11,10 +11,13 @@ class titleScene extends Phaser.Scene {
         this.load.image('cloud2', 'assets/images/cloud2.png');
         this.load.image('cloud3', 'assets/images/cloud3.png');
         this.load.image('arrowKeys', 'assets/images/arrowKeys.png');
-        this.load.audio("titleBruise","assets/sounds/titleBruise.m4a")
+        this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
+   
     }
 
    create(){
+
+
     // ajouter les nuages, skyline et musique
     
     this.cloud1 = this.add.image(50, 100, 'cloud1');
@@ -69,6 +72,7 @@ class titleScene extends Phaser.Scene {
         this.scene.start('gameplay');
         titleBruise.stop();
     }, this);
+
 }
 
     // faire se déplacer les nuages
@@ -88,4 +92,6 @@ class titleScene extends Phaser.Scene {
             var randomY = Phaser.Math.Between(0, 420)
             cloud.y = randomY;
         }
+
+        
 }

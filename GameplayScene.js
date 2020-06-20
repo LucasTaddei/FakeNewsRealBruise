@@ -23,7 +23,8 @@ class gameplayScene extends Phaser.Scene {
         this.failLabel
         this.sharedLabel;
 
-        this.newArrowsTimer;        
+        this.newArrowsTimer; 
+        
     }
 
     preload(){
@@ -57,10 +58,13 @@ class gameplayScene extends Phaser.Scene {
         this.load.image("flame4","assets/animations/flame4.png")
         this.load.image("flame5","assets/animations/flame5.png")
 
+        this.load.image('heart', 'assets/images/reactions/heart.png')
+        this.load.image('like', 'assets/images/reactions/like.png')
+        this.load.image('skullHeart', 'assets/images/reactions/skullHeart.png')
+
     }
 
     create(){
-
 
         this.time.addEvent({
             delay: 189000,
@@ -334,6 +338,7 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
         this.sound.add("impact");   
+    
     }
     
     update(time, delta){  
@@ -386,6 +391,24 @@ class gameplayScene extends Phaser.Scene {
                     this.shared.visible=true;
                     this.sound.play('mouseClick',{volume: 0.2});
 
+                    //ajouter des petits like-particules
+                    let particles = this.add.particles("like");
+        
+                    let emitter = particles.createEmitter({
+                        x: 640,
+                        y: 600,
+                        frequency: 100,
+                        angle: { min: -180, max: 0 },
+                        speed: 250,       
+                        lifespan: { min: 1000, max: 2000 },
+                    });
+                    //limiter la durée de l'effet like
+                    this.time.delayedCall(700, ()=>{
+                        emitter.frequency = -1;
+                    });
+                    
+
+
                 } else if (this.consecutiveArrows != 5){
                     // "Share" n'est plus visible après combo
                     this.shared.visible=false;
@@ -398,11 +421,44 @@ class gameplayScene extends Phaser.Scene {
                     this.disorder.visible=true;
                     this.sound.play('mouseClick',{volume: 0.2})
 
+                    //ajouter des petits coeur-particules
+                    let particles = this.add.particles("heart");
+        
+                    let emitter = particles.createEmitter({
+                        x: 640,
+                        y: 600,
+                        frequency: 100,
+                        angle: { min: -180, max: 0 },
+                        speed: 250,       
+                        lifespan: { min: 1000, max: 2000 },
+                    });
+                    //limiter la durée des petits coeurs
+                    this.time.delayedCall(700, ()=>{
+                        emitter.frequency = -1;
+                    });
+
                 } else if (this.consecutiveArrows == 5 && this.sharedNews >=44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.death.visible=true;
                     this.sound.play('mouseClick',{volume: 0.2})
+
+                    //ajouter des petits skull-particules
+                    let particles = this.add.particles("skullHeart");
+        
+                    let emitter = particles.createEmitter({
+                        x: 640,
+                        y: 600,
+                        frequency: 100,
+                        angle: { min: -180, max: 0 },
+                        speed: 250,       
+                        lifespan: { min: 1000, max: 2000 },
+                    });
+                    //limiter la durée des petits skulls
+                    this.time.delayedCall(700, ()=>{
+                        emitter.frequency = -1;
+                    });
+
                 }
 
                 // le jeu termine en l'absence de clic
