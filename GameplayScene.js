@@ -418,7 +418,7 @@ class gameplayScene extends Phaser.Scene {
 
                 /* ||| NEWS TEXT ||| */
 
-                // travailler avec les visibles pour le news
+                // travailler avec la visibilité pour les news
                 if (this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57 || this.sharedNews == 71 || this.sharedNews == 85){
                     this.text1.visible=false;
                     this.title1.visible=false;
