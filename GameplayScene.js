@@ -13,6 +13,11 @@ class gameplayScene extends Phaser.Scene {
         this.fallingSpeed = 5;
         this.fallingDelay = 500;
 
+        // variable pour doubler le nombre de flèche
+        this.isDoubleArrowTime = false;
+        // type de la dernière flèche créée afin d'éviter une superposition de flèches identiques
+        this.lastArrowType = 0;
+
         // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
@@ -80,6 +85,7 @@ class gameplayScene extends Phaser.Scene {
             this.fallingDelay = 500;
             }
         })
+
         // ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
         this.time.addEvent({
             delay: 188500,
@@ -87,6 +93,7 @@ class gameplayScene extends Phaser.Scene {
                 this.cameras.main.shake(500, 0.03, 0.01); // duration, intensity, force 
             } 
         })
+
         // ajouter bruit de bombe, timing à régler
         this.time.addEvent({
             delay: 180000,
@@ -94,14 +101,24 @@ class gameplayScene extends Phaser.Scene {
                 this.sound.play("bombDrop",{loop: false});
             } 
         })
+
         // création du timer ajoutant de nouvelles flèches périodiquement
         this.newArrowsTimer = this.time.addEvent({
             delay: this.fallingDelay,
             loop: true,
             callback: ()=>{
+
                 this.addArrow();
+
+                // ajoute une flèche supplémentaire à capturer
+                if (this.isDoubleArrowTime) {
+                    this.addArrow();
+                }
             }
         })
+
+        // Deux choses à faire: si le joueur loupe plusieurs flèches, le timer décroit
+        // À partir d'un certain temps, le nombre de flèches qui tombent double
 
         // suppression du timer précédent et en ajoute un nouveau qui augmente la vitesse de défilement et réduit le délai d'apparition des nouvelles flèches
         this.time.addEvent({
@@ -119,6 +136,11 @@ class gameplayScene extends Phaser.Scene {
                     loop: true,
                     callback: ()=>{
                         this.addArrow();
+
+                        // ajoute une flèche supplémentaire à capturer
+                        if (this.isDoubleArrowTime) {
+                            this.addArrow();
+                        }
                     }
                 })
             }
@@ -134,7 +156,7 @@ class gameplayScene extends Phaser.Scene {
         var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
         var backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
 
-        // travailler avec les visibles pour les news
+        // travailler avec la visibilité pour les news
         this.title1 = this.add.text(360,90, "Journal of Times",{font:'25px jack', fill: 'black'}).setVisible(true);
         this.text1 = this.add.text(360,120, "Avocadoes from a specific mexican region make hair turn blue",{font:'20px imperator', fill: 'black'}).setVisible(true);
         
@@ -398,6 +420,7 @@ class gameplayScene extends Phaser.Scene {
                         x: 640,
                         y: 600,
                         frequency: 100,
+                        alpha: 0.4,
                         angle: { min: -180, max: 0 },
                         speed: 250,       
                         lifespan: { min: 1000, max: 2000 },
@@ -428,6 +451,7 @@ class gameplayScene extends Phaser.Scene {
                         x: 640,
                         y: 600,
                         frequency: 100,
+                        alpha: 0.4,
                         angle: { min: -180, max: 0 },
                         speed: 250,       
                         lifespan: { min: 1000, max: 2000 },
@@ -450,6 +474,7 @@ class gameplayScene extends Phaser.Scene {
                         x: 640,
                         y: 600,
                         frequency: 100,
+                        alpha: 0.4,
                         angle: { min: -180, max: 0 },
                         speed: 250,       
                         lifespan: { min: 1000, max: 2000 },
@@ -661,10 +686,25 @@ class gameplayScene extends Phaser.Scene {
 
     // création une flèche
     addArrow(){
+
+        // sort une flèche entre 0 et 3 qui définit sa position
         var randomArrow = Math.floor(Math.random() * Math.floor(4));
         var newImage;
 
-        // ajout d'une flèche aléatoire dans le tableau selon sa position (1 = left, 2 = up, 3 = down, 4 = right)
+        // s'il est nécessaire de doubler les flèches…
+        if (this.isDoubleArrowTime) {
+
+            //… on vérifie qu'on ne recrée pas la même flèche que la précédente
+            while (this.lastArrowType == randomArrow) {
+
+               randomArrow = Math.floor(Math.random() * Math.floor(4));
+            }
+        }
+
+        // on garde une trace du type de la dernière flèche créée (pour comparer dans la boucle précédente)
+        this.lastArrowType = randomArrow;
+
+        // ajout d'une flèche aléatoire dans le tableau selon sa position (0 = left, 1 = up, 2 = down, 3 = right)
         if (randomArrow == 0){
             newImage = this.add.image(490, 170, 'leftFilled').setOrigin(0.5);
             newImage.name = 'left';
