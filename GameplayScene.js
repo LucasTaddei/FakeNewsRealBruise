@@ -24,13 +24,15 @@ class gameplayScene extends Phaser.Scene {
         // capture le score de flèches manquées depuis la dernière accélération de la vitesse
         this.lastScoreMissedArrows = 0;
 
-        this.level = 1;
+        // variable du jeu en pause
+        this.setToPause = false;
 
         // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
         this.consecutiveArrows = 0;
         this.sharedNews = 0;
+        this.level = 1;
 
         this.scoreLabel;
         this.failLabel
@@ -112,8 +114,6 @@ class gameplayScene extends Phaser.Scene {
                 }
             }
         })
-
-        // Deux choses à faire: si le joueur loupe plusieurs flèches, le timer décroit
 
         // suppression du timer précédent et en ajoute un nouveau qui augmente la vitesse de défilement et réduit le délai d'apparition des nouvelles flèches
         this.time.addEvent({
@@ -377,298 +377,306 @@ class gameplayScene extends Phaser.Scene {
     
     }
     
-    update(time, delta){  
+    update(time, delta){
 
-        // récupération de la touche enfoncée lors de l'update
-        var cursorKeys = this.input.keyboard.createCursorKeys();
+        if (this.setToPause = true){
+            return
 
-        var isUpKeyPressed = cursorKeys.up.isDown;
-        var isDownKeyPressed = cursorKeys.down.isDown;
-        var isLeftKeyPressed = cursorKeys.left.isDown;
-        var isRightKeyPressed = cursorKeys.right.isDown;
+        } else {
 
-        // pour chaque flèche affichée actuellement
-        this.fallingArrows.forEach((currentArrow) => {
+            // récupération de la touche enfoncée lors de l'update
+            var cursorKeys = this.input.keyboard.createCursorKeys();
 
-            /* ||| RULES ||| */
+            var isUpKeyPressed = cursorKeys.up.isDown;
+            var isDownKeyPressed = cursorKeys.down.isDown;
+            var isLeftKeyPressed = cursorKeys.left.isDown;
+            var isRightKeyPressed = cursorKeys.right.isDown;
+            var isSpaceKeyPressed = cursorKeys.space.isDown;
 
-            // flèche correctement capturée par le clic
-            if (currentArrow.y >= 600 && currentArrow.y <= 650) {
+            // pour chaque flèche affichée actuellement
+            this.fallingArrows.forEach((currentArrow) => {
 
-                if (isLeftKeyPressed && currentArrow.name == "left") {
-                    this.sound.play('impact', {volume:0.2});
-                    this.catchedArrows++;
-                    this.consecutiveArrows++
-                    this.moveArrowToCapturedArray(currentArrow);
+                /* ||| RULES ||| */
+
+                // flèche correctement capturée par le clic
+                if (currentArrow.y >= 600 && currentArrow.y <= 650) {
+
+                    if (isLeftKeyPressed && currentArrow.name == "left") {
+                        this.sound.play('impact', {volume:0.2});
+                        this.catchedArrows++;
+                        this.consecutiveArrows++
+                        this.moveArrowToCapturedArray(currentArrow);
+                        
+                    } else if (isUpKeyPressed && currentArrow.name == "up") {
+                        this.sound.play('impact', {volume:0.2});
+                        this.catchedArrows++;
+                        this.consecutiveArrows++
+                        this.moveArrowToCapturedArray(currentArrow);
+                        
+                    } else if (isDownKeyPressed && currentArrow.name == "down") {
+                        this.sound.play('impact', {volume:0.2});
+                        this.catchedArrows++;
+                        this.consecutiveArrows++
+                        this.moveArrowToCapturedArray(currentArrow);
+                        
+                    } else if (isRightKeyPressed && currentArrow.name == "right") {
+                        this.sound.play('impact', {volume:0.2});
+                        this.catchedArrows++;
+                        this.consecutiveArrows++
+                        this.moveArrowToCapturedArray(currentArrow);
+                    }
+
+                    // enregistrement des combos + "Share" visible après combo
+                    if (this.consecutiveArrows == 5 && this.sharedNews <26){
+                        this.sharedNews++;
+                        this.consecutiveArrows = 0;
+                        this.shared.visible=true;
+                        this.sound.play('mouseClick',{volume: 0.2});
+
+                        //ajouter des petits like-particules
+                        let particles = this.add.particles("like");
+            
+                        let emitter = particles.createEmitter({
+                            x: 640,
+                            y: 600,
+                            frequency: 100,
+                            alpha: 0.4,
+                            angle: { min: -180, max: 0 },
+                            speed: 250,       
+                            lifespan: { min: 1000, max: 2000 },
+                        });
+                        //limiter la durée de l'effet like
+                        this.time.delayedCall(700, ()=>{
+                            emitter.frequency = -1;
+                        });
+                        
+
+
+                    } else if (this.consecutiveArrows != 5){
+                        // "Share" n'est plus visible après combo
+                        this.shared.visible=false;
+                        this.disorder.visible=false;
+                        this.death.visible=false
+
+                    } else if (this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44){
+                        this.sharedNews++;
+                        this.consecutiveArrows = 0;
+                        this.disorder.visible=true;
+                        this.sound.play('mouseClick',{volume: 0.2})
+
+                        //ajouter des petits coeur-particules
+                        let particles = this.add.particles("heart");
+            
+                        let emitter = particles.createEmitter({
+                            x: 640,
+                            y: 600,
+                            frequency: 100,
+                            alpha: 0.4,
+                            angle: { min: -180, max: 0 },
+                            speed: 250,       
+                            lifespan: { min: 1000, max: 2000 },
+                        });
+                        //limiter la durée des petits coeurs
+                        this.time.delayedCall(700, ()=>{
+                            emitter.frequency = -1;
+                        });
+
+                    } else if (this.consecutiveArrows == 5 && this.sharedNews >=44){
+                        this.sharedNews++;
+                        this.consecutiveArrows = 0;
+                        this.death.visible=true;
+                        this.sound.play('mouseClick',{volume: 0.2})
+
+                        //ajouter des petits skull-particules
+                        let particles = this.add.particles("skullHeart");
+            
+                        let emitter = particles.createEmitter({
+                            x: 640,
+                            y: 600,
+                            frequency: 100,
+                            alpha: 0.4,
+                            angle: { min: -180, max: 0 },
+                            speed: 250,       
+                            lifespan: { min: 1000, max: 2000 },
+                        });
+                        //limiter la durée des petits skulls
+                        this.time.delayedCall(700, ()=>{
+                            emitter.frequency = -1;
+                        });
+
+                    }
+
+                    // le jeu termine en l'absence de clic
+                    if(this.catchedArrows==0 && this.missedArrows == 15){
+                        this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
+                        this.time.addEvent({
+                            delay: 3000,
+                            callback: ()=>{
+                                this.scene.start("ifNoClicks")
+                                this.mainsong.stop();
+                            }
+                        });
+                    }
+
+                    /* ||| NEWS TEXT ||| */
+
+                    // travailler avec la visibilité pour les news
+                    if (this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57 || this.sharedNews == 71 || this.sharedNews == 85){
+                        this.text1.visible=false;
+                        this.title1.visible=false;
+                        this.title15.visible=false;
+                        this.text15.visible=false;
+                        this.text2.visible=true;
+                        this.title2.visible=true;
+                    }
+
+                    if (this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58 || this.sharedNews == 72 || this.sharedNews == 86){
+                        this.text2.visible=false;
+                        this.title2.visible=false;
+                        this.text3.visible=true;
+                        this.title3.visible=true;
+                    }
+
+                    if (this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59 || this.sharedNews == 73 || this.sharedNews == 87){
+                        this.text3.visible=false;
+                        this.title3.visible=false;
+                        this.text4.visible=true;
+                        this.title4.visible=true;
+                    }
+
+                    if (this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60 || this.sharedNews == 74 || this.sharedNews == 88){
+                        this.text4.visible=false;
+                        this.title4.visible=false;
+                        this.text5.visible=true;
+                        this.title5.visible=true;
+                    }
+                    if (this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61 || this.sharedNews == 75 || this.sharedNews == 89){
+                        this.text5.visible=false;
+                        this.title5.visible=false;
+                        this.text6.visible=true;
+                        this.title6.visible=true;
+                    }
+                    if (this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62 || this.sharedNews == 76 || this.sharedNews == 90){
+                        this.text6.visible=false;
+                        this.title6.visible=false;
+                        this.text7.visible=true;
+                        this.title7.visible=true;
+                    }
+                    if (this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63 || this.sharedNews == 77 || this.sharedNews == 91){
+                        this.text7.visible=false;
+                        this.title7.visible=false;
+                        this.text8.visible=true;
+                        this.title8.visible=true;
+                    }
+                    if (this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64 || this.sharedNews == 78 || this.sharedNews == 92){
+                        this.text8.visible=false;
+                        this.title8.visible=false;
+                        this.text9.visible=true;
+                        this.title9.visible=true;
+                    }
+                    if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
+                        this.text9.visible=false;
+                        this.title9.visible=false;
+                        this.text10.visible=true;
+                        this.title11.visible=true;
+                    }
+                    if (this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66 || this.sharedNews == 80 || this.sharedNews == 94){
+                        this.text10.visible=false;
+                        this.title10.visible=false;
+                        this.text11.visible=true;
+                        this.title11.visible=true;
+                    }
+                    if (this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67 || this.sharedNews == 81 || this.sharedNews == 95){
+                        this.text11.visible=false;
+                        this.title11.visible=false;
+                        this.text12.visible=true;
+                        this.title12.visible=true;
+                    }
+                    if (this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68 || this.sharedNews == 82 || this.sharedNews == 96){
+                        this.text12.visible=false;
+                        this.title12.visible=false;
+                        this.text13.visible=true;
+                        this.title13.visible=true;
+                    }
+                    if (this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69 || this.sharedNews == 83 || this.sharedNews == 97){
+                        this.text13.visible=false;
+                        this.title13.visible=false;
+                        this.text14.visible=true;
+                        this.title14.visible=true;
+                    }
+                    if (this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70 || this.sharedNews == 84 || this.sharedNews == 98){
+                        this.text14.visible=false;
+                        this.title14.visible=false;
+                        this.text15.visible=true;
+                        this.title15.visible=true;
+                    }
+
+                /* ||| SOUND ||| */
+
+                    // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
+                    if (this.sharedNews == 5 && this.consecutiveArrows == 4){
+                        this.sound.play('mall',{loop: false, volume: 0.5});
+                    }
+
+                    if (this.sharedNews == 15 && this.consecutiveArrows == 4){
+                        this.sound.play('chants', {loop: false, volume: 0.5});
+                    }
+
+                    if (this.sharedNews == 27 && this.consecutiveArrows == 4){
+                        this.sound.play('screams',{volume: 0.5}, {loop: false, volume: 0.1});
+                    }
                     
-                } else if (isUpKeyPressed && currentArrow.name == "up") {
-                    this.sound.play('impact', {volume:0.2});
-                    this.catchedArrows++;
-                    this.consecutiveArrows++
-                    this.moveArrowToCapturedArray(currentArrow);
-                    
-                } else if (isDownKeyPressed && currentArrow.name == "down") {
-                    this.sound.play('impact', {volume:0.2});
-                    this.catchedArrows++;
-                    this.consecutiveArrows++
-                    this.moveArrowToCapturedArray(currentArrow);
-                    
-                } else if (isRightKeyPressed && currentArrow.name == "right") {
-                    this.sound.play('impact', {volume:0.2});
-                    this.catchedArrows++;
-                    this.consecutiveArrows++
-                    this.moveArrowToCapturedArray(currentArrow);
-                }
+                    if (this.sharedNews == 36 && this.consecutiveArrows == 4){
+                        this.sound.play('trump',{detune: 0.5}, {loop: false});
+                    }
 
-                // enregistrement des combos + "Share" visible après combo
-                if (this.consecutiveArrows == 5 && this.sharedNews <26){
-                    this.sharedNews++;
+                    if (this.sharedNews == 42 && this.consecutiveArrows == 4){
+                        this.sound.play('war',{loop: false});
+                    }    
+            }
+
+                /* ||| GAMEPLAY ||| */
+
+                // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
+                if (currentArrow.y > 720){
+                    this.missedArrows++;
                     this.consecutiveArrows = 0;
-                    this.shared.visible=true;
-                    this.sound.play('mouseClick',{volume: 0.2});
-
-                    //ajouter des petits like-particules
-                    let particles = this.add.particles("like");
-        
-                    let emitter = particles.createEmitter({
-                        x: 640,
-                        y: 600,
-                        frequency: 100,
-                        alpha: 0.4,
-                        angle: { min: -180, max: 0 },
-                        speed: 250,       
-                        lifespan: { min: 1000, max: 2000 },
-                    });
-                    //limiter la durée de l'effet like
-                    this.time.delayedCall(700, ()=>{
-                        emitter.frequency = -1;
-                    });
-                    
-
-
-                } else if (this.consecutiveArrows != 5){
-                    // "Share" n'est plus visible après combo
-                    this.shared.visible=false;
-                    this.disorder.visible=false;
-                    this.death.visible=false
-
-                } else if (this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44){
-                    this.sharedNews++;
-                    this.consecutiveArrows = 0;
-                    this.disorder.visible=true;
-                    this.sound.play('mouseClick',{volume: 0.2})
-
-                    //ajouter des petits coeur-particules
-                    let particles = this.add.particles("heart");
-        
-                    let emitter = particles.createEmitter({
-                        x: 640,
-                        y: 600,
-                        frequency: 100,
-                        alpha: 0.4,
-                        angle: { min: -180, max: 0 },
-                        speed: 250,       
-                        lifespan: { min: 1000, max: 2000 },
-                    });
-                    //limiter la durée des petits coeurs
-                    this.time.delayedCall(700, ()=>{
-                        emitter.frequency = -1;
-                    });
-
-                } else if (this.consecutiveArrows == 5 && this.sharedNews >=44){
-                    this.sharedNews++;
-                    this.consecutiveArrows = 0;
-                    this.death.visible=true;
-                    this.sound.play('mouseClick',{volume: 0.2})
-
-                    //ajouter des petits skull-particules
-                    let particles = this.add.particles("skullHeart");
-        
-                    let emitter = particles.createEmitter({
-                        x: 640,
-                        y: 600,
-                        frequency: 100,
-                        alpha: 0.4,
-                        angle: { min: -180, max: 0 },
-                        speed: 250,       
-                        lifespan: { min: 1000, max: 2000 },
-                    });
-                    //limiter la durée des petits skulls
-                    this.time.delayedCall(700, ()=>{
-                        emitter.frequency = -1;
-                    });
-
+                    this.removeArrow(currentArrow);
                 }
 
-                // le jeu termine en l'absence de clic
-                if(this.catchedArrows==0 && this.missedArrows == 15){
-                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-                    this.time.addEvent({
-                        delay: 3000,
-                        callback: ()=>{
-                            this.scene.start("ifNoClicks")
-                            this.mainsong.stop();
-                        }
-                    });
+                // déplacement de la flèche
+                currentArrow.y += this.fallingSpeed;
+            });
+
+            // pour chaque flèche capturée
+            this.capturedArrows.forEach((currentArrow) => {
+
+                var currentScale = currentArrow.scale;
+                var currentAlpha = currentArrow.alpha;
+
+                if (currentScale < 4) {
+
+                    currentScale *= 1.2;
+                    currentAlpha -= 0.1;
+
+                    currentArrow.setScale(currentScale, currentScale);
+                    currentArrow.setAlpha(currentAlpha);
                 }
 
-                /* ||| NEWS TEXT ||| */
+                else {
 
-                // travailler avec la visibilité pour les news
-                if (this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57 || this.sharedNews == 71 || this.sharedNews == 85){
-                    this.text1.visible=false;
-                    this.title1.visible=false;
-                    this.title15.visible=false;
-                    this.text15.visible=false;
-                    this.text2.visible=true;
-                    this.title2.visible=true;
+                    this.removeCapturedArrow(currentArrow);
                 }
 
-                if (this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58 || this.sharedNews == 72 || this.sharedNews == 86){
-                    this.text2.visible=false;
-                    this.title2.visible=false;
-                    this.text3.visible=true;
-                    this.title3.visible=true;
-                }
+            });
 
-                if (this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59 || this.sharedNews == 73 || this.sharedNews == 87){
-                    this.text3.visible=false;
-                    this.title3.visible=false;
-                    this.text4.visible=true;
-                    this.title4.visible=true;
-                }
+            // actualisation des scores
+            this.levelLabel.setText('Level : ' + this.level);
+            this.scoreLabel.setText('Catched Arrows : ' + this.catchedArrows);
+            this.failLabel.setText('Missed Arrows : ' + this.missedArrows);
+            this.sharedLabel.setText(' Shared News : ' + this.sharedNews + ' ');
 
-                if (this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60 || this.sharedNews == 74 || this.sharedNews == 88){
-                    this.text4.visible=false;
-                    this.title4.visible=false;
-                    this.text5.visible=true;
-                    this.title5.visible=true;
-                }
-                if (this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61 || this.sharedNews == 75 || this.sharedNews == 89){
-                    this.text5.visible=false;
-                    this.title5.visible=false;
-                    this.text6.visible=true;
-                    this.title6.visible=true;
-                }
-                if (this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62 || this.sharedNews == 76 || this.sharedNews == 90){
-                    this.text6.visible=false;
-                    this.title6.visible=false;
-                    this.text7.visible=true;
-                    this.title7.visible=true;
-                }
-                if (this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63 || this.sharedNews == 77 || this.sharedNews == 91){
-                    this.text7.visible=false;
-                    this.title7.visible=false;
-                    this.text8.visible=true;
-                    this.title8.visible=true;
-                }
-                if (this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64 || this.sharedNews == 78 || this.sharedNews == 92){
-                    this.text8.visible=false;
-                    this.title8.visible=false;
-                    this.text9.visible=true;
-                    this.title9.visible=true;
-                }
-                if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
-                    this.text9.visible=false;
-                    this.title9.visible=false;
-                    this.text10.visible=true;
-                    this.title11.visible=true;
-                }
-                if (this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66 || this.sharedNews == 80 || this.sharedNews == 94){
-                    this.text10.visible=false;
-                    this.title10.visible=false;
-                    this.text11.visible=true;
-                    this.title11.visible=true;
-                }
-                if (this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67 || this.sharedNews == 81 || this.sharedNews == 95){
-                    this.text11.visible=false;
-                    this.title11.visible=false;
-                    this.text12.visible=true;
-                    this.title12.visible=true;
-                }
-                if (this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68 || this.sharedNews == 82 || this.sharedNews == 96){
-                    this.text12.visible=false;
-                    this.title12.visible=false;
-                    this.text13.visible=true;
-                    this.title13.visible=true;
-                }
-                if (this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69 || this.sharedNews == 83 || this.sharedNews == 97){
-                    this.text13.visible=false;
-                    this.title13.visible=false;
-                    this.text14.visible=true;
-                    this.title14.visible=true;
-                }
-                if (this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70 || this.sharedNews == 84 || this.sharedNews == 98){
-                    this.text14.visible=false;
-                    this.title14.visible=false;
-                    this.text15.visible=true;
-                    this.title15.visible=true;
-                }
-
-            /* ||| SOUND ||| */
-
-                // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
-                if (this.sharedNews == 5 && this.consecutiveArrows == 4){
-                    this.sound.play('mall',{loop: false, volume: 0.5});
-                }
-
-                if (this.sharedNews == 15 && this.consecutiveArrows == 4){
-                    this.sound.play('chants', {loop: false, volume: 0.5});
-                }
-
-                if (this.sharedNews == 27 && this.consecutiveArrows == 4){
-                    this.sound.play('screams',{volume: 0.5}, {loop: false, volume: 0.1});
-                }
-                
-                if (this.sharedNews == 36 && this.consecutiveArrows == 4){
-                    this.sound.play('trump',{detune: 0.5}, {loop: false});
-                }
-
-                if (this.sharedNews == 42 && this.consecutiveArrows == 4){
-                    this.sound.play('war',{loop: false});
-                }    
         }
-
-            /* ||| GAMEPLAY ||| */
-
-            // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
-            if (currentArrow.y > 720){
-                this.missedArrows++;
-                this.consecutiveArrows = 0;
-                this.removeArrow(currentArrow);
-            }
-
-            // déplacement de la flèche
-            currentArrow.y += this.fallingSpeed;
-        });
-
-        // pour chaque flèche capturée
-        this.capturedArrows.forEach((currentArrow) => {
-
-            var currentScale = currentArrow.scale;
-            var currentAlpha = currentArrow.alpha;
-
-            if (currentScale < 4) {
-
-                currentScale *= 1.2;
-                currentAlpha -= 0.1;
-
-                currentArrow.setScale(currentScale, currentScale);
-                currentArrow.setAlpha(currentAlpha);
-            }
-
-            else {
-
-                this.removeCapturedArrow(currentArrow);
-            }
-
-        });
-
-        // actualisation des scores
-        this.levelLabel.setText('Level : ' + this.level);
-        this.scoreLabel.setText('Catched Arrows : ' + this.catchedArrows);
-        this.failLabel.setText('Missed Arrows : ' + this.missedArrows);
-        this.sharedLabel.setText(' Shared News : ' + this.sharedNews + ' ');
     }
 
     // suppression de la flèche du tableau ainsi que son index
