@@ -503,7 +503,7 @@ class gameplayScene extends Phaser.Scene {
                 }
 
                 // le jeu termine en l'absence de clic
-                if (this.level >= 10 && this.consecutiveMissedArrows == 15 || this.level < 10 && this.consecutiveMissedArrows == 30) {
+                if ((this.level < 10 && this.consecutiveMissedArrows == 15) || (this.level >= 10 && this.consecutiveMissedArrows == 30)) {
                     this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
