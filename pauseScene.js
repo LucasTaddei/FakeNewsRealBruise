@@ -1,10 +1,17 @@
 class pauseScene extends Phaser.Scene {
 
+    init(song){
+        this.song = song;
+    }
+
     constructor() {
         super("pause");
     }
 
     preload() {
+
+        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
         this.load.image('logo','assets/images/LOGO.png');
         this.load.image('skyline', 'assets/images/Skyline.png');
         this.load.image('cloud1', 'assets/images/cloud1.png');
@@ -15,8 +22,6 @@ class pauseScene extends Phaser.Scene {
     }
 
     create() {
-        this.endsong = this.sound.add("titleBruise");
-        this.endsong.play();
 
         // ajouter les nuages
         this.cloud1 = this.add.image(50, 100, 'cloud1');
@@ -26,22 +31,24 @@ class pauseScene extends Phaser.Scene {
         // ajouter les textes et images fixes
         this.add.text(640, 200,"Pause", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
         this.add.image(640, 360, 'skyline').setOrigin(0.5);
-
-        // revenir au jeu
-        var cursorKeys = this.input.keyboard.createCursorKeys();
-        
-        if(cursorKeys.space.isDown) {
-            this.time.addEvent( {
-                callback: ()=>{
-                    this.scene.start("gameplay")
-                    this.mainsong.stop();
-                }
-            });
-        }
     }
 
     // faire se déplacer les nuages
     update() {
+
+        // revenir au jeu
+
+        if(Phaser.Input.Keyboard.JustDown(this.spacebar)) {
+
+            this.time.addEvent( {
+                callback: ()=>{
+                    this.scene.resume("gameplay");
+                    this.song.mainSong.resume();
+                    this.scene.stop();
+                }
+            });
+        }
+
         this.moveClouds(this.cloud1, 0.4);
         this.moveClouds(this.cloud2, 0.1);
         this.moveClouds(this.cloud3, 0.3);

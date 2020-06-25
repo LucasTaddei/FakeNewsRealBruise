@@ -38,6 +38,8 @@ class gameplayScene extends Phaser.Scene {
 
         this.newArrowsTimer; 
 
+        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
         // arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
         this.load.image("upOutline","assets/images/arrows/upOutlineYellow.png");
@@ -445,7 +447,7 @@ class gameplayScene extends Phaser.Scene {
                     this.disorder.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2})
 
-                    //ajouter des petits coeur-particules
+                    // ajouter des petits coeur-particules
                     let particles = this.add.particles("heart");
         
                     let emitter = particles.createEmitter({
@@ -494,22 +496,19 @@ class gameplayScene extends Phaser.Scene {
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
-                            this.scene.start("ifNoClicks")
+                            this.scene.start('ifNoClicks');
                             this.mainsong.stop();
                         }
                     });
                 }
 
                 // le jeu se met en pause
-                if (cursorKeys.space.isDown) {
+                if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
                     this.time.addEvent({
                         callback: ()=>{
-
-                            this.scene.pause(pause);
                             this.scene.pause();
-
-                            // this.scene.start("pause")
-                            // this.mainsong.stop();
+                            this.mainsong.pause();
+                            this.scene.launch('pause', {mainSong: this.mainsong})
                         }
                     });
                 }

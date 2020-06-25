@@ -9,10 +9,8 @@ class endScene extends Phaser.Scene {
     }
 
     preload(){
-
         
     }
-
 
     create(){    
         var rectangle = this.add.rectangle(640,250,1200,150,0xffffff).setOrigin(0.5);
@@ -27,14 +25,12 @@ class endScene extends Phaser.Scene {
             this.scene.start('learnMore');
           },this)
 
-    //fonction pour rejouer
+    // fonction pour rejouer
         retry.on('pointerdown', function () {
 
             this.song.endSong.stop();
 
             this.scene.start('gameplay');
-          },this)
-        
-        
+          },this)   
     }
 }
