@@ -15,9 +15,6 @@ class gameplayScene extends Phaser.Scene {
         this.fallingSpeed = 5;
         this.fallingDelay = 500;
 
-        // variable pour doubler le nombre de flèche
-        this.isDoubleArrowTime = false;
-
         // type de la dernière flèche créée afin d'éviter une superposition de flèches identiques
         this.lastArrowType = 0;
 
@@ -107,11 +104,6 @@ class gameplayScene extends Phaser.Scene {
             callback: ()=>{
 
                 this.addArrow();
-
-                // ajoute une flèche supplémentaire à capturer
-                if (this.isDoubleArrowTime) {
-                    this.addArrow();
-                }
             }
         })
 
@@ -131,18 +123,8 @@ class gameplayScene extends Phaser.Scene {
                     this.fallingDelay /= 1.05;
 
                     this.level++;
-
-                    // une fois le niveau 10 atteint, le pourcentage qu'une seconde flèche tombe augmente en fonction du niveau
-                    if (this.level == 3) {
-
-                        var randomDoubleArrow = Math.random();
-
-                        if (randomDoubleArrow < 0.5) {
-                            this.isDoubleArrowTime = true;
-                        }
-                    }
                 }
-
+                
                 this.lastScoreMissedArrows = this.missedArrows;
 
                 this.newArrowsTimer = this.time.addEvent({
@@ -152,8 +134,12 @@ class gameplayScene extends Phaser.Scene {
                         this.addArrow();
 
                         // ajoute une flèche supplémentaire à capturer
-                        if (this.isDoubleArrowTime) {
-                            this.addArrow();
+                        if (this.level >= 10) {
+                        
+                            if (Math.random() < (this.level / 100)) {
+                        
+                                this.addArrow(true);
+                            }
                         }
                     }
                 })
@@ -714,14 +700,14 @@ class gameplayScene extends Phaser.Scene {
     }
 
     // création une flèche
-    addArrow() {
+    addArrow(isDoubleArrowTime = false) {
 
         // sort une flèche entre 0 et 3 qui définit sa position
         var randomArrow = Math.floor(Math.random() * Math.floor(4));
         var newImage;
 
         // s'il est nécessaire de doubler les flèches…
-        if (this.isDoubleArrowTime) {
+        if (isDoubleArrowTime) {
 
             //… on vérifie qu'on ne recrée pas la même flèche que la précédente
             while (this.lastArrowType == randomArrow) {
