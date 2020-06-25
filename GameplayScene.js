@@ -5,7 +5,6 @@ class gameplayScene extends Phaser.Scene {
     }
 
     preload(){
-
         // création d'un tableau vide pour les flèches qui défilent
         this.fallingArrows = [];
 
@@ -16,21 +15,22 @@ class gameplayScene extends Phaser.Scene {
         this.fallingSpeed = 5;
         this.fallingDelay = 500;
 
-        // variable pour doubler le nombre de flèche
-        this.isDoubleArrowTime = false;
         // type de la dernière flèche créée afin d'éviter une superposition de flèches identiques
         this.lastArrowType = 0;
 
         // capture le score de flèches manquées depuis la dernière accélération de la vitesse
         this.lastScoreMissedArrows = 0;
 
-        this.level = 1;
+        // variable du jeu en pause
+        this.setToPause = false;
 
         // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
         this.consecutiveArrows = 0;
+        this.consecutiveMissedArrows = 0;
         this.sharedNews = 0;
+        this.level = 1;
 
         this.scoreLabel;
         this.failLabel
@@ -74,7 +74,6 @@ class gameplayScene extends Phaser.Scene {
     }
 
     create(){
-
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
@@ -90,7 +89,7 @@ class gameplayScene extends Phaser.Scene {
             } 
         })
 
-        // ajouter bruit de bombe, timing à régler
+        // ajouter bruit de bombe
         this.time.addEvent({
             delay: 180000,
             callback: ()=>{
@@ -105,15 +104,8 @@ class gameplayScene extends Phaser.Scene {
             callback: ()=>{
 
                 this.addArrow();
-
-                // ajoute une flèche supplémentaire à capturer
-                if (this.isDoubleArrowTime) {
-                    this.addArrow();
-                }
             }
         })
-
-        // Deux choses à faire: si le joueur loupe plusieurs flèches, le timer décroit
 
         // suppression du timer précédent et en ajoute un nouveau qui augmente la vitesse de défilement et réduit le délai d'apparition des nouvelles flèches
         this.time.addEvent({
@@ -124,23 +116,15 @@ class gameplayScene extends Phaser.Scene {
 
                 this.newArrowsTimer.remove();
 
-                if (this.missedArrows - this.lastScoreMissedArrows < 10){
+                if (this.missedArrows - this.lastScoreMissedArrows < 10) {
 
                     // ajuste la vitesse en fonction du nombre de flèches capturées par le joueur
                     this.fallingSpeed *= 1.05;
                     this.fallingDelay /= 1.05;
 
                     this.level++;
-
-                    if (this.level == 20) {
-
-                        this.fallingSpeed = 5;
-                        this.fallingDelay = 500;
-
-                        this.isDoubleArrowTime = true;
-                    }
                 }
-
+                
                 this.lastScoreMissedArrows = this.missedArrows;
 
                 this.newArrowsTimer = this.time.addEvent({
@@ -150,8 +134,12 @@ class gameplayScene extends Phaser.Scene {
                         this.addArrow();
 
                         // ajoute une flèche supplémentaire à capturer
-                        if (this.isDoubleArrowTime) {
-                            this.addArrow();
+                        if (this.level >= 10) {
+                        
+                            if (Math.random() < (this.level / 100)) {
+                        
+                                this.addArrow(true);
+                            }
                         }
                     }
                 })
@@ -159,7 +147,6 @@ class gameplayScene extends Phaser.Scene {
         })
 
         this.mainsong = this.sound.add("realBruise4");
-
         this.mainsong.play();
 
         // fond blanc "zone de jeu"
@@ -244,7 +231,7 @@ class gameplayScene extends Phaser.Scene {
         // animation des notifications
         this.tweens.add({
             targets: [notifications, backgoundNotifications],
-            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 1500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,   
@@ -257,7 +244,7 @@ class gameplayScene extends Phaser.Scene {
         // animation des notifications
         this.tweens.add({
             targets: [notifications, backgoundNotifications],
-            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 1500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             delay: 800,
@@ -271,7 +258,7 @@ class gameplayScene extends Phaser.Scene {
         // animation des notifications
         this.tweens.add({
             targets: [notifications, backgoundNotifications],
-            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 1500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             delay: 1600,
@@ -284,11 +271,11 @@ class gameplayScene extends Phaser.Scene {
         this.anims.create({
             key: 'flames',
             frames: [
-                { key: 'flame1' },
-                { key: 'flame2' },
-                { key: 'flame3' },
-                { key: 'flame4' },
-                { key: 'flame5' }
+                {key: 'flame1'},
+                {key: 'flame2'},
+                {key: 'flame3'},
+                {key: 'flame4'},
+                {key: 'flame5'}
             ],
             frameRate: 10,
             repeat: -1
@@ -304,7 +291,7 @@ class gameplayScene extends Phaser.Scene {
 
         this.tweens.add({
             targets: [hashtag1,hashtag4],
-            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 2500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,   
@@ -312,7 +299,7 @@ class gameplayScene extends Phaser.Scene {
 
         this.tweens.add({
             targets: [hashtag2,hashtag5],
-            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 2500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,  
@@ -321,7 +308,7 @@ class gameplayScene extends Phaser.Scene {
 
         this.tweens.add({
             targets: [hashtag3],
-            alpha: { value: 1, duration: 500, ease: 'Power1' },
+            alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 2500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,   
@@ -336,17 +323,17 @@ class gameplayScene extends Phaser.Scene {
 
         // text "Shared!"
         this.shared = this.add.text(640,200,"SHARED!",{font: "50px jack", fill: "#da3e52"}).setOrigin(0.5);
-        this.shared.visible=false;
+        this.shared.visible = false;
         this.shared.setAngle(-15);
 
         // text "disorder!"
         this.disorder = this.add.text(640,200,"DISORDER!",{font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-        this.disorder.visible=false;
+        this.disorder.visible = false;
         this.disorder.setAngle(-15);
 
         // text "death!
         this.death = this.add.text(640,200,"DEATH!",{font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-        this.death.visible=false;
+        this.death.visible = false;
         this.death.setAngle(-15);
 
         var label = this.add.text(0, 0, '', {font: "48px Arial Black", fill: "#c51b7d" });
@@ -357,8 +344,6 @@ class gameplayScene extends Phaser.Scene {
         var upColl = this.add.image(590,600,'upOutline').setOrigin(0.5);
         var downColl = this.add.image(690,600,'downOutline').setOrigin(0.5);
         var rightColl = this.add.image(790,600,'rightOutline').setOrigin(0.5);
-
-       //this.add.rectangle(640,601,580,60,0xF7F7F7).setOrigin(0.5);
 
         this.input.on('gameobjectdown', function (pointer, gameObject) {
             label.setText(gameObject.name);
@@ -377,11 +362,11 @@ class gameplayScene extends Phaser.Scene {
     
     }
     
-    update(time, delta){  
-
+    update(time, delta) {
         // récupération de la touche enfoncée lors de l'update
         var cursorKeys = this.input.keyboard.createCursorKeys();
 
+        var isSpaceKeyPressed = cursorKeys.space.isDown;
         var isUpKeyPressed = cursorKeys.up.isDown;
         var isDownKeyPressed = cursorKeys.down.isDown;
         var isLeftKeyPressed = cursorKeys.left.isDown;
@@ -398,67 +383,70 @@ class gameplayScene extends Phaser.Scene {
                 if (isLeftKeyPressed && currentArrow.name == "left") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                     
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                     
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                     
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                 }
 
                 // enregistrement des combos + "Share" visible après combo
-                if (this.consecutiveArrows == 5 && this.sharedNews <26){
+                if (this.consecutiveArrows == 5 && this.sharedNews <26) {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
-                    this.shared.visible=true;
+                    this.shared.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2});
 
-                    //ajouter des petits like-particules
+                    // ajouter des petits like-particules
                     let particles = this.add.particles("like");
-        
+
                     let emitter = particles.createEmitter({
                         x: 640,
                         y: 600,
                         frequency: 100,
                         alpha: 0.4,
-                        angle: { min: -180, max: 0 },
+                        angle: {min: -180, max: 0},
                         speed: 250,       
-                        lifespan: { min: 1000, max: 2000 },
+                        lifespan: {min: 1000, max: 2000},
                     });
-                    //limiter la durée de l'effet like
+
+                    // limiter la durée de l'effet like
                     this.time.delayedCall(700, ()=>{
                         emitter.frequency = -1;
                     });
-                    
 
-
-                } else if (this.consecutiveArrows != 5){
+                } else if (this.consecutiveArrows != 5) {
                     // "Share" n'est plus visible après combo
-                    this.shared.visible=false;
-                    this.disorder.visible=false;
-                    this.death.visible=false
+                    this.shared.visible = false;
+                    this.disorder.visible = false;
+                    this.death.visible = false
 
-                } else if (this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44){
+                } else if (this.consecutiveArrows == 5 && this.sharedNews >= 26 && this.sharedNews < 44) {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
-                    this.disorder.visible=true;
+                    this.disorder.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2})
 
-                    //ajouter des petits coeur-particules
+                    // ajouter des petits coeur-particules
                     let particles = this.add.particles("heart");
         
                     let emitter = particles.createEmitter({
@@ -466,22 +454,23 @@ class gameplayScene extends Phaser.Scene {
                         y: 600,
                         frequency: 100,
                         alpha: 0.4,
-                        angle: { min: -180, max: 0 },
+                        angle: {min: -180, max: 0},
                         speed: 250,       
-                        lifespan: { min: 1000, max: 2000 },
+                        lifespan: {min: 1000, max: 2000},
                     });
-                    //limiter la durée des petits coeurs
+
+                    // limiter la durée des petits coeurs
                     this.time.delayedCall(700, ()=>{
                         emitter.frequency = -1;
                     });
 
-                } else if (this.consecutiveArrows == 5 && this.sharedNews >=44){
+                } else if (this.consecutiveArrows == 5 && this.sharedNews >= 44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
-                    this.death.visible=true;
+                    this.death.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2})
 
-                    //ajouter des petits skull-particules
+                    // ajouter des petits skull-particules
                     let particles = this.add.particles("skullHeart");
         
                     let emitter = particles.createEmitter({
@@ -489,25 +478,36 @@ class gameplayScene extends Phaser.Scene {
                         y: 600,
                         frequency: 100,
                         alpha: 0.4,
-                        angle: { min: -180, max: 0 },
+                        angle: {min: -180, max: 0},
                         speed: 250,       
-                        lifespan: { min: 1000, max: 2000 },
+                        lifespan: {min: 1000, max: 2000},
                     });
-                    //limiter la durée des petits skulls
+
+                    // limiter la durée des petits skulls
                     this.time.delayedCall(700, ()=>{
                         emitter.frequency = -1;
                     });
-
                 }
 
                 // le jeu termine en l'absence de clic
-                if(this.catchedArrows==0 && this.missedArrows == 15){
+                if ((this.level < 10 && this.consecutiveMissedArrows == 15) || (this.level >= 10 && this.consecutiveMissedArrows == 30)) {
                     this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
-                            this.scene.start("ifNoClicks")
+                            this.scene.start('ifNoClicks');
                             this.mainsong.stop();
+                        }
+                    });
+                }
+
+                // le jeu se met en pause
+                if (isSpaceKeyPressed) {
+                    this.time.addEvent({
+                        callback: ()=>{
+                            this.scene.pause();
+                            this.mainsong.pause();
+                            this.scene.launch('pause', {mainSong: this.mainsong})
                         }
                     });
                 }
@@ -516,115 +516,115 @@ class gameplayScene extends Phaser.Scene {
 
                 // travailler avec la visibilité pour les news
                 if (this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57 || this.sharedNews == 71 || this.sharedNews == 85){
-                    this.text1.visible=false;
-                    this.title1.visible=false;
-                    this.title15.visible=false;
-                    this.text15.visible=false;
-                    this.text2.visible=true;
-                    this.title2.visible=true;
+                    this.text1.visible = false;
+                    this.title1.visible = false;
+                    this.title15.visible = false;
+                    this.text15.visible = false;
+                    this.text2.visible = true;
+                    this.title2.visible = true;
                 }
 
                 if (this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58 || this.sharedNews == 72 || this.sharedNews == 86){
-                    this.text2.visible=false;
-                    this.title2.visible=false;
-                    this.text3.visible=true;
-                    this.title3.visible=true;
+                    this.text2.visible = false;
+                    this.title2.visible = false;
+                    this.text3.visible = true;
+                    this.title3.visible = true;
                 }
 
                 if (this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59 || this.sharedNews == 73 || this.sharedNews == 87){
-                    this.text3.visible=false;
-                    this.title3.visible=false;
-                    this.text4.visible=true;
-                    this.title4.visible=true;
+                    this.text3.visible = false;
+                    this.title3.visible = false;
+                    this.text4.visible = true;
+                    this.title4.visible = true;
                 }
 
                 if (this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60 || this.sharedNews == 74 || this.sharedNews == 88){
-                    this.text4.visible=false;
-                    this.title4.visible=false;
-                    this.text5.visible=true;
-                    this.title5.visible=true;
+                    this.text4.visible = false;
+                    this.title4.visible = false;
+                    this.text5.visible = true;
+                    this.title5.visible = true;
                 }
                 if (this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61 || this.sharedNews == 75 || this.sharedNews == 89){
-                    this.text5.visible=false;
-                    this.title5.visible=false;
-                    this.text6.visible=true;
-                    this.title6.visible=true;
+                    this.text5.visible = false;
+                    this.title5.visible = false;
+                    this.text6.visible = true;
+                    this.title6.visible = true;
                 }
                 if (this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62 || this.sharedNews == 76 || this.sharedNews == 90){
-                    this.text6.visible=false;
-                    this.title6.visible=false;
-                    this.text7.visible=true;
-                    this.title7.visible=true;
+                    this.text6.visible = false;
+                    this.title6.visible = false;
+                    this.text7.visible = true;
+                    this.title7.visible = true;
                 }
                 if (this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63 || this.sharedNews == 77 || this.sharedNews == 91){
-                    this.text7.visible=false;
-                    this.title7.visible=false;
-                    this.text8.visible=true;
-                    this.title8.visible=true;
+                    this.text7.visible = false;
+                    this.title7.visible = false;
+                    this.text8.visible = true;
+                    this.title8.visible = true;
                 }
                 if (this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64 || this.sharedNews == 78 || this.sharedNews == 92){
-                    this.text8.visible=false;
-                    this.title8.visible=false;
-                    this.text9.visible=true;
-                    this.title9.visible=true;
+                    this.text8.visible = false;
+                    this.title8.visible = false;
+                    this.text9.visible = true;
+                    this.title9.visible = true;
                 }
                 if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
-                    this.text9.visible=false;
-                    this.title9.visible=false;
-                    this.text10.visible=true;
-                    this.title11.visible=true;
+                    this.text9.visible = false;
+                    this.title9.visible = false;
+                    this.text10.visible = true;
+                    this.title11.visible = true;
                 }
                 if (this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66 || this.sharedNews == 80 || this.sharedNews == 94){
-                    this.text10.visible=false;
-                    this.title10.visible=false;
-                    this.text11.visible=true;
-                    this.title11.visible=true;
+                    this.text10.visible = false;
+                    this.title10.visible = false;
+                    this.text11.visible = true;
+                    this.title11.visible = true;
                 }
                 if (this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67 || this.sharedNews == 81 || this.sharedNews == 95){
-                    this.text11.visible=false;
-                    this.title11.visible=false;
-                    this.text12.visible=true;
-                    this.title12.visible=true;
+                    this.text11.visible = false;
+                    this.title11.visible = false;
+                    this.text12.visible = true;
+                    this.title12.visible = true;
                 }
                 if (this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68 || this.sharedNews == 82 || this.sharedNews == 96){
-                    this.text12.visible=false;
-                    this.title12.visible=false;
-                    this.text13.visible=true;
-                    this.title13.visible=true;
+                    this.text12.visible = false;
+                    this.title12.visible = false;
+                    this.text13.visible = true;
+                    this.title13.visible = true;
                 }
                 if (this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69 || this.sharedNews == 83 || this.sharedNews == 97){
-                    this.text13.visible=false;
-                    this.title13.visible=false;
-                    this.text14.visible=true;
-                    this.title14.visible=true;
+                    this.text13.visible = false;
+                    this.title13.visible = false;
+                    this.text14.visible = true;
+                    this.title14.visible = true;
                 }
                 if (this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70 || this.sharedNews == 84 || this.sharedNews == 98){
-                    this.text14.visible=false;
-                    this.title14.visible=false;
-                    this.text15.visible=true;
-                    this.title15.visible=true;
+                    this.text14.visible = false;
+                    this.title14.visible = false;
+                    this.text15.visible = true;
+                    this.title15.visible = true;
                 }
 
             /* ||| SOUND ||| */
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
-                if (this.sharedNews == 5 && this.consecutiveArrows == 4){
+                if (this.sharedNews == 5 && this.consecutiveArrows == 4) {
                     this.sound.play('mall',{loop: false, volume: 0.5});
                 }
 
-                if (this.sharedNews == 15 && this.consecutiveArrows == 4){
+                if (this.sharedNews == 15 && this.consecutiveArrows == 4) {
                     this.sound.play('chants', {loop: false, volume: 0.5});
                 }
 
-                if (this.sharedNews == 27 && this.consecutiveArrows == 4){
+                if (this.sharedNews == 27 && this.consecutiveArrows == 4) {
                     this.sound.play('screams',{volume: 0.5}, {loop: false, volume: 0.1});
                 }
                 
-                if (this.sharedNews == 36 && this.consecutiveArrows == 4){
+                if (this.sharedNews == 36 && this.consecutiveArrows == 4) {
                     this.sound.play('trump',{detune: 0.5}, {loop: false});
                 }
 
-                if (this.sharedNews == 42 && this.consecutiveArrows == 4){
+                if (this.sharedNews == 42 && this.consecutiveArrows == 4) {
                     this.sound.play('war',{loop: false});
                 }    
         }
@@ -632,8 +632,9 @@ class gameplayScene extends Phaser.Scene {
             /* ||| GAMEPLAY ||| */
 
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
-            if (currentArrow.y > 720){
+            if (currentArrow.y > 720) {
                 this.missedArrows++;
+                this.consecutiveMissedArrows++;
                 this.consecutiveArrows = 0;
                 this.removeArrow(currentArrow);
             }
@@ -658,7 +659,6 @@ class gameplayScene extends Phaser.Scene {
             }
 
             else {
-
                 this.removeCapturedArrow(currentArrow);
             }
 
@@ -673,21 +673,18 @@ class gameplayScene extends Phaser.Scene {
 
     // suppression de la flèche du tableau ainsi que son index
     removeArrow(arrow) {
-
         var arrowToBeDeleted = arrow;
         this.fallingArrows.splice(this.fallingArrows.indexOf(arrowToBeDeleted), 1);
         arrowToBeDeleted.destroy();
     }
 
     removeCapturedArrow(arrow) {
-
         var arrowToBeDeleted = arrow;
         this.capturedArrows.splice(this.capturedArrows.indexOf(arrowToBeDeleted), 1);
         arrowToBeDeleted.destroy();
     }
 
     moveArrowToCapturedArray(arrow) {
-
         // la flèche capturée
         var arrowToBeDeleted = arrow;
 
@@ -701,14 +698,14 @@ class gameplayScene extends Phaser.Scene {
     }
 
     // création une flèche
-    addArrow(){
+    addArrow(isDoubleArrowTime = false) {
 
         // sort une flèche entre 0 et 3 qui définit sa position
         var randomArrow = Math.floor(Math.random() * Math.floor(4));
         var newImage;
 
         // s'il est nécessaire de doubler les flèches…
-        if (this.isDoubleArrowTime) {
+        if (isDoubleArrowTime) {
 
             //… on vérifie qu'on ne recrée pas la même flèche que la précédente
             while (this.lastArrowType == randomArrow) {
@@ -721,22 +718,22 @@ class gameplayScene extends Phaser.Scene {
         this.lastArrowType = randomArrow;
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (0 = left, 1 = up, 2 = down, 3 = right)
-        if (randomArrow == 0){
+        if (randomArrow == 0) {
             newImage = this.add.image(490, 170, 'leftFilled').setOrigin(0.5);
             newImage.name = 'left';
             this.fallingArrows.push(newImage);
 
-        } else if (randomArrow == 1){
+        } else if (randomArrow == 1) {
             newImage = this.add.image(590, 170, 'upFilled').setOrigin(0.5);
             newImage.name = 'up';
             this.fallingArrows.push(newImage);
 
-        } else if (randomArrow == 2){
+        } else if (randomArrow == 2) {
             newImage = this.add.image(690, 170, 'downFilled').setOrigin(0.5);
             newImage.name = 'down';
             this.fallingArrows.push(newImage);
 
-        } else if (randomArrow == 3){
+        } else if (randomArrow == 3) {
             newImage = this.add.image(790, 170, 'rightFilled').setOrigin(0.5);
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
