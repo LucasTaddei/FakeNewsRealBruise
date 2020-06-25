@@ -132,13 +132,14 @@ class gameplayScene extends Phaser.Scene {
 
                     this.level++;
 
-                    // une fois que le niveau est à 10, les flèches doublent et la vitesse se réinitialise
-                    if (this.level == 10) {
+                    // une fois le niveau 10 atteint, le pourcentage qu'une seconde flèche tombe augmente en fonction du niveau
+                    if (this.level == 3) {
 
-                        this.fallingSpeed = 5;
-                        this.fallingDelay = 500;
+                        var randomDoubleArrow = Math.random();
 
-                        this.isDoubleArrowTime = true;
+                        if (randomDoubleArrow < 0.5) {
+                            this.isDoubleArrowTime = true;
+                        }
                     }
                 }
 
@@ -452,7 +453,7 @@ class gameplayScene extends Phaser.Scene {
                     this.disorder.visible = false;
                     this.death.visible = false
 
-                } else if (this.consecutiveArrows == 5 && this.sharedNews >=26 && this.sharedNews <44) {
+                } else if (this.consecutiveArrows == 5 && this.sharedNews >= 26 && this.sharedNews < 44) {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.disorder.visible = true;
@@ -476,7 +477,7 @@ class gameplayScene extends Phaser.Scene {
                         emitter.frequency = -1;
                     });
 
-                } else if (this.consecutiveArrows == 5 && this.sharedNews >=44){
+                } else if (this.consecutiveArrows == 5 && this.sharedNews >= 44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.death.visible = true;
@@ -502,7 +503,7 @@ class gameplayScene extends Phaser.Scene {
                 }
 
                 // le jeu termine en l'absence de clic
-                if (this.consecutiveMissedArrows == 15) {
+                if (this.level >= 10 && this.consecutiveMissedArrows == 15 || this.level < 10 && this.consecutiveMissedArrows == 30) {
                     this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
@@ -721,8 +722,6 @@ class gameplayScene extends Phaser.Scene {
 
         // s'il est nécessaire de doubler les flèches…
         if (this.isDoubleArrowTime) {
-
-            // À FAIRE: il y a une probabilité que la flèche se double à partir du niveau 10, qui augmente un peu à chaque niveau supplémentaire gagné
 
             //… on vérifie qu'on ne recrée pas la même flèche que la précédente
             while (this.lastArrowType == randomArrow) {
