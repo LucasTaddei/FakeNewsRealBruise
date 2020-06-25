@@ -10,8 +10,6 @@ class pauseScene extends Phaser.Scene {
 
     preload() {
 
-        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
         this.load.image('logo','assets/images/LOGO.png');
         this.load.image('skyline', 'assets/images/Skyline.png');
         this.load.image('cloud1', 'assets/images/cloud1.png');
@@ -34,7 +32,7 @@ class pauseScene extends Phaser.Scene {
     update() {
 
         // revenir au jeu
-        if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
+        if (this.input.keyboard.createCursorKeys().space.isDown) {
 
             this.time.addEvent( {
                 callback: ()=>{

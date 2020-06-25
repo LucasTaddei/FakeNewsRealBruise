@@ -38,8 +38,6 @@ class gameplayScene extends Phaser.Scene {
 
         this.newArrowsTimer; 
 
-        this.spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
-
         // arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
         this.load.image("upOutline","assets/images/arrows/upOutlineYellow.png");
@@ -368,6 +366,7 @@ class gameplayScene extends Phaser.Scene {
         // récupération de la touche enfoncée lors de l'update
         var cursorKeys = this.input.keyboard.createCursorKeys();
 
+        var isSpaceKeyPressed = cursorKeys.space.isDown;
         var isUpKeyPressed = cursorKeys.up.isDown;
         var isDownKeyPressed = cursorKeys.down.isDown;
         var isLeftKeyPressed = cursorKeys.left.isDown;
@@ -503,7 +502,7 @@ class gameplayScene extends Phaser.Scene {
                 }
 
                 // le jeu se met en pause
-                if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
+                if (isSpaceKeyPressed) {
                     this.time.addEvent({
                         callback: ()=>{
                             this.scene.pause();
