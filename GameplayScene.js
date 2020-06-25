@@ -31,6 +31,7 @@ class gameplayScene extends Phaser.Scene {
         this.catchedArrows = 0;
         this.missedArrows = 0;
         this.consecutiveArrows = 0;
+        this.consecutiveMissedArrows = 0;
         this.sharedNews = 0;
         this.level = 1;
 
@@ -131,6 +132,7 @@ class gameplayScene extends Phaser.Scene {
 
                     this.level++;
 
+                    // une fois que le niveau est à 10, les flèches doublent et la vitesse se réinitialise
                     if (this.level == 10) {
 
                         this.fallingSpeed = 5;
@@ -393,25 +395,29 @@ class gameplayScene extends Phaser.Scene {
                 if (isLeftKeyPressed && currentArrow.name == "left") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                     
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                     
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                     
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
-                    this.consecutiveArrows++
+                    this.consecutiveArrows++;
+                    this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
                 }
 
@@ -495,9 +501,8 @@ class gameplayScene extends Phaser.Scene {
                     });
                 }
 
-                // A MODIFIER! CETTE SCENE SE LANCE SI LE JOUEUR MANQUE - A N'IMPORTE QUEL MOMENT - 15 FLECHES SANS EN ATTRAPER AUCUNE
                 // le jeu termine en l'absence de clic
-                if (this.catchedArrows == 0 && this.missedArrows == 15) {
+                if (this.consecutiveMissedArrows == 15) {
                     this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
@@ -509,7 +514,6 @@ class gameplayScene extends Phaser.Scene {
                 }
 
                 // le jeu se met en pause
-
                 if (cursorKeys.space.isDown) {
                     this.time.addEvent({
                         callback: ()=>{
@@ -645,6 +649,7 @@ class gameplayScene extends Phaser.Scene {
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720) {
                 this.missedArrows++;
+                this.consecutiveMissedArrows++;
                 this.consecutiveArrows = 0;
                 this.removeArrow(currentArrow);
             }
