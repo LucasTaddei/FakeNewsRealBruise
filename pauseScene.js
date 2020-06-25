@@ -17,8 +17,6 @@ class pauseScene extends Phaser.Scene {
         this.load.image('cloud1', 'assets/images/cloud1.png');
         this.load.image('cloud2', 'assets/images/cloud2.png');
         this.load.image('cloud3', 'assets/images/cloud3.png');
-
-        this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
     }
 
     create() {
@@ -29,16 +27,14 @@ class pauseScene extends Phaser.Scene {
         this.cloud3 = this.add.image(1000, 200, 'cloud3');
 
         // ajouter les textes et images fixes
-        this.add.text(640, 200,"Pause", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
-        this.add.image(640, 360, 'skyline').setOrigin(0.5);
+        this.add.text(640, 300,"Pause", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
     }
 
     // faire se déplacer les nuages
     update() {
 
         // revenir au jeu
-
-        if(Phaser.Input.Keyboard.JustDown(this.spacebar)) {
+        if (Phaser.Input.Keyboard.JustDown(this.spacebar)) {
 
             this.time.addEvent( {
                 callback: ()=>{
@@ -53,6 +49,7 @@ class pauseScene extends Phaser.Scene {
         this.moveClouds(this.cloud2, 0.1);
         this.moveClouds(this.cloud3, 0.3);
     }
+
         moveClouds (cloud, speed) {
             cloud.x += speed;
 
