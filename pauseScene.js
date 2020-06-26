@@ -10,6 +10,8 @@ class pauseScene extends Phaser.Scene {
 
     preload() {
 
+        this.lastSpaceBarPressedAt = new Date().getTime();
+
         this.load.image('logo','assets/images/LOGO.png');
         this.load.image('skyline', 'assets/images/Skyline.png');
         this.load.image('cloud1', 'assets/images/cloud1.png');
@@ -28,11 +30,14 @@ class pauseScene extends Phaser.Scene {
         this.add.text(640, 300,"Pause", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
     }
 
-    // faire se déplacer les nuages
     update() {
 
-        // revenir au jeu
-        if (this.input.keyboard.createCursorKeys().space.isDown) {
+        // récupération de la touche enfoncée lors de l'update
+        var cursorKeys = this.input.keyboard.createCursorKeys();
+
+        var isSpaceKeyPressed = cursorKeys.space.isDown;
+
+        if (isSpaceKeyPressed) {
 
             this.time.addEvent( {
                 callback: ()=>{
@@ -43,6 +48,7 @@ class pauseScene extends Phaser.Scene {
             });
         }
 
+        // faire se déplacer les nuages
         this.moveClouds(this.cloud1, 0.4);
         this.moveClouds(this.cloud2, 0.1);
         this.moveClouds(this.cloud3, 0.3);

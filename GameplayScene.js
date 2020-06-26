@@ -15,6 +15,8 @@ class gameplayScene extends Phaser.Scene {
         this.fallingSpeed = 5;
         this.fallingDelay = 500;
 
+        this.keyDownDelay = 100;
+
         // type de la dernière flèche créée afin d'éviter une superposition de flèches identiques
         this.lastArrowType = 0;
 
@@ -37,6 +39,11 @@ class gameplayScene extends Phaser.Scene {
         this.sharedLabel;
 
         this.newArrowsTimer; 
+
+        // variables de gestion des délais de frappe
+        this.isANewKeyPressed = false;
+        this.lastKeyPressedAt =  0;
+        this.lastSpaceBarPressedAt = 0;
 
         // arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
@@ -72,8 +79,16 @@ class gameplayScene extends Phaser.Scene {
         this.load.image('like', 'assets/images/reactions/like.png');
         this.load.image('skullHeart', 'assets/images/reactions/skullHeart.png');
     }
+    
+    resume() {
+
+       this.lastSpaceBarPressedAt = new Date().getTime() + 750;
+    }
 
     create(){
+
+        this.events.on('resume', this.resume, this);
+
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
@@ -363,6 +378,7 @@ class gameplayScene extends Phaser.Scene {
     }
     
     update(time, delta) {
+
         // récupération de la touche enfoncée lors de l'update
         var cursorKeys = this.input.keyboard.createCursorKeys();
 
@@ -372,13 +388,39 @@ class gameplayScene extends Phaser.Scene {
         var isLeftKeyPressed = cursorKeys.left.isDown;
         var isRightKeyPressed = cursorKeys.right.isDown;
 
+        // si une touche est pressée qui ne l'était pas avant (évite de pouvoir laisser appuyé les touches pour capturer les flèches)
+        if (!this.isANewKeyPressed && (isUpKeyPressed || isDownKeyPressed || isLeftKeyPressed || isRightKeyPressed)) {
+
+            this.lastKeyPressedAt = new Date().getTime();
+            this.isANewKeyPressed = true;
+        }
+
+        else if (!(isUpKeyPressed || isDownKeyPressed || isLeftKeyPressed || isRightKeyPressed)) {
+
+            this.isANewKeyPressed = false;
+        }
+
+        if (isSpaceKeyPressed && (new Date().getTime() - this.lastSpaceBarPressedAt >= this.keyDownDelay)) {
+
+            this.lastSpaceBarPressedAt = new Date().getTime();
+
+            // le jeu se met en pause
+            this.time.addEvent({
+                callback: ()=>{
+                    this.scene.pause();
+                    this.mainsong.pause();
+                    this.scene.launch('pause', {mainSong: this.mainsong})
+                }
+            });
+        }
+
         // pour chaque flèche affichée actuellement
         this.fallingArrows.forEach((currentArrow) => {
 
             /* ||| RULES ||| */
 
             // flèche correctement capturée par le clic
-            if (currentArrow.y >= 600 && currentArrow.y <= 650) {
+            if ((new Date().getTime() - this.lastKeyPressedAt <= this.keyDownDelay) && currentArrow.y >= 600 && currentArrow.y <= 650) {
 
                 if (isLeftKeyPressed && currentArrow.name == "left") {
                     this.sound.play('impact', {volume:0.2});
@@ -490,24 +532,13 @@ class gameplayScene extends Phaser.Scene {
                 }
 
                 // le jeu termine en l'absence de clic
-                if ((this.level < 10 && this.consecutiveMissedArrows == 15) || (this.level >= 10 && this.consecutiveMissedArrows == 30)) {
+                if ((this.level < 10 && this.consecutiveMissedArrows == 25) || (this.level >= 10 && this.consecutiveMissedArrows == 50)) {
                     this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
                         callback: ()=>{
                             this.scene.start('ifNoClicks');
                             this.mainsong.stop();
-                        }
-                    });
-                }
-
-                // le jeu se met en pause
-                if (isSpaceKeyPressed) {
-                    this.time.addEvent({
-                        callback: ()=>{
-                            this.scene.pause();
-                            this.mainsong.pause();
-                            this.scene.launch('pause', {mainSong: this.mainsong})
                         }
                     });
                 }
