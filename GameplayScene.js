@@ -134,8 +134,8 @@ class gameplayScene extends Phaser.Scene {
                 if (this.missedArrows - this.lastScoreMissedArrows < 10) {
 
                     // ajuste la vitesse en fonction du nombre de flèches capturées par le joueur
-                    this.fallingSpeed *= 1.05;
-                    this.fallingDelay /= 1.05;
+                    this.fallingSpeed *= 1.033;
+                    this.fallingDelay /= 1.033;
 
                     this.level++;
                 }
