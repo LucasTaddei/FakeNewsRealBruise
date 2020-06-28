@@ -660,8 +660,6 @@ class gameplayScene extends Phaser.Scene {
                 });
             }
 
-            /* ||| GAMEPLAY ||| */
-
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
             if (currentArrow.y > 720) {
                 this.missedArrows++;
@@ -673,6 +671,8 @@ class gameplayScene extends Phaser.Scene {
             // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
         });
+
+        /* ||| GAMEPLAY ||| */
 
         // pour chaque flèche capturée
         this.capturedArrows.forEach((currentArrow) => {
