@@ -531,18 +531,6 @@ class gameplayScene extends Phaser.Scene {
                     });
                 }
 
-                // le jeu termine en l'absence de clic
-                if ((this.level < 10 && this.consecutiveMissedArrows == 25) || (this.level >= 10 && this.consecutiveMissedArrows == 50)) {
-                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-                    this.time.addEvent({
-                        delay: 3000,
-                        callback: ()=>{
-                            this.scene.start('ifNoClicks');
-                            this.mainsong.stop();
-                        }
-                    });
-                }
-
                 /* ||| NEWS TEXT ||| */
 
                 // travailler avec la visibilité pour les news
@@ -659,6 +647,18 @@ class gameplayScene extends Phaser.Scene {
                     this.sound.play('war',{loop: false});
                 }    
         }
+
+            // le jeu termine en l'absence de clic
+            if ((this.level < 10 && this.consecutiveMissedArrows == 20) || (this.level >= 10 && this.consecutiveMissedArrows == 40)) {
+                this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
+                this.time.addEvent({
+                    delay: 3000,
+                    callback: ()=>{
+                        this.scene.start('ifNoClicks');
+                        this.mainsong.stop();
+                    }
+                });
+            }
 
             /* ||| GAMEPLAY ||| */
 
