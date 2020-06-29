@@ -1,10 +1,11 @@
 class gameplayScene extends Phaser.Scene {
 
-    constructor(){
+    constructor() {
         super("gameplay");
     }
 
-    preload(){
+    preload() {
+
         // création d'un tableau vide pour les flèches qui défilent
         this.fallingArrows = [];
 
@@ -85,8 +86,8 @@ class gameplayScene extends Phaser.Scene {
        this.lastSpaceBarPressedAt = new Date().getTime() + 750;
     }
 
-    create(){
-
+    create() {
+        
         this.events.on('resume', this.resume, this);
 
         this.time.addEvent({
@@ -117,7 +118,6 @@ class gameplayScene extends Phaser.Scene {
             delay: this.fallingDelay,
             loop: true,
             callback: ()=>{
-
                 this.addArrow();
             }
         })
@@ -374,7 +374,6 @@ class gameplayScene extends Phaser.Scene {
         this.sound.add("chants", {loop: false});
         this.sound.add("trump",{loop: false});
         this.sound.add("impact");   
-    
     }
     
     update(time, delta) {
@@ -390,13 +389,10 @@ class gameplayScene extends Phaser.Scene {
 
         // si une touche est pressée qui ne l'était pas avant (évite de pouvoir laisser appuyé les touches pour capturer les flèches)
         if (!this.isANewKeyPressed && (isUpKeyPressed || isDownKeyPressed || isLeftKeyPressed || isRightKeyPressed)) {
-
             this.lastKeyPressedAt = new Date().getTime();
             this.isANewKeyPressed = true;
-        }
 
-        else if (!(isUpKeyPressed || isDownKeyPressed || isLeftKeyPressed || isRightKeyPressed)) {
-
+        } else if (!(isUpKeyPressed || isDownKeyPressed || isLeftKeyPressed || isRightKeyPressed)) {
             this.isANewKeyPressed = false;
         }
 
@@ -428,21 +424,21 @@ class gameplayScene extends Phaser.Scene {
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
-                    
+
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
-                    
+
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
-                    
+
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
                     this.sound.play('impact', {volume:0.2});
                     this.catchedArrows++;
@@ -462,14 +458,14 @@ class gameplayScene extends Phaser.Scene {
                     let particles = this.add.particles("like");
 
                     let emitter = particles.createEmitter({
-                        x: 640,
-                        y: 600,
-                        frequency: 100,
-                        alpha: 0.4,
-                        angle: {min: -180, max: 0},
-                        speed: 250,       
-                        lifespan: {min: 1000, max: 2000},
-                    });
+                        x: currentArrow.x,
+                        y: 600,
+                        frequency: 100,
+                        alpha: 0.4,
+                        angle: {min: -180, max: 0},
+                        speed: 250,       
+                        lifespan: {min: 1000, max: 2000},
+                    });
 
                     // limiter la durée de l'effet like
                     this.time.delayedCall(700, ()=>{
@@ -490,9 +486,9 @@ class gameplayScene extends Phaser.Scene {
 
                     // ajouter des petits coeur-particules
                     let particles = this.add.particles("heart");
-        
+
                     let emitter = particles.createEmitter({
-                        x: 640,
+                        x: currentArrow.x,
                         y: 600,
                         frequency: 100,
                         alpha: 0.4,
@@ -514,9 +510,9 @@ class gameplayScene extends Phaser.Scene {
 
                     // ajouter des petits skull-particules
                     let particles = this.add.particles("skullHeart");
-        
+
                     let emitter = particles.createEmitter({
-                        x: 640,
+                        x: currentArrow.x,
                         y: 600,
                         frequency: 100,
                         alpha: 0.4,
@@ -563,60 +559,70 @@ class gameplayScene extends Phaser.Scene {
                     this.text5.visible = true;
                     this.title5.visible = true;
                 }
+
                 if (this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61 || this.sharedNews == 75 || this.sharedNews == 89){
                     this.text5.visible = false;
                     this.title5.visible = false;
                     this.text6.visible = true;
                     this.title6.visible = true;
                 }
+
                 if (this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62 || this.sharedNews == 76 || this.sharedNews == 90){
                     this.text6.visible = false;
                     this.title6.visible = false;
                     this.text7.visible = true;
                     this.title7.visible = true;
                 }
+
                 if (this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63 || this.sharedNews == 77 || this.sharedNews == 91){
                     this.text7.visible = false;
                     this.title7.visible = false;
                     this.text8.visible = true;
                     this.title8.visible = true;
                 }
+
                 if (this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64 || this.sharedNews == 78 || this.sharedNews == 92){
                     this.text8.visible = false;
                     this.title8.visible = false;
                     this.text9.visible = true;
                     this.title9.visible = true;
                 }
+
                 if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
                     this.text9.visible = false;
                     this.title9.visible = false;
                     this.text10.visible = true;
                     this.title11.visible = true;
                 }
+
                 if (this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66 || this.sharedNews == 80 || this.sharedNews == 94){
                     this.text10.visible = false;
                     this.title10.visible = false;
                     this.text11.visible = true;
                     this.title11.visible = true;
                 }
+
                 if (this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67 || this.sharedNews == 81 || this.sharedNews == 95){
                     this.text11.visible = false;
                     this.title11.visible = false;
                     this.text12.visible = true;
                     this.title12.visible = true;
                 }
+
                 if (this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68 || this.sharedNews == 82 || this.sharedNews == 96){
                     this.text12.visible = false;
                     this.title12.visible = false;
                     this.text13.visible = true;
                     this.title13.visible = true;
                 }
+
                 if (this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69 || this.sharedNews == 83 || this.sharedNews == 97){
                     this.text13.visible = false;
                     this.title13.visible = false;
                     this.text14.visible = true;
                     this.title14.visible = true;
                 }
+
                 if (this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70 || this.sharedNews == 84 || this.sharedNews == 98){
                     this.text14.visible = false;
                     this.title14.visible = false;
@@ -624,7 +630,7 @@ class gameplayScene extends Phaser.Scene {
                     this.title15.visible = true;
                 }
 
-            /* ||| SOUND ||| */
+                /* ||| SOUND ||| */
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
                 if (this.sharedNews == 5 && this.consecutiveArrows == 4) {
@@ -638,26 +644,14 @@ class gameplayScene extends Phaser.Scene {
                 if (this.sharedNews == 27 && this.consecutiveArrows == 4) {
                     this.sound.play('screams',{volume: 0.5}, {loop: false, volume: 0.1});
                 }
-                
+
                 if (this.sharedNews == 36 && this.consecutiveArrows == 4) {
                     this.sound.play('trump',{detune: 0.5}, {loop: false});
                 }
 
                 if (this.sharedNews == 42 && this.consecutiveArrows == 4) {
                     this.sound.play('war',{loop: false});
-                }    
-        }
-
-            // le jeu termine en l'absence de clic
-            if ((this.level < 10 && this.consecutiveMissedArrows == 20) || (this.level >= 10 && this.consecutiveMissedArrows == 40)) {
-                this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-                this.time.addEvent({
-                    delay: 3000,
-                    callback: ()=>{
-                        this.scene.start('ifNoClicks');
-                        this.mainsong.stop();
-                    }
-                });
+                }
             }
 
             // suppression de la flèche du tableau une fois au-dehors de la zone pour éviter une saturation de la mémoire
@@ -666,33 +660,39 @@ class gameplayScene extends Phaser.Scene {
                 this.consecutiveMissedArrows++;
                 this.consecutiveArrows = 0;
                 this.removeArrow(currentArrow);
+
+                // le jeu termine en l'absence de clic
+                if ((this.level < 10 && this.consecutiveMissedArrows == 20) || (this.level >= 10 && this.consecutiveMissedArrows == 40)) {
+                    this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
+                    this.time.addEvent({
+                        delay: 3000,
+                        callback: ()=>{
+                            this.scene.start('ifNoClicks');
+                            this.mainsong.stop();
+                        }
+                    });
+                }
             }
 
             // déplacement de la flèche
             currentArrow.y += this.fallingSpeed;
         });
 
-        /* ||| GAMEPLAY ||| */
-
         // pour chaque flèche capturée
         this.capturedArrows.forEach((currentArrow) => {
-
             var currentScale = currentArrow.scale;
             var currentAlpha = currentArrow.alpha;
 
             if (currentScale < 4) {
-
                 currentScale *= 1.2;
                 currentAlpha -= 0.1;
 
                 currentArrow.setScale(currentScale, currentScale);
                 currentArrow.setAlpha(currentAlpha);
-            }
 
-            else {
+            } else {
                 this.removeCapturedArrow(currentArrow);
             }
-
         });
 
         // actualisation des scores
@@ -740,8 +740,7 @@ class gameplayScene extends Phaser.Scene {
 
             //… on vérifie qu'on ne recrée pas la même flèche que la précédente
             while (this.lastArrowType == randomArrow) {
-
-               randomArrow = Math.floor(Math.random() * Math.floor(4));
+                randomArrow = Math.floor(Math.random() * Math.floor(4));
             }
         }
 
