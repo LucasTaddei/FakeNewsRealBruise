@@ -239,8 +239,8 @@ class gameplayScene extends Phaser.Scene {
         /* ||| TEXTE AVANT BOMBE||| */
 
         var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText2 = this.add.text(640, 400, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText3 = this.add.text(700, 500, "It is very fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText2 = this.add.text(640, 350, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({
             targets: [wellText],

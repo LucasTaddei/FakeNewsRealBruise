@@ -15,7 +15,7 @@ class titleScene extends Phaser.Scene {
         this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
     }
 
-    create(){
+    create() {
 
         // ajouter les nuages, skyline et musique
         this.cloud1 = this.add.image(50, 100, 'cloud1');
