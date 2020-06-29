@@ -41,6 +41,8 @@ class gameplayScene extends Phaser.Scene {
 
         this.newArrowsTimer; 
 
+        this.currentNews = 0;
+
         // variables de gestion des délais de frappe
         this.isANewKeyPressed = false;
         this.lastKeyPressedAt =  0;
@@ -79,6 +81,8 @@ class gameplayScene extends Phaser.Scene {
         this.load.image('heart', 'assets/images/reactions/heart.png');
         this.load.image('like', 'assets/images/reactions/like.png');
         this.load.image('skullHeart', 'assets/images/reactions/skullHeart.png');
+
+        this.load.json('newsData', 'assets/json/fakeNews2.json');
     }
     
     resume() {
@@ -186,74 +190,26 @@ class gameplayScene extends Phaser.Scene {
 
         /* ||| NEWS PRINCIPALES ||| */
 
-        // travailler avec la visibilité pour les news
-        this.title1 = this.add.text(360,90, "Journal of Times",{font:'25px jack', fill: 'black'}).setVisible(true);
-        this.text1 = this.add.text(360,120, "Avocadoes from a specific mexican region make hair turn blue",{font:'20px imperator', fill: 'black'}).setVisible(true);
-        
+        this.newsData = this.cache.json.get('newsData');
+
+        this.titleNews = this.add.text(360,90, this.newsData["fakeNews"][0]["newspaperTitle"], {font:'25px jack', fill: 'black'}).setVisible(true);
+        this.textNews = this.add.text(360,120, this.newsData["fakeNews"][0]["content"], {font:'20px imperator', fill: 'black'}).setVisible(true);
+
         // pour que le texte ne dépasse pas le fond de la News
-        this.text1.setWordWrapWidth(570, false);
-
-        this.title2 = this.add.text(360,90, "The Flying Duck",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text2 = this.add.text(360,120, "Swiss 1000CHF banknotes will be distributed by the governement to all who come in front of the Federal Palace in Bern",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text2.setWordWrapWidth(570, false);
-
-        this.title3 = this.add.text(360,90, "The Nightly Telegraph",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text3 = this.add.text(360,120, "Jessica, the famous filmmaker, declared she hates ukulele since the unexpected success of her short film about digital humanities",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text3.setWordWrapWidth(570, false);
-
-        this.title4 = this.add.text(360,90, "The Washington Toast",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text4 = this.add.text(360,120, "Dream jobs promised by Donald Trump for all who present themselves every first Mondays of each month in front of the White House",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text4.setWordWrapWidth(570, false);
-
-        this.title5 = this.add.text(360,90, "The Gardiner",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text5 = this.add.text(360,120, "In the small village of la Brévine, a dog was seen giving finds to people complaining about the cold weather",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text5.setWordWrapWidth(570, false);
-
-        this.title6 = this.add.text(360,90, "Naturally",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text6 = this.add.text(360,120, "According to a very serious study published by the University of Stafford, people with big feet and long noses don't get along with their partner's elephant",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text6.setWordWrapWidth(570, false);
-
-        this.title7 = this.add.text(360,90, "The New York Dime",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text7 = this.add.text(360,120, "According an investigation from the New York Lost, Fake news do NOT constitute a big danger for democraties",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text7.setWordWrapWidth(570, false);
-
-        this.title8 = this.add.text(360,90, "Daily Bruise",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text8 = this.add.text(360,120, "The total weight of all châteaux de la Loire is equivalent to the yearly average wine consumption for swiss residents",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text8.setWordWrapWidth(570, false);
-
-        this.title9 = this.add.text(360,90, "24 Leurres",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text9 = this.add.text(360,120, "The cheese Vacherin fribourgeois has calming attributes, especially when melted in Fondue,",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text9.setWordWrapWidth(570, false);
-
-        this.title10 = this.add.text(360,90, "New York Lost",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text10 = this.add.text(360,120, "According to Tinkerbell, Peter Pan's existence has been proven",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text10.setWordWrapWidth(570, false);
-
-        this.title11 = this.add.text(360,90, "The Minute",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text11 = this.add.text(360,120, "After years of waiting, swiss trains will finally be free for all citizens who will want to use them",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text11.setWordWrapWidth(570, false);
-
-        this.title12 = this.add.text(360,90, "The Flying Duck",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text12 = this.add.text(360,120, "Avancer sur les mains rejetterait moins de CO2 dans l'atmosphère selon une étude de l'université de la Chaux-de-fonds",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text12.setWordWrapWidth(570, false);
-
-        this.title13 = this.add.text(360,90, "The Morning Ghost",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text13 = this.add.text(360,120, "Eating five carambars per day makes you look like a million dollars",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text13.setWordWrapWidth(570, false);
-
-        this.title14 = this.add.text(360,90, "The Washington Toast",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text14 = this.add.text(360,120, "Water and soil pollution could be a 21st century invention created with the sole purpose of generating fear",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text14.setWordWrapWidth(570, false);
-
-        this.title15 = this.add.text(360,90, "The Yearly Mail",{font:'25px jack', fill: 'black'}).setVisible(false);
-        this.text15 = this.add.text(360,120, "University students' complaints about tiredness seems to be just a pretext to study less and less",{font:'20px imperator', fill: 'black'}).setVisible(false);
-        this.text15.setWordWrapWidth(570, false);
+        this.textNews.setWordWrapWidth(570, false);
 
         /* ||| TEXTE AVANT BOMBE||| */
 
         var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         var wellText2 = this.add.text(640, 350, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText3 = wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        
+        // if (this.level <= 5) {
+        //     wellText3 = this.add.text(680, 400, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+
+        // } else {
+        //     wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        // }
 
         this.tweens.add({
             targets: [wellText],
@@ -495,6 +451,8 @@ class gameplayScene extends Phaser.Scene {
                     this.shared.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2});
 
+                    this.showNextNews();
+
                     // ajouter des petits like-particules
                     let particles = this.add.particles("like");
 
@@ -525,6 +483,8 @@ class gameplayScene extends Phaser.Scene {
                     this.disorder.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2})
 
+                    this.showNextNews();
+
                     // ajouter des petits coeur-particules
                     let particles = this.add.particles("heart");
 
@@ -549,6 +509,8 @@ class gameplayScene extends Phaser.Scene {
                     this.death.visible = true;
                     this.sound.play('mouseClick',{volume: 0.2})
 
+                    this.showNextNews();
+
                     // ajouter des petits skull-particules
                     let particles = this.add.particles("skullHeart");
 
@@ -566,109 +528,6 @@ class gameplayScene extends Phaser.Scene {
                     this.time.delayedCall(700, ()=>{
                         emitter.frequency = -1;
                     });
-                }
-
-                /* ||| NEWS TEXT ||| */
-
-                // travailler avec la visibilité pour les news
-                if (this.sharedNews == 1 || this.sharedNews == 15 || this.sharedNews == 29 || this.sharedNews == 43 || this.sharedNews == 57 || this.sharedNews == 71 || this.sharedNews == 85){
-                    this.text1.visible = false;
-                    this.title1.visible = false;
-                    this.title15.visible = false;
-                    this.text15.visible = false;
-                    this.text2.visible = true;
-                    this.title2.visible = true;
-                }
-
-                if (this.sharedNews == 2 || this.sharedNews == 16 || this.sharedNews == 30 || this.sharedNews == 44 || this.sharedNews == 58 || this.sharedNews == 72 || this.sharedNews == 86){
-                    this.text2.visible = false;
-                    this.title2.visible = false;
-                    this.text3.visible = true;
-                    this.title3.visible = true;
-                }
-
-                if (this.sharedNews == 3 || this.sharedNews == 17 || this.sharedNews == 31 || this.sharedNews == 45 || this.sharedNews == 59 || this.sharedNews == 73 || this.sharedNews == 87){
-                    this.text3.visible = false;
-                    this.title3.visible = false;
-                    this.text4.visible = true;
-                    this.title4.visible = true;
-                }
-
-                if (this.sharedNews == 4 || this.sharedNews == 18 || this.sharedNews == 32 || this.sharedNews == 46 || this.sharedNews == 60 || this.sharedNews == 74 || this.sharedNews == 88){
-                    this.text4.visible = false;
-                    this.title4.visible = false;
-                    this.text5.visible = true;
-                    this.title5.visible = true;
-                }
-
-                if (this.sharedNews == 5 || this.sharedNews == 19 || this.sharedNews == 33 || this.sharedNews == 47 || this.sharedNews == 61 || this.sharedNews == 75 || this.sharedNews == 89){
-                    this.text5.visible = false;
-                    this.title5.visible = false;
-                    this.text6.visible = true;
-                    this.title6.visible = true;
-                }
-
-                if (this.sharedNews == 6 || this.sharedNews == 20 || this.sharedNews == 34 || this.sharedNews == 48 || this.sharedNews == 62 || this.sharedNews == 76 || this.sharedNews == 90){
-                    this.text6.visible = false;
-                    this.title6.visible = false;
-                    this.text7.visible = true;
-                    this.title7.visible = true;
-                }
-
-                if (this.sharedNews == 7 || this.sharedNews == 21 || this.sharedNews == 35 || this.sharedNews == 49 || this.sharedNews == 63 || this.sharedNews == 77 || this.sharedNews == 91){
-                    this.text7.visible = false;
-                    this.title7.visible = false;
-                    this.text8.visible = true;
-                    this.title8.visible = true;
-                }
-
-                if (this.sharedNews == 8 || this.sharedNews == 22 || this.sharedNews == 36 || this.sharedNews == 50 || this.sharedNews == 64 || this.sharedNews == 78 || this.sharedNews == 92){
-                    this.text8.visible = false;
-                    this.title8.visible = false;
-                    this.text9.visible = true;
-                    this.title9.visible = true;
-                }
-
-                if (this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
-                    this.text9.visible = false;
-                    this.title9.visible = false;
-                    this.text10.visible = true;
-                    this.title11.visible = true;
-                }
-
-                if (this.sharedNews == 10 || this.sharedNews == 24 || this.sharedNews == 38 || this.sharedNews == 52 || this.sharedNews == 66 || this.sharedNews == 80 || this.sharedNews == 94){
-                    this.text10.visible = false;
-                    this.title10.visible = false;
-                    this.text11.visible = true;
-                    this.title11.visible = true;
-                }
-
-                if (this.sharedNews == 11 || this.sharedNews == 25 || this.sharedNews == 39 || this.sharedNews == 53 || this.sharedNews == 67 || this.sharedNews == 81 || this.sharedNews == 95){
-                    this.text11.visible = false;
-                    this.title11.visible = false;
-                    this.text12.visible = true;
-                    this.title12.visible = true;
-                }
-
-                if (this.sharedNews == 12 || this.sharedNews == 26 || this.sharedNews == 40 || this.sharedNews == 54 || this.sharedNews == 68 || this.sharedNews == 82 || this.sharedNews == 96){
-                    this.text12.visible = false;
-                    this.title12.visible = false;
-                    this.text13.visible = true;
-                    this.title13.visible = true;
-                }
-
-                if (this.sharedNews == 13 || this.sharedNews == 27 || this.sharedNews == 41 || this.sharedNews == 55 || this.sharedNews == 69 || this.sharedNews == 83 || this.sharedNews == 97){
-                    this.text13.visible = false;
-                    this.title13.visible = false;
-                    this.text14.visible = true;
-                    this.title14.visible = true;
-                }
-
-                if (this.sharedNews == 14 || this.sharedNews == 28 || this.sharedNews == 42 || this.sharedNews == 56 || this.sharedNews == 70 || this.sharedNews == 84 || this.sharedNews == 98){
-                    this.text14.visible = false;
-                    this.title14.visible = false;
-                    this.text15.visible = true;
-                    this.title15.visible = true;
                 }
 
                 /* ||| SOUND ||| */
@@ -788,22 +647,22 @@ class gameplayScene extends Phaser.Scene {
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (0 = left, 1 = up, 2 = down, 3 = right)
         if (randomArrow == 0) {
-            newImage = this.add.image(490, 170, 'leftFilled').setOrigin(0.5);
+            newImage = this.add.image(490, 220, 'leftFilled').setOrigin(0.5);
             newImage.name = 'left';
             this.fallingArrows.push(newImage);
 
         } else if (randomArrow == 1) {
-            newImage = this.add.image(590, 170, 'upFilled').setOrigin(0.5);
+            newImage = this.add.image(590, 220, 'upFilled').setOrigin(0.5);
             newImage.name = 'up';
             this.fallingArrows.push(newImage);
 
         } else if (randomArrow == 2) {
-            newImage = this.add.image(690, 170, 'downFilled').setOrigin(0.5);
+            newImage = this.add.image(690, 220, 'downFilled').setOrigin(0.5);
             newImage.name = 'down';
             this.fallingArrows.push(newImage);
 
         } else if (randomArrow == 3) {
-            newImage = this.add.image(790, 170, 'rightFilled').setOrigin(0.5);
+            newImage = this.add.image(790, 220, 'rightFilled').setOrigin(0.5);
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
         }
@@ -837,4 +696,16 @@ class gameplayScene extends Phaser.Scene {
         this.trumpSound.stop();
         this.warSound.stop();
     }
+
+    showNextNews() {
+
+        this.currentNews++;
+
+        if (this.currentNews == this.newsData["fakeNews"].length) {
+            this.currentNews = 0;
+        }
+
+        this.titleNews.setText(this.newsData["fakeNews"][this.currentNews]["newspaperTitle"]);
+        this.textNews.setText(this.newsData["fakeNews"][this.currentNews]["content"]);
+    } 
 }
