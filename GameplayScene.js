@@ -171,6 +171,8 @@ class gameplayScene extends Phaser.Scene {
         var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
         var backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
 
+        /* ||| NEWS PRINCIPALES ||| */
+
         // travailler avec la visibilité pour les news
         this.title1 = this.add.text(360,90, "Journal of Times",{font:'25px jack', fill: 'black'}).setVisible(true);
         this.text1 = this.add.text(360,120, "Avocadoes from a specific mexican region make hair turn blue",{font:'20px imperator', fill: 'black'}).setVisible(true);
@@ -234,31 +236,65 @@ class gameplayScene extends Phaser.Scene {
         this.text15 = this.add.text(360,120, "University students' complaints about tiredness seems to be just a pretext to study less and less",{font:'20px imperator', fill: 'black'}).setVisible(false);
         this.text15.setWordWrapWidth(570, false);
 
-        // colonne de gauche
+        /* ||| TEXTE AVANT BOMBE||| */
+
+        var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText2 = this.add.text(640, 400, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText3 = this.add.text(700, 500, "It is very fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+
+        this.tweens.add({
+            targets: [wellText],
+            alpha: {value: 1, duration: 1000, ease: 'Power1'},
+            hold: 5000, // temps avant que la notification disparaisse
+            yoyo: true,
+            loop: false,
+            delay: 140000,
+        });
+
+        this.tweens.add({
+            targets: [wellText2],
+            alpha: {value: 1, duration: 1000, ease: 'Power1'},
+            hold: 5000, // temps avant que la notification disparaisse
+            yoyo: true,
+            loop: false,
+            delay: 155000,
+        });
+
+        this.tweens.add({
+            targets: [wellText3],
+            alpha: {value: 1, duration: 1000, ease: 'Power1'},
+            hold: 5000, // temps avant que la notification disparaisse
+            yoyo: true,
+            loop: false,
+            delay: 170000,
+        });
+
+        /* ||| COLONNE DE GAUCHE ||| */
+
         this.add.image(160, 100, 'logo').setOrigin(0.5).setScale(0.4);
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         // prototype "Notifications"
-        var backgoundNotifications = this.add.rectangle(170,300,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var backgroundNotifications = this.add.rectangle(170,300,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
         var notifications = this.add.text(170, 300, 'You have 10 new followers', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
 
         // animation des notifications
         this.tweens.add({
-            targets: [notifications, backgoundNotifications],
+            targets: [notifications, backgroundNotifications],
             alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 1500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,   
         });
 
-        var backgoundNotifications = this.add.rectangle(170,420,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var backgroundNotifications = this.add.rectangle(170,420,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
         var notifications = this.add.text(170, 420, 'Your account is trending', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
 
         // animation des notifications
         this.tweens.add({
-            targets: [notifications, backgoundNotifications],
+            targets: [notifications, backgroundNotifications],
             alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 1500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
@@ -266,13 +302,13 @@ class gameplayScene extends Phaser.Scene {
             loop: -1,  
         });
 
-        var backgoundNotifications = this.add.rectangle(170,540,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        var backgroundNotifications = this.add.rectangle(170,540,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
         var notifications = this.add.text(170, 540, 'You have 50 new followers', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
         notifications.setWordWrapWidth(300, false);
 
         // animation des notifications
         this.tweens.add({
-            targets: [notifications, backgoundNotifications],
+            targets: [notifications, backgroundNotifications],
             alpha: {value: 1, duration: 500, ease: 'Power1'},
             hold: 1500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
@@ -280,7 +316,8 @@ class gameplayScene extends Phaser.Scene {
             loop: -1,
         });
 
-        // colonne de droite 
+        /* ||| COLONNE DE DROITE ||| */
+
         this.add.text(1100, 100, 'Hot', {font:'50px jack', fill: 'black'}).setOrigin(0.5);
         
         this.anims.create({
@@ -331,10 +368,8 @@ class gameplayScene extends Phaser.Scene {
         });
 
         // labels
-        this.levelLabel = this.add.text(1015, 550, this.catchedArrows, {font: "22px imperator", fill: "blue"});
-        this.scoreLabel = this.add.text(1015, 580, this.catchedArrows, {font: "22px imperator", fill: "white"});
-        this.failLabel = this.add.text(1015, 610, this.catchedArrows, {font: "22px imperator", fill: "red"});
-        this.sharedLabel = this.add.text(990, 650, this.sharedNews, {font: "35px imperator bold", fill: "black", align: 'center', backgroundColor: "white"});
+        this.levelLabel = this.add.text(1050, 610, this.catchedArrows, {font: '25px jack', fill: "black"});
+        this.sharedLabel = this.add.text(940, 650, this.sharedNews, {font: "35px jack", fill: "black", align: 'center', backgroundColor: "white"});
 
         // text "Shared!"
         this.shared = this.add.text(640,200,"SHARED!",{font: "50px jack", fill: "#da3e52"}).setOrigin(0.5);
@@ -697,8 +732,6 @@ class gameplayScene extends Phaser.Scene {
 
         // actualisation des scores
         this.levelLabel.setText('Level : ' + this.level);
-        this.scoreLabel.setText('Catched Arrows : ' + this.catchedArrows);
-        this.failLabel.setText('Missed Arrows : ' + this.missedArrows);
         this.sharedLabel.setText(' Shared News : ' + this.sharedNews + ' ');
     }
 

@@ -1,10 +1,11 @@
 class ifNoClicks extends Phaser.Scene {
 
-    constructor(){
+    constructor() {
         super("ifNoClicks");
     }
 
-    preload(){
+    preload() {
+
         this.load.image('logo','assets/images/LOGO.png');
         this.load.image('skyline', 'assets/images/Skyline.png');
         this.load.image('cloud1', 'assets/images/cloud1.png');
@@ -14,7 +15,8 @@ class ifNoClicks extends Phaser.Scene {
         this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
     }
 
-    create(){
+    create() {
+
         this.endsong = this.sound.add("titleBruise");
         this.endsong.play();
 
@@ -32,27 +34,27 @@ class ifNoClicks extends Phaser.Scene {
 
         // passage à la scène de fin
         var next = this.add.text(640,570, "Next", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
-        next.on('pointerdown', function(){
+        next.on('pointerdown', function() {
             this.scene.start('end', {endSong: this.endsong});
         }, this);
     }
 
     // faire se déplacer les nuages
-    update(){
+    update() {
         this.moveClouds(this.cloud1, 0.4);
         this.moveClouds(this.cloud2, 0.1);
         this.moveClouds(this.cloud3, 0.3);
     }
 
-    moveClouds (cloud, speed){
+    moveClouds (cloud, speed) {
         cloud.x += speed;
 
-        if (cloud.x > config.width+150){
+        if (cloud.x > config.width+150) {
             this.resetCloudPosition(cloud);
         }
     }
 
-    resetCloudPosition (cloud){
+    resetCloudPosition (cloud) {
         cloud.x = -200;
         var randomY = Phaser.Math.Between(0, 420)
         cloud.y = randomY;
