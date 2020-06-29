@@ -87,7 +87,7 @@ class gameplayScene extends Phaser.Scene {
     }
 
     create() {
-        
+
         this.events.on('resume', this.resume, this);
 
         this.time.addEvent({
@@ -458,14 +458,14 @@ class gameplayScene extends Phaser.Scene {
                     let particles = this.add.particles("like");
 
                     let emitter = particles.createEmitter({
-                        x: currentArrow.x,
-                        y: 600,
-                        frequency: 100,
-                        alpha: 0.4,
-                        angle: {min: -180, max: 0},
-                        speed: 250,       
-                        lifespan: {min: 1000, max: 2000},
-                    });
+                        x: currentArrow.x,
+                        y: 600,
+                        frequency: 100,
+                        alpha: 0.4,
+                        angle: {min: -180, max: 0},
+                        speed: 250,       
+                        lifespan: {min: 1000, max: 2000},
+                    });
 
                     // limiter la durée de l'effet like
                     this.time.delayedCall(700, ()=>{
