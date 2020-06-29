@@ -45,11 +45,11 @@ class titleScene extends Phaser.Scene {
     // ajouter les flèches du clavier de la page 1.2
     var bravo = this.add.text(640, 100,"How to play", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5).setAlpha(0);
 
-    var howToText = this.add.text(900, 350, "Hit the arrows of your keyboard when the falling arrow is aligned with its outline. After 5 consecutives hits, a NEWS is shared.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5).setAlpha(0);
+    var howToText = this.add.text(900, 350, "Hit the arrows of your keyboard when the falling arrow is aligned with its outline. After 5 consecutives hits, a NEWS is shared. Press space to get one's wing.", {font: '30px jack', fill: '#112b1a', lineSpacing: 10}).setOrigin(0.5).setAlpha(0);
     howToText.setWordWrapWidth(600, false);
     var arrowKeys = this.add.image(300, 350, 'arrowKeys').setAlpha(0);
 
-    var playButton = this.add.text(640,520, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+    var playButton = this.add.text(640,540, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
 
     // changement entre 1.1 et 1.2
     start.on('pointerdown', function() {

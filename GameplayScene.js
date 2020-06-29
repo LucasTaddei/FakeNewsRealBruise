@@ -588,7 +588,7 @@ class gameplayScene extends Phaser.Scene {
                     this.title9.visible = true;
                 }
 
-                if(this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
+                if (this.sharedNews == 9 || this.sharedNews == 23 || this.sharedNews == 37 || this.sharedNews == 51 || this.sharedNews == 65 || this.sharedNews == 79 || this.sharedNews == 93){
                     this.text9.visible = false;
                     this.title9.visible = false;
                     this.text10.visible = true;
@@ -662,7 +662,7 @@ class gameplayScene extends Phaser.Scene {
                 this.removeArrow(currentArrow);
 
                 // le jeu termine en l'absence de clic
-                if ((this.level < 10 && this.consecutiveMissedArrows == 20) || (this.level >= 10 && this.consecutiveMissedArrows == 40)) {
+                if ((this.level < 10 && this.consecutiveMissedArrows == 20) || (this.level >= 10 && this.consecutiveMissedArrows == 50)) {
                     this.add.text(640,360,"THAT'S THE SPIRIT", {font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
                     this.time.addEvent({
                         delay: 3000,
@@ -739,7 +739,7 @@ class gameplayScene extends Phaser.Scene {
         if (isDoubleArrowTime) {
 
             //… on vérifie qu'on ne recrée pas la même flèche que la précédente
-            while (this.lastArrowType == randomArrow) {
+            while (this.lastArrowType == randomArrow || (this.lastArrowType == 1 && randomArrow == 2) || (this.lastArrowType == 2 && randomArrow == 1)) {
                 randomArrow = Math.floor(Math.random() * Math.floor(4));
             }
         }
