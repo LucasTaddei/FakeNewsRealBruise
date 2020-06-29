@@ -62,12 +62,12 @@ class gameplayScene extends Phaser.Scene {
 
         this.load.audio("mouseClick","assets/sounds/woop2.m4a");
         this.load.audio("realBruise4","assets/sounds/realbruise4.m4a");
-        this.load.audio("chants","assets/sounds/chants.wav");
-        this.load.audio("mall","assets/sounds/mall.wav");
+        this.load.audio("chants","assets/sounds/chants.m4a");
+        this.load.audio("mall","assets/sounds/mall.m4a");
         this.load.audio("screams","assets/sounds/screams.m4a");
-        this.load.audio("war","assets/sounds/war.wav");
-        this.load.audio("trump","assets/sounds/trump.wav");
-        this.load.audio("bombDrop", "assets/sounds/bombDrop.wav");
+        this.load.audio("war","assets/sounds/war.m4a");
+        this.load.audio("trump","assets/sounds/trump.m4a");
+        this.load.audio("bombDrop", "assets/sounds/bombDrop.m4a");
         this.load.audio("impact","assets/sounds/impact.m4a");
 
         this.load.image("flame1","assets/animations/flame1.png");
@@ -83,7 +83,8 @@ class gameplayScene extends Phaser.Scene {
     
     resume() {
 
-       this.lastSpaceBarPressedAt = new Date().getTime() + 750;
+        this.resumeAllAudio();
+        this.lastSpaceBarPressedAt = new Date().getTime() + 750;
     }
 
     create() {
@@ -93,6 +94,7 @@ class gameplayScene extends Phaser.Scene {
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
+                this.stopAllAudio();
                 this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews});
             }
         })
@@ -109,7 +111,7 @@ class gameplayScene extends Phaser.Scene {
         this.time.addEvent({
             delay: 180000,
             callback: ()=>{
-                this.sound.play("bombDrop",{loop: false});
+                this.bombSound.play({loop: false});
             } 
         })
 
@@ -161,8 +163,19 @@ class gameplayScene extends Phaser.Scene {
             }
         })
 
-        this.mainsong = this.sound.add("realBruise4");
-        this.mainsong.play();
+        this.mainSong = this.sound.add("realBruise4");
+        
+        // ajout de sons qui vont servir pour les événements 
+        this.mouseSound = this.sound.add('mouseClick', {loop: false});
+        this.warSound = this.sound.add('war', {loop: false});
+        this.mallSound = this.sound.add("mall", {loop: false})
+        this.screamsSound = this.sound.add("screams", {loop: false});
+        this.chantsSound = this.sound.add("chants", {loop: false});
+        this.trumpSound = this.sound.add("trump",{loop: false});
+        this.bombSound = this.sound.add("bombDrop",{loop: false});
+        this.impactSound = this.sound.add("impact",{loop: false});
+
+        this.mainSong.play();
 
         // fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);
@@ -399,16 +412,7 @@ class gameplayScene extends Phaser.Scene {
             label.setText(gameObject.name);
             label.x = gameObject.x;
             label.y = gameObject.y;
-        });  
-
-        // ajout de sons qui vont servir pour les événements 
-        this.sound.add('mouseClick', {loop: false});
-        this.sound.add('war', {loop: false});
-        this.sound.add("mall", {loop: false})
-        this.sound.add("screams", {loop: false});
-        this.sound.add("chants", {loop: false});
-        this.sound.add("trump",{loop: false});
-        this.sound.add("impact");   
+        });
     }
     
     update(time, delta) {
@@ -438,9 +442,11 @@ class gameplayScene extends Phaser.Scene {
             // le jeu se met en pause
             this.time.addEvent({
                 callback: ()=>{
+
+                    this.pauseAllAudio();
+
                     this.scene.pause();
-                    this.mainsong.pause();
-                    this.scene.launch('pause', {mainSong: this.mainsong})
+                    this.scene.launch('pause');
                 }
             });
         }
@@ -669,23 +675,23 @@ class gameplayScene extends Phaser.Scene {
 
                 // musique progressive : ajout de sons d'ambiance après un certain nombre de news partagées
                 if (this.sharedNews == 5 && this.consecutiveArrows == 4) {
-                    this.sound.play('mall',{loop: false, volume: 0.5});
+                    this.mallSound.play({loop: false, volume: 0.5});
                 }
 
                 if (this.sharedNews == 15 && this.consecutiveArrows == 4) {
-                    this.sound.play('chants', {loop: false, volume: 0.5});
+                    this.chantsSound.play({loop: false, volume: 0.5});
                 }
 
                 if (this.sharedNews == 27 && this.consecutiveArrows == 4) {
-                    this.sound.play('screams',{volume: 0.5}, {loop: false, volume: 0.1});
+                    this.screamsSound.play({volume: 0.5}, {loop: false, volume: 0.1});
                 }
 
                 if (this.sharedNews == 36 && this.consecutiveArrows == 4) {
-                    this.sound.play('trump',{detune: 0.5}, {loop: false});
+                    this.trumpSound.play({detune: 0.5}, {loop: false});
                 }
 
                 if (this.sharedNews == 42 && this.consecutiveArrows == 4) {
-                    this.sound.play('war',{loop: false});
+                    this.warSound.play({loop: false});
                 }
             }
 
@@ -703,7 +709,7 @@ class gameplayScene extends Phaser.Scene {
                         delay: 3000,
                         callback: ()=>{
                             this.scene.start('ifNoClicks');
-                            this.mainsong.stop();
+                            this.mainSong.stop();
                         }
                     });
                 }
@@ -801,5 +807,34 @@ class gameplayScene extends Phaser.Scene {
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
         }
+    }
+
+    pauseAllAudio() {
+        this.mainSong.pause();
+        this.mallSound.pause();
+        this.chantsSound.pause();
+        this.screamsSound.pause();
+        this.trumpSound.pause();
+        this.warSound.pause();
+        this.bombSound.pause();
+    }
+
+    resumeAllAudio() {
+        this.mainSong.resume();
+        this.mallSound.resume();
+        this.chantsSound.resume();
+        this.screamsSound.resume();
+        this.trumpSound.resume();
+        this.warSound.resume();
+        this.bombSound.resume();
+    }
+
+    stopAllAudio() {
+        this.mainSong.stop();
+        this.mallSound.stop();
+        this.chantsSound.stop();
+        this.screamsSound.stop();
+        this.trumpSound.stop();
+        this.warSound.stop();
     }
 }

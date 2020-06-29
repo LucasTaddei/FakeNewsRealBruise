@@ -1,9 +1,5 @@
 class pauseScene extends Phaser.Scene {
 
-    init(song){
-        this.song = song;
-    }
-
     constructor() {
         super("pause");
     }
@@ -42,7 +38,6 @@ class pauseScene extends Phaser.Scene {
             this.time.addEvent( {
                 callback: ()=>{
                     this.scene.resume("gameplay");
-                    this.song.mainSong.resume();
                     this.scene.stop();
                 }
             });

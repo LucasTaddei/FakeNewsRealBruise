@@ -1,15 +1,16 @@
 class resultScene extends Phaser.Scene {
 
-    init(score){
+    init(score) {
         this.score = score;
     }
 
-    constructor(data){
+    constructor(data) {
         console.log(data);
         super("result");
     }
 
-    preload(){
+    preload() {
+
         //Ajouts pour toutes les animations
         this.load.path = 'assets/animations/';
 
@@ -30,19 +31,20 @@ class resultScene extends Phaser.Scene {
         this.load.image('bomb14', 'Bomb14.png');
 
         this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
-        
     }
 
-    create(){
+    create() {
 
         this.endsong = this.sound.add("titleBruise");
 
         this.endsong.play();
-        
-    // Ajout du délai
-    this.time.addEvent({
+
+        // Ajout du délai
+        this.time.addEvent({
+
             delay: 1000,
             callback: ()=>{
+
                 var congrats = this.add.text(640,100, "CONGRATS! You've shared " + this.score.sharedNews + " news", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
                 var congratsText = this.add.text(640,250, "Thanks to your talent at sharing fake news " + "birthdays have been canceled forever, 100 people overdosed on avocadoes and trains are banned from Switzerland... As a result, the third world war started and 98% of the population died", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
                 congratsText.setWordWrapWidth(600, false).setAlign('center');
@@ -52,48 +54,49 @@ class resultScene extends Phaser.Scene {
                 //Créer le bouton next et lancer la phase 2 de l'animation
                 var next = this.add.text(640,570, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
                 next.on('pointerdown', function() {
-                this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPhase2');
-                
-                //supprimer les éléments de la phase 1
-                phase1.destroy();
-                next.destroy();
-                congrats.destroy();
-                congratsText.destroy();
-                scoreText.destroy();
-                failText.destroy();
-                sharedText.destroy();
-                this.tweens.add({
+
+                    this.add.sprite(640, 360, 'bomb9').setOrigin(0.5).play('bombPhase2');
+
+                    //supprimer les éléments de la phase 1
+                    phase1.destroy();
+                    next.destroy();
+                    congrats.destroy();
+                    congratsText.destroy();
+                    scoreText.destroy();
+                    failText.destroy();
+                    sharedText.destroy();
+                    this.tweens.add({
                     targets: [congrats],
-                    alpha: { value: 1, duration: 300, ease: 'Power1' },          
+                    alpha: {value: 1, duration: 300, ease: 'Power1'},          
                     delay: 700,  
-                });
+                    });
 
-                //ajouter le texte de la phase 2 à la fin de l'explosion
-                var lifeIs = this.add.text(450,50,"LIFE IS", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
-                var not = this.add.text(640,50,"NOT", {font: "60px jack", fill: "#277D44"}).setOrigin(0.5).setAlpha(0);
-                var AGame = this.add.text(830,50,"A GAME", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
-                var lesson = this.add.text(640,160,"There is no timer and no replay. The consequences of your acts are real and can affect people. Don’t act rashly. ", {font: "40px imperator", fill: "#112b1a", lineSpacing:5}).setOrigin(0.5).setAlpha(0);
-                lesson.setWordWrapWidth(800, false).setAlign('center').setAlpha(0);
-                var next3 = this.add.text(640,660, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
-                next3.on('pointerdown', function() {
-                    this.scene.start('end', {endSong: this.endsong})
-                }, this);
+                    //ajouter le texte de la phase 2 à la fin de l'explosion
+                    var lifeIs = this.add.text(450,50,"LIFE IS", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
+                    var not = this.add.text(640,50,"NOT", {font: "60px jack", fill: "#277D44"}).setOrigin(0.5).setAlpha(0);
+                    var AGame = this.add.text(830,50,"A GAME", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setAlpha(0);
+                    var lesson = this.add.text(640,160,"There is no timer and no replay. The consequences of your acts are real and can affect people. Don’t act rashly. ", {font: "40px imperator", fill: "#112b1a", lineSpacing:5}).setOrigin(0.5).setAlpha(0);
+                    lesson.setWordWrapWidth(800, false).setAlign('center').setAlpha(0);
+                    var next3 = this.add.text(640,660, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+                    next3.on('pointerdown', function() {
+                        this.scene.start('end', {endSong: this.endsong})
+                    }, this);
 
-                // délai pour l'arrivée du texte + fondu d'entrée
-                this.tweens.add({
+                    // délai pour l'arrivée du texte + fondu d'entrée
+                    this.tweens.add({
                     targets: [lifeIs, not, AGame, lesson, next3],
-                    alpha: { value: 1, duration: 300, ease: 'Power1' },          
+                    alpha: {value: 1, duration: 300, ease: 'Power1'},          
                     delay: 700,  
-                });
+                    });
 
-}, this);
+                }, this);
             }
-    })
+        })
 
-    // Créer l'animation bombe partie 1
-       this.anims.create({
-        key: 'bombPhase1',
-        frames: [
+        // Créer l'animation bombe partie 1
+        this.anims.create({
+            key: 'bombPhase1',
+            frames: [
             { key: 'bomb1' },
             { key: 'bomb2' },
             { key: 'bomb3' },
@@ -103,29 +106,27 @@ class resultScene extends Phaser.Scene {
             { key: 'bomb6.1' },
             { key: 'bomb7' },
             { key: 'bomb8', duration: 5 },
-        ],
-        frameRate: 10,
-        repeat: 0,
-    });
+            ],
+            frameRate: 10,
+            repeat: 0,
+        });
 
-    //Ajouter la première image puis lancer l'animation
-    var phase1 = this.add.sprite(640, 360, 'bomb1').setOrigin(0.5).play('bombPhase1');
+        //Ajouter la première image puis lancer l'animation
+        var phase1 = this.add.sprite(640, 360, 'bomb1').setOrigin(0.5).play('bombPhase1');
 
-    // Créer l'animation bombe partie 2
-   this.anims.create({
-    key: 'bombPhase2',
-    frames: [
-        { key: 'bomb9' },
-        { key: 'bomb10' },
-        { key: 'bomb11' },
-        { key: 'bomb12' },
-        { key: 'bomb13' },
-        { key: 'bomb14', duration: 5 },
-    ],
-    frameRate: 10,
-    repeat: 0,
-});
-
-    
-}
+        // Créer l'animation bombe partie 2
+        this.anims.create({
+            key: 'bombPhase2',
+            frames: [
+            { key: 'bomb9' },
+            { key: 'bomb10' },
+            { key: 'bomb11' },
+            { key: 'bomb12' },
+            { key: 'bomb13' },
+            { key: 'bomb14', duration: 5 },
+            ],
+            frameRate: 10,
+            repeat: 0,
+        });
+    }
 }
