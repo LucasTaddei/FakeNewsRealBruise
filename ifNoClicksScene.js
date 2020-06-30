@@ -29,7 +29,7 @@ class ifNoClicks extends Phaser.Scene {
         var bravo = this.add.text(640, 200,"You're a hero", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
         var congratulations1 = this.add.text(640, 300, "It seems you don't play by the rules... ", {font: '35px imperator', fill:'#112b1a'}).setOrigin(0.5);
         var congratulations2 = this.add.text(640, 350, "Good for you! You didn't let the system fool you into sharing fake news.", {font: '35px imperator', fill:'#112b1a'}).setOrigin(0.5);
-        var congratulations3 = this.add.text(640, 400, "You might just have saved the world from a dreadful faith.", {font: '35px imperator', fill:'#112b1a'}).setOrigin(0.5);
+        var congratulations3 = this.add.text(640, 400, "You might just have saved the world from a dreadful outcome.", {font: '35px imperator', fill:'#112b1a'}).setOrigin(0.5);
         var skyline = this.add.image(640, 360, 'skyline').setOrigin(0.5);
 
         // passage à la scène de fin

@@ -46,8 +46,8 @@ class titleScene extends Phaser.Scene {
         howToText.setWordWrapWidth(600, false);
         var arrowKeys = this.add.image(300, 350, 'arrowKeys').setAlpha(0);
 
-        var playButton = this.add.text(640,540, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
-
+        var playButton = this.add.text(640,520, "Play", {font: "60px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive().setAlpha(0);
+        
         // changement entre 1.1 et 1.2
         start.on('pointerdown', function() {
             titleTextLine1.destroy();

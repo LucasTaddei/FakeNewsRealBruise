@@ -186,7 +186,32 @@ class gameplayScene extends Phaser.Scene {
 
         // titre de la page 
         var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
+
+        
         var backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
+
+        /*
+        //Animation sortie du fond des news
+        var tween = this.tweens.add({
+            targets: backgroundNews,
+            x: 1280,
+            delay: 2000,
+            duration: 500,
+            ease: 'Power2'
+        });
+
+        
+        var backgroundNews2 = this.add.rectangle(0,135,580,130,0xE5E5E5).setOrigin(0.5);
+        
+        //Animation entrée du fond des news
+        var tween = this.tweens.add({
+            targets: backgroundNews2,
+            x: 640,
+            delay: 2500,
+            duration: 500,
+            ease: 'Power2'
+        });
+        */
 
         /* ||| NEWS PRINCIPALES ||| */
 
@@ -197,6 +222,10 @@ class gameplayScene extends Phaser.Scene {
 
         // pour que le texte ne dépasse pas le fond de la News
         this.textNews.setWordWrapWidth(570, false);
+
+        //ajout de colonne à droite et à gauche pour que les news et le fond passent derrière
+        var columnRight = this.add.rectangle(1110,360,340,720,0x65FF99).setOrigin(0.5);
+        var columnLeft = this.add.rectangle(170,360,340,720,0x65FF99).setOrigin(0.5);
 
         /* ||| TEXTE AVANT BOMBE||| */
 
@@ -211,7 +240,7 @@ class gameplayScene extends Phaser.Scene {
         this.tweens.add({
             targets: [wellText],
             alpha: {value: 1, duration: 1000, ease: 'Power1'},
-            hold: 5000, // temps avant que la notification disparaisse
+            hold: 5000, 
             yoyo: true, // effet miroir de l'animation
             loop: false,
             delay: 140000,
@@ -220,7 +249,7 @@ class gameplayScene extends Phaser.Scene {
         this.tweens.add({
             targets: [wellText2],
             alpha: {value: 1, duration: 1000, ease: 'Power1'},
-            hold: 5000, // temps avant que la notification disparaisse
+            hold: 5000, 
             yoyo: true, // effet miroir de l'animation
             loop: false,
             delay: 155000,
@@ -365,7 +394,7 @@ class gameplayScene extends Phaser.Scene {
 
         // labels
         this.levelLabel = this.add.text(1050, 610, this.catchedArrows, {font: '25px jack', fill: "black"});
-        this.sharedLabel = this.add.text(940, 650, this.sharedNews, {font: "35px jack", fill: "black", align: 'center', backgroundColor: "white"});
+        this.sharedLabel = this.add.text(930, 650, this.sharedNews, {font: "35px jack", fill: "black", align: 'center', backgroundColor: "white"});
 
         // text "Shared!"
         this.shared = this.add.text(640,200,"SHARED!",{font: "50px jack", fill: "#da3e52"}).setOrigin(0.5);
@@ -396,6 +425,7 @@ class gameplayScene extends Phaser.Scene {
             label.x = gameObject.x;
             label.y = gameObject.y;
         });
+        
     }
     
     update(time, delta) {
@@ -497,6 +527,8 @@ class gameplayScene extends Phaser.Scene {
                     this.time.delayedCall(700, ()=>{
                         emitter.frequency = -1;
                     });
+
+                    
 
                 } else if (this.consecutiveArrows != 5) {
                     // "Share" n'est plus visible après combo
@@ -624,7 +656,7 @@ class gameplayScene extends Phaser.Scene {
 
         // actualisation des scores
         this.levelLabel.setText('Level : ' + this.level);
-        this.sharedLabel.setText(' Shared News : ' + this.sharedNews + ' ');
+        this.sharedLabel.setText(' Shared News : ' + this.sharedNews + '  ');
     }
 
     // suppression de la flèche du tableau ainsi que son index
@@ -724,8 +756,10 @@ class gameplayScene extends Phaser.Scene {
         this.warSound.stop();
     }
 
-    showNextNews() {
 
+   
+    showNextNews() {
+ 
         this.currentNews++;
 
         if (this.currentNews == this.newsData["fakeNews"].length) {
