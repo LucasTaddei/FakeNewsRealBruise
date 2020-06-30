@@ -59,7 +59,7 @@
 		{
 			"id":9,
 			"newspaperTitle":"24 Leurres",
-			"content":"The cheese Vacherin fribourgeois has calming attributes, especially when melted in Fondue",
+			"content":"The cheese Vacherin fribourgeois has calming attributes, especially when melted in a Fondue",
 			"category":"Gastronomie",
 			"hashtag":"#Ilovevacherin"
 		},
@@ -107,36 +107,36 @@
 		},
 		{
 			"id":16,
-			"newspaperTitle":"LEQUASIJOURNAL",
-			"content":"La COP21, sommet international sur les questions climatiques, se serait enfin engagé à punir pénalement les industries polluantes et de reverser les amendes aux plus pauvres",
+			"newspaperTitle":"The Guardiner",
+			"content":"The COP21, the international climate change conference, has come to the decision that all polluting industries are to be fined and the money thus collected will go to the poor",
 			"category":"écologie",
 			"hashtag":"#COP21bestworld"
 		},
 		{
 			"id":17,
 			"newspaperTitle":"The New York Dime",
-			"content":"Manger cinq fruits et légumes par jour, une invention des maraîchers pour vendre leurs produits",
+			"content":"Eating five fruits and vegetables a day; an invention from farmers to sell more of their products",
 			"category":"nourriture & santé",
 			"hashtag":"#fruitlégumepasessentiels"
 		},
 		{
 			"id":18,
 			"newspaperTitle":"Daily Bruise",
-			"content":"D'après une toute récente étude du professeur Jene Mangerien, grâce à une mutation génétique spontanée, le corps humain n'aurait plus besoin de nourriture pour survivre",
+			"content":"According to a recent studies by Pr. Jene Mangerien, the human body doesn't need nutriments to sustain itself anymore thanks to a new spontaneous mutation in our genetic codes",
 			"category":"Science",
 			"hashtag":"#nofood"
 		},
 		{
 			"id":19,
 			"newspaperTitle":"24 leurres",
-			"content":"Dès l'été prochain, dû à la fonte importante des glaciers, la Confédération interdira la consommation de glaces sur les bord du léman",
+			"content":"As of this summer, the swiss governement has forbbiden the consumption of ice cream in order to prevent the melting of glaciers",
 			"category":"Suisse",
 			"hashtag":"#plusdeglaciersplusdeglaces"
 		},
 		{
 			"id":20,
 			"newspaperTitle":"New York Lost",
-			"content":"Ainsi que l'avait prédis Einstein, les abeilles, conscientes de leurs importances, se seraient misent en grève jusqu'à ce qu'elles obtiennent de meilleures conditions de travail",
+			"content":"As Einstein predicted, bees, aware of their importance, are on strike until they get better work conditions",
 			"category":"Environnement",
 			"hashtag":"#beesStrike"
 		}
