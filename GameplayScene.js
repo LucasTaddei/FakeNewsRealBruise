@@ -202,20 +202,17 @@ class gameplayScene extends Phaser.Scene {
 
         var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         var wellText2 = this.add.text(640, 350, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText3 = wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        
-        // if (this.level <= 5) {
-        //     wellText3 = this.add.text(680, 400, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-
-        // } else {
-        //     wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        // }
+        var wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        // si le joueur partage moins de dix news
+        var wellText4 = this.add.text(680, 400, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        // Si le joueur monte des niveaux sans partager de news
+        var wellText5 = this.add.text(680, 400, "Eheh, you're a smart boy.", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({
             targets: [wellText],
             alpha: {value: 1, duration: 1000, ease: 'Power1'},
             hold: 5000, // temps avant que la notification disparaisse
-            yoyo: true,
+            yoyo: true, // effet miroir de l'animation
             loop: false,
             delay: 140000,
         });
@@ -224,19 +221,49 @@ class gameplayScene extends Phaser.Scene {
             targets: [wellText2],
             alpha: {value: 1, duration: 1000, ease: 'Power1'},
             hold: 5000, // temps avant que la notification disparaisse
-            yoyo: true,
+            yoyo: true, // effet miroir de l'animation
             loop: false,
             delay: 155000,
         });
 
-        this.tweens.add({
-            targets: [wellText3],
-            alpha: {value: 1, duration: 1000, ease: 'Power1'},
-            hold: 5000, // temps avant que la notification disparaisse
-            yoyo: true,
-            loop: false,
+        this.time.addEvent({
+
             delay: 170000,
-        });
+            loop: false,
+            callback: ()=>{
+                
+                // si le joueur a partagé moins de dix news sans monter de niveaux (il n'a pas joué le jeu)
+                if (this.level <= 10 && this.sharedNews <= 10) {
+                    this.tweens.add({
+                        targets: [wellText4],
+                        alpha: {value: 1, duration: 1000, ease: 'Power1'},
+                        hold: 5000, // temps avant que la notification disparaisse
+                        yoyo: true, // effet miroir de l'animation
+                        loop: false,
+                    });
+
+                // si le joueur comprend qu'il est possible de monter de niveaux sans partager de news pour autant
+                } else if (this.level > 10 && this.sharedNews <= 10) {
+                    this.tweens.add({
+                        targets: [wellText5],
+                        alpha: {value: 1, duration: 1000, ease: 'Power1'},
+                        hold: 5000, // temps avant que la notification disparaisse
+                        yoyo: true, // effet miroir de l'animation
+                        loop: false,
+                    });
+
+                // si le joueur joue le jeu normalement
+                } else {
+                    this.tweens.add({
+                        targets: [wellText3],
+                        alpha: {value: 1, duration: 1000, ease: 'Power1'},
+                        hold: 5000, // temps avant que la notification disparaisse
+                        yoyo: true, // effet miroir de l'animation
+                        loop: false,
+                    });
+                }
+            }
+        })
 
         /* ||| COLONNE DE GAUCHE ||| */
 
