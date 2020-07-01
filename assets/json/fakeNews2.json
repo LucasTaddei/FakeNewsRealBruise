@@ -5,140 +5,188 @@
 			"newspaperTitle":"Journal of Times",
 			"content":"Avocadoes from a specific mexican region make hair turn blue",
 			"category":"beauté & santé",
-			"hashtag":"#cheveuxbleus"
+			"hashtag":["#avocado", "#pinata", "#bluewarmestcolor", "#healty", "#tourism"]
 		},
 		{
 			"id":2,
 			"newspaperTitle":"The Flying Duck",
 			"content":"Swiss 1000CHF banknotes will be distributed by the governement to all who come in front of the Federal Palace in Bern",
 			"category":"économie",
-			"hashtag":"#1000chftropdebol"
+			"hashtag":["#1000chflucky", "#bank", "#FederalPalace", "#Bern", "#allrich"]
 		},
 		{
 			"id":3,
 			"newspaperTitle":"The Nightly Telegraph",
 			"content":"Jessica, the famous filmmaker, declared she hates ukulele since the unexpected success of her short film about digital humanities",
 			"category":"people",
-			"hashtag":"#JessicaUkulélé"
+			"hashtag":["#JessicaUkulélé", "#digitalhumanities"]
 		},
 		{
 			"id":4,
 			"newspaperTitle":"The Washington Toast",
 			"content":"Dream jobs promised by Donald Trump for all who present themselves every first Mondays of each month in front of the White House",
 			"category":"breaking news",
-			"hashtag":"#Trumpbestpresident"
+			"hashtag":["#Trumpbestpresident"]
 		},
 		{
 			"id":5,
 			"newspaperTitle":"The Gardiner",
 			"content":"In the small village of la Brévine, a dog was seen giving finds to people complaining about the cold weather",
 			"category":"Suisse",
-			"hashtag":"#chienbrévine"
+			"hashtag":["#chienbrévine"]
 		},
 		{
 			"id":6,
 			"newspaperTitle":"Naturally",
 			"content":"According to a very serious study published by the University of Stafford, people with big feet and long noses don't get along with their partner's elephant",
 			"category":"Science",
-			"hashtag":"#étudesstaffordutiles"
+			"hashtag": ["#étudesstaffordutiles"]
 		},
 		{
 			"id":7,
 			"newspaperTitle":"The New York Dime",
 			"content":"According an investigation from the New York Lost, Fake news do NOT constitute a big danger for democraties",
 			"category":"Presse",
-			"hashtag":"#fakenewspassigrave"
+			"hashtag": ["#fakenewspassigrave"]
 		},
 		{
 			"id":8,
 			"newspaperTitle":"Daily Bruise",
 			"content":"The total weight of all châteaux de la Loire is equivalent to the yearly average wine consumption for swiss residents",
 			"category":"Suisse",
-			"hashtag":"#châteauxdevin"
+			"hashtag": ["#châteauxdevin"]
 		},
 		{
 			"id":9,
 			"newspaperTitle":"24 Leurres",
 			"content":"The cheese Vacherin fribourgeois has calming attributes, especially when melted in a Fondue",
 			"category":"Gastronomie",
-			"hashtag":"#Ilovevacherin"
+			"hashtag": ["#Ilovevacherin"]
 		},
 		{
 			"id":10,
 			"newspaperTitle":"New York Lost",
 			"content":"According to Tinkerbell, Peter Pan's existence has been proven",
 			"category":"Cinéma",
-			"hashtag":"#PeterPanisreal"
+			"hashtag": ["#PeterPanisreal"]
 		},
 		{
 			"id":11,
 			"newspaperTitle":"The Minute",
 			"content":"After years of waiting, swiss trains will finally be free for all citizens who will want to use them",
 			"category":"Suisse",
-			"hashtag":"#GreenSwizerland"
+			"hashtag": ["#GreenSwizerland"]
 		},
 		{
 			"id":12,
 			"newspaperTitle":"The Flying Duck",
 			"content":"Avancer sur les mains rejetterait moins de CO2 dans l'atmosphère selon une étude de l'université de la Chaux-de-fonds",
 			"category":"écologie",
-			"hashtag":"#walkonmyhandsisgreat"
+			"hashtag": ["#walkonmyhandsisgreat"]
 		},
 		{
 			"id":13,
 			"newspaperTitle":"The Morning Ghost",
 			"content":"Eating five carambars per day makes you look like a million dollars",
 			"category":"nutrition",
-			"hashtag":"#lovecarambar"
+			"hashtag": ["#lovecarambar"]
 		},
 		{
 			"id":14,
 			"newspaperTitle":"The Washington Toast",
 			"content":"Water and soil pollution could be a 21st century invention created with the sole purpose of generating fear",
 			"category":"écologie",
-			"hashtag":"#Everythingisfine"
+			"hashtag": ["#Everythingisfine"]
 		},
 		{
 			"id":15,
 			"newspaperTitle":"The Yearly Mail",
 			"content":"University students' complaints about tiredness seems to be just a pretext to study less and less",
 			"category":"études",
-			"hashtag":"#slackerstudents"
+			"hashtag": ["#slackerstudents"]
 		},
 		{
 			"id":16,
 			"newspaperTitle":"The Guardiner",
 			"content":"The COP21, the international climate change conference, has come to the decision that all polluting industries are to be fined and the money thus collected will go to the poor",
 			"category":"écologie",
-			"hashtag":"#COP21bestworld"
+			"hashtag": ["#COP21bestworld"]
 		},
 		{
 			"id":17,
 			"newspaperTitle":"The New York Dime",
 			"content":"Eating five fruits and vegetables a day; an invention from farmers to sell more of their products",
 			"category":"nourriture & santé",
-			"hashtag":"#fruitlégumepasessentiels"
+			"hashtag": ["#fruitlégumepasessentiels"]
 		},
 		{
 			"id":18,
 			"newspaperTitle":"Daily Bruise",
 			"content":"According to a recent studies by Pr. Jene Mangerien, the human body doesn't need nutriments to sustain itself anymore thanks to a new spontaneous mutation in our genetic codes",
 			"category":"Science",
-			"hashtag":"#nofood"
+			"hashtag": ["#nofood"]
 		},
 		{
 			"id":19,
 			"newspaperTitle":"24 leurres",
 			"content":"As of this summer, the swiss governement has forbbiden the consumption of ice cream in order to prevent the melting of glaciers",
 			"category":"Suisse",
-			"hashtag":"#plusdeglaciersplusdeglaces"
+			"hashtag": ["#plusdeglaciersplusdeglaces"]
 		},
 		{
 			"id":20,
 			"newspaperTitle":"New York Lost",
 			"content":"As Einstein predicted, bees, aware of their importance, are on strike until they get better work conditions",
 			"category":"Environnement",
-			"hashtag":"#beesStrike"
+			"hashtag": ["#beesStrike"]
 		}
-	]
+	],
+
+    "notifications":[
+
+       {
+        "id":1,
+        "notif":"You have 10 new followers"
+       },
+       {
+        "id":2,
+        "notif":"Barack Obama follows you"
+       },
+       {
+        "id":3,
+        "notif":"Your account is trending!"
+       },
+       {
+        "id":4,
+        "notif":"You have 50 new followers"
+       },
+       {
+        "id":5,
+        "notif":"Kim Kardashian follows you"
+       },
+       {
+        "id":6,
+        "notif":"Your account is the most popular on the plateform"
+       },
+       {
+        "id":7,
+        "notif":"Ueli Maurer follows you"
+       },
+       {
+        "id":8,
+        "notif":"Even Donald Trump likes your account"
+       },
+       {
+        "id":9,
+        "notif":"You're so popular you should try to run for the U.S. presidency"
+       },
+       {
+        "id":10,
+        "notif":"100'000'000 new followers"
+       },
+       {
+        "id":11,
+        "notif":"You're the king/queen of the plateform!"
+       }
+    ]
 }

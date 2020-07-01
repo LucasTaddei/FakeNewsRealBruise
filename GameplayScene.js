@@ -144,6 +144,17 @@ class gameplayScene extends Phaser.Scene {
                     this.fallingDelay /= 1.033;
 
                     this.level++;
+                    
+                    // // notification de level UP, mais pas nécessaire
+                    // this.levelText = this.add.text(650, 800, "LEVEL UP!", {font:'40px jack', fill: 'green'}).setOrigin(0.5).setAlpha(0);
+                    // this.tweens.add({
+                    //     targets: [this.levelText],
+                    //     alpha: {value: 1, duration: 500, ease: 'Power1'},
+                    //     hold: 100, // temps avant que la notification disparaisse
+                    //     yoyo: true, // effet miroir de l'animation
+                    //     loop: false,
+                    // });
+
                 }
                 
                 this.lastScoreMissedArrows = this.missedArrows;
@@ -183,35 +194,18 @@ class gameplayScene extends Phaser.Scene {
 
         // fond blanc "zone de jeu"
         var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);
+        backgroundRectangle.depth = -4;
 
         // titre de la page 
         var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
 
+        this.backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
+        this.backgroundNews.depth = -2;
         
-        var backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
+        this.backgroundNews2 = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
+        this.backgroundNews2.depth = -2;
+        this.alpha = 0;
 
-        /*
-        //Animation sortie du fond des news
-        var tween = this.tweens.add({
-            targets: backgroundNews,
-            x: 1280,
-            delay: 2000,
-            duration: 500,
-            ease: 'Power2'
-        });
-
-        
-        var backgroundNews2 = this.add.rectangle(0,135,580,130,0xE5E5E5).setOrigin(0.5);
-        
-        //Animation entrée du fond des news
-        var tween = this.tweens.add({
-            targets: backgroundNews2,
-            x: 640,
-            delay: 2500,
-            duration: 500,
-            ease: 'Power2'
-        });
-        */
 
         /* ||| NEWS PRINCIPALES ||| */
 
@@ -220,8 +214,21 @@ class gameplayScene extends Phaser.Scene {
         this.titleNews = this.add.text(360,90, this.newsData["fakeNews"][0]["newspaperTitle"], {font:'25px jack', fill: 'black'}).setVisible(true);
         this.textNews = this.add.text(360,120, this.newsData["fakeNews"][0]["content"], {font:'20px imperator', fill: 'black'}).setVisible(true);
 
+        this.titleNews.depth = -1;
+        this.textNews.depth = -1;
+
         // pour que le texte ne dépasse pas le fond de la News
         this.textNews.setWordWrapWidth(570, false);
+
+        this.titleNews2 = this.add.text(360,90, this.newsData["fakeNews"][0]["newspaperTitle"], {font:'25px jack', fill: 'black'}).setAlpha(0);
+        this.textNews2 = this.add.text(360,120, this.newsData["fakeNews"][0]["content"], {font:'20px imperator', fill: 'black'}).setAlpha(0);
+
+        this.titleNews2.depth = -1;
+        this.textNews2.depth = -1;
+
+        // pour que le texte ne dépasse pas le fond de la News
+        this.textNews2.setWordWrapWidth(570, false);
+
 
         //ajout de colonne à droite et à gauche pour que les news et le fond passent derrière
         var columnRight = this.add.rectangle(1110,360,340,720,0x65FF99).setOrigin(0.5);
@@ -230,12 +237,12 @@ class gameplayScene extends Phaser.Scene {
         /* ||| TEXTE AVANT BOMBE||| */
 
         var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText2 = this.add.text(640, 350, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText3 = this.add.text(680, 400, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText2 = this.add.text(640, 380, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText3 = this.add.text(690, 460, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         // si le joueur partage moins de dix news
-        var wellText4 = this.add.text(680, 400, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText4 = this.add.text(690, 460, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         // Si le joueur monte des niveaux sans partager de news
-        var wellText5 = this.add.text(680, 400, "Eheh, you're a smart boy.", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText5 = this.add.text(690, 460, "Eheh, you're a smart boy.", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({
             targets: [wellText],
@@ -360,23 +367,23 @@ class gameplayScene extends Phaser.Scene {
     
         this.add.sprite(1180, 80, 'flame1').setScale(3.4).play('flames');
 
-        var hashtag1 = this.add.text(1100, 200, '#sharingiscaring', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        var hashtag2 = this.add.text(1100, 270, '#savetheworld', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        var hashtag3 = this.add.text(1100, 340, '#avocado', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        var hashtag4 = this.add.text(1100, 410, '#lovetrump', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        var hashtag5 = this.add.text(1100, 480, '#helloworld', {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag1 = this.add.text(1100,200, this.newsData["fakeNews"][0]["hashtag"][0], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag2 = this.add.text(1100,270, this.newsData["fakeNews"][0]["hashtag"][1], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag3 = this.add.text(1100,340, this.newsData["fakeNews"][0]["hashtag"][2], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag4 = this.add.text(1100,410, this.newsData["fakeNews"][0]["hashtag"][3], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag5 = this.add.text(1100,480, this.newsData["fakeNews"][0]["hashtag"][4], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({
-            targets: [hashtag1,hashtag4],
-            alpha: {value: 1, duration: 500, ease: 'Power1'},
+            targets: [this.hashtag1,this.hashtag4],
+            alpha: {value: 1, duration: 700, ease: 'Power1'},
             hold: 2500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,   
         });
 
         this.tweens.add({
-            targets: [hashtag2,hashtag5],
-            alpha: {value: 1, duration: 500, ease: 'Power1'},
+            targets: [this.hashtag2,this.hashtag5],
+            alpha: {value: 1, duration: 700, ease: 'Power1'},
             hold: 2500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,  
@@ -384,8 +391,8 @@ class gameplayScene extends Phaser.Scene {
         });
 
         this.tweens.add({
-            targets: [hashtag3],
-            alpha: {value: 1, duration: 500, ease: 'Power1'},
+            targets: [this.hashtag3],
+            alpha: {value: 1, duration: 700, ease: 'Power1'},
             hold: 2500, // temps avant que la notification disparaisse
             yoyo: true, // effet miroir de l'animation
             loop: -1,   
@@ -401,15 +408,7 @@ class gameplayScene extends Phaser.Scene {
         this.shared.visible = false;
         this.shared.setAngle(-15);
 
-        // text "disorder!"
-        this.disorder = this.add.text(640,200,"DISORDER!",{font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-        this.disorder.visible = false;
-        this.disorder.setAngle(-15);
-
-        // text "death!
-        this.death = this.add.text(640,200,"DEATH!",{font: "40px jack", fill: "#da3e52"}).setOrigin(0.5);
-        this.death.visible = false;
-        this.death.setAngle(-15);
+        this.shared.depth = 3;
 
         var label = this.add.text(0, 0, '', {font: "48px Arial Black", fill: "#c51b7d" });
         label.setStroke('#de77ae', 8);
@@ -473,28 +472,28 @@ class gameplayScene extends Phaser.Scene {
             if ((new Date().getTime() - this.lastKeyPressedAt <= this.keyDownDelay) && currentArrow.y >= 600 && currentArrow.y <= 650) {
 
                 if (isLeftKeyPressed && currentArrow.name == "left") {
-                    this.sound.play('impact', {volume:0.2});
+                    this.sound.play('impact', {volume:0.5});
                     this.catchedArrows++;
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
 
                 } else if (isUpKeyPressed && currentArrow.name == "up") {
-                    this.sound.play('impact', {volume:0.2});
+                    this.sound.play('impact', {volume:0.5});
                     this.catchedArrows++;
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
 
                 } else if (isDownKeyPressed && currentArrow.name == "down") {
-                    this.sound.play('impact', {volume:0.2});
+                    this.sound.play('impact', {volume:0.5});
                     this.catchedArrows++;
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
                     this.moveArrowToCapturedArray(currentArrow);
 
                 } else if (isRightKeyPressed && currentArrow.name == "right") {
-                    this.sound.play('impact', {volume:0.2});
+                    this.sound.play('impact', {volume:0.5});
                     this.catchedArrows++;
                     this.consecutiveArrows++;
                     this.consecutiveMissedArrows = 0;
@@ -509,6 +508,27 @@ class gameplayScene extends Phaser.Scene {
                     this.sound.play('mouseClick',{volume: 0.2});
 
                     this.showNextNews();
+
+                    // // animation sortie du fond des news
+                    // this.tween = this.tweens.add({
+                    //     targets: this.backgroundNews,
+                    //     x: 1280,
+                    //     delay: 2000,
+                    //     duration: 500,
+                    //     ease: 'Power2'
+                    // });
+                    
+                    // var backgroundNews2 = this.add.rectangle(0,135,580,130,0xE5E5E5).setOrigin(0.5);
+                    // backgroundNews2.depth = -2;
+                    
+                    // // animation entrée du fond des news
+                    // this.tween = this.tweens.add({
+                    //     targets: backgroundNews2,
+                    //     x: 640,
+                    //     delay: 2500,
+                    //     duration: 500,
+                    //     ease: 'Power2'
+                    // });
 
                     // ajouter des petits like-particules
                     let particles = this.add.particles("like");
@@ -528,19 +548,16 @@ class gameplayScene extends Phaser.Scene {
                         emitter.frequency = -1;
                     });
 
-                    
-
                 } else if (this.consecutiveArrows != 5) {
                     // "Share" n'est plus visible après combo
                     this.shared.visible = false;
-                    this.disorder.visible = false;
-                    this.death.visible = false
 
                 } else if (this.consecutiveArrows == 5 && this.sharedNews >= 26 && this.sharedNews < 44) {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
-                    this.disorder.visible = true;
-                    this.sound.play('mouseClick',{volume: 0.2})
+                    this.shared.visible = true;
+                    this.shared.setText("DISORDER!");
+                    this.sound.play('mouseClick',{volume: 0.2});
 
                     this.showNextNews();
 
@@ -565,8 +582,9 @@ class gameplayScene extends Phaser.Scene {
                 } else if (this.consecutiveArrows == 5 && this.sharedNews >= 44){
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
-                    this.death.visible = true;
-                    this.sound.play('mouseClick',{volume: 0.2})
+                    this.shared.visible = true;
+                    this.shared.setText("DEATH!");
+                    this.sound.play('mouseClick',{volume: 0.2});
 
                     this.showNextNews();
 
@@ -706,25 +724,27 @@ class gameplayScene extends Phaser.Scene {
 
         // ajout d'une flèche aléatoire dans le tableau selon sa position (0 = left, 1 = up, 2 = down, 3 = right)
         if (randomArrow == 0) {
-            newImage = this.add.image(490, 220, 'leftFilled').setOrigin(0.5);
+            newImage = this.add.image(490, 210, 'leftFilled').setOrigin(0.5);
             newImage.name = 'left';
             this.fallingArrows.push(newImage);
 
         } else if (randomArrow == 1) {
-            newImage = this.add.image(590, 220, 'upFilled').setOrigin(0.5);
+            newImage = this.add.image(590, 210, 'upFilled').setOrigin(0.5);
             newImage.name = 'up';
             this.fallingArrows.push(newImage);
 
         } else if (randomArrow == 2) {
-            newImage = this.add.image(690, 220, 'downFilled').setOrigin(0.5);
+            newImage = this.add.image(690, 210, 'downFilled').setOrigin(0.5);
             newImage.name = 'down';
             this.fallingArrows.push(newImage);
 
         } else if (randomArrow == 3) {
-            newImage = this.add.image(790, 220, 'rightFilled').setOrigin(0.5);
+            newImage = this.add.image(790, 210, 'rightFilled').setOrigin(0.5);
             newImage.name = 'right';
             this.fallingArrows.push(newImage);
         }
+
+        newImage.depth = -3;
     }
 
     pauseAllAudio() {
@@ -756,8 +776,7 @@ class gameplayScene extends Phaser.Scene {
         this.warSound.stop();
     }
 
-
-   
+    // animation du passage à la news suivante
     showNextNews() {
  
         this.currentNews++;
@@ -766,7 +785,102 @@ class gameplayScene extends Phaser.Scene {
             this.currentNews = 0;
         }
 
+        this.shared.alpha = 1;
+        this.shared.y = 200;
+
+        this.backgroundNews2.y = this.backgroundNews.y;
+        this.titleNews2.y = this.titleNews.y;
+        this.textNews2.y = this.textNews.y;
+
+        this.titleNews2.setText(this.titleNews.text);
+        this.textNews2.setText(this.textNews.text);
+        
+        this.backgroundNews2.alpha = 1;
+        this.titleNews2.alpha = 1;
+        this.textNews2.alpha = 1;
+
+        this.backgroundNews.alpha = 0;
+        this.titleNews.alpha = 0;
+        this.textNews.alpha = 0;
+
         this.titleNews.setText(this.newsData["fakeNews"][this.currentNews]["newspaperTitle"]);
         this.textNews.setText(this.newsData["fakeNews"][this.currentNews]["content"]);
+
+        this.tween = this.tweens.add({
+
+            targets: [this.backgroundNews, this.titleNews, this.textNews],
+            duration: 2000,
+            alpha: 1,
+            ease: "Power1",
+        });
+
+        this.tween = this.tweens.add({
+
+            targets: [this.shared],
+            y: {
+                getStart: () => this.shared.y,
+                getEnd: () => this.shared.y + 350,
+            },
+            duration: 1000,
+            alpha: 0,
+            ease: "Power1",
+        });
+
+        this.tween = this.tweens.add({
+
+            targets: [this.backgroundNews2],
+            y: {
+                getStart: () => this.backgroundNews2.y,
+                getEnd: () => this.backgroundNews2.y + 350,
+            },
+            duration: 1000,
+            alpha: 0,
+            ease: "Power1",
+        });
+
+        this.tween = this.tweens.add({
+
+            targets: [this.titleNews2],
+            y: {
+                getStart: () => this.titleNews2.y,
+                getEnd: () => this.titleNews2.y + 350,
+            },
+            duration: 1000,
+            alpha: 0,
+            ease: "Power1",
+        });
+
+        this.tween = this.tweens.add({
+
+            targets: [this.textNews2],
+            y: {
+                getStart: () => this.textNews2.y,
+                getEnd: () => this.textNews2.y + 350,
+            },
+            duration: 1000,
+            alpha: 0,
+            ease: "Power1",
+        });
+
+
+        if (this.newsData["fakeNews"][this.currentNews]["hashtag"][0]) {
+            this.hashtag1.setText(this.newsData["fakeNews"][this.currentNews]["hashtag"][0]);
+        }
+
+        if (this.newsData["fakeNews"][this.currentNews]["hashtag"][1]) {
+            this.hashtag2.setText(this.newsData["fakeNews"][this.currentNews]["hashtag"][1]);
+        }
+
+        if (this.newsData["fakeNews"][this.currentNews]["hashtag"][2]) {
+            this.hashtag3.setText(this.newsData["fakeNews"][this.currentNews]["hashtag"][2]);
+        }
+
+        if (this.newsData["fakeNews"][this.currentNews]["hashtag"][3]) {
+            this.hashtag4.setText(this.newsData["fakeNews"][this.currentNews]["hashtag"][3]);
+        }
+        
+        if (this.newsData["fakeNews"][this.currentNews]["hashtag"][4]) {
+            this.hashtag5.setText(this.newsData["fakeNews"][this.currentNews]["hashtag"][4]);
+        }
     } 
 }
