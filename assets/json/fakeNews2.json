@@ -68,7 +68,7 @@
 			"newspaperTitle":"New York Lost",
 			"content":"According to Tinkerbell, Peter Pan's existence has been proven",
 			"category":"Cinéma",
-			"hashtag": ["#PeterPanisreal", "#Tinkerbell", "#whereiscaptainhook", "#IloveDisney", "#wewantprooves"]
+			"hashtag": ["#PeterPanisreal", "#Tinkerbell", "#whereiscaptainhook", "#loveDisney", "#wewantprooves"]
 		},
 		{
 			"id":11,
@@ -89,42 +89,42 @@
 			"newspaperTitle":"The Morning Ghost",
 			"content":"Eating five carambars per day makes you look like a million dollars",
 			"category":"nutrition",
-			"hashtag": ["#lovecarambar", "#", "#", "#", "#"]
+			"hashtag": ["#lovecarambar", "#baby", "#nutrition", "#caramba", "#whereisthejournalist"]
 		},
 		{
 			"id":14,
 			"newspaperTitle":"The Washington Toast",
 			"content":"Water and soil pollution could be a 21st century invention created with the sole purpose of generating fear",
 			"category":"écologie",
-			"hashtag": ["#Everythingisfine", "#", "#", "#", "#"]
+			"hashtag": ["#everythingisfine", "#fear", "#21stcentury", "#greenution", "#nomoreidea"]
 		},
 		{
 			"id":15,
 			"newspaperTitle":"The Yearly Mail",
 			"content":"University students' complaints about tiredness seems to be just a pretext to study less and less",
 			"category":"études",
-			"hashtag": ["#slackerstudents", "#", "#", "#", "#"]
+			"hashtag": ["#slackerstudents", "#Beaude", "#whereisGunti", "#lazy", "#tomuchworkmake"]
 		},
 		{
 			"id":16,
 			"newspaperTitle":"The Guardiner",
 			"content":"The COP21, the international climate change conference, has come to the decision that all polluting industries are to be fined and the money thus collected will go to the poor",
 			"category":"écologie",
-			"hashtag": ["#COP21bestworld", "#", "#", "#", "#"]
+			"hashtag": ["#COP21bestworld", "#lol", "#climatechange", "#whereisGreta", "#poorworld"]
 		},
 		{
 			"id":17,
 			"newspaperTitle":"The New York Dime",
 			"content":"Eating five fruits and vegetables a day; an invention from farmers to sell more of their products",
 			"category":"nourriture & santé",
-			"hashtag": ["#legumesnotessential", "#Ilovepizza", "#saladboy", "#farmersindustry", "#broccolikilledaliens"]
+			"hashtag": ["#legumesnotessential", "#lovepizza", "#saladboy", "#farmersindustry", "#broccolikilledaliens"]
 		},
 		{
 			"id":18,
 			"newspaperTitle":"Daily Bruise",
 			"content":"According to a recent studies by Pr. Jene Mangerien, the human body doesn't need nutriments to sustain itself anymore thanks to a new spontaneous mutation in our genetic codes",
 			"category":"Science",
-			"hashtag": ["#nofood", "#Raoult", "#Ilovepizza", "#mutation", "#CRISPR-Cas9"]
+			"hashtag": ["#nofood", "#Raoult", "#lovepizza", "#mutation", "#CRISPR-Cas9"]
 		},
 		{
 			"id":19,
