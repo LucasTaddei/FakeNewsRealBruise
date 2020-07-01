@@ -36,11 +36,10 @@ class gameplayScene extends Phaser.Scene {
         this.level = 1;
 
         this.scoreLabel;
-        this.failLabel
+        this.failLabel;
         this.sharedLabel;
 
         this.newArrowsTimer; 
-
         this.currentNews = 0;
 
         // variables de gestion des délais de frappe
@@ -62,7 +61,6 @@ class gameplayScene extends Phaser.Scene {
         
         this.load.image('logo','assets/images/LOGO.png');
 
-        this.load.audio("mouseClick","assets/sounds/woop2.m4a");
         this.load.audio("realBruise4","assets/sounds/realbruise4.m4a");
         this.load.audio("chants","assets/sounds/chants.m4a");
         this.load.audio("mall","assets/sounds/mall.m4a");
@@ -181,7 +179,6 @@ class gameplayScene extends Phaser.Scene {
         this.mainSong = this.sound.add("realBruise4");
         
         // ajout de sons qui vont servir pour les événements 
-        this.mouseSound = this.sound.add('mouseClick', {loop: false});
         this.warSound = this.sound.add('war', {loop: false});
         this.mallSound = this.sound.add("mall", {loop: false})
         this.screamsSound = this.sound.add("screams", {loop: false});
@@ -505,30 +502,8 @@ class gameplayScene extends Phaser.Scene {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.shared.visible = true;
-                    this.sound.play('mouseClick',{volume: 0.2});
 
                     this.showNextNews();
-
-                    // // animation sortie du fond des news
-                    // this.tween = this.tweens.add({
-                    //     targets: this.backgroundNews,
-                    //     x: 1280,
-                    //     delay: 2000,
-                    //     duration: 500,
-                    //     ease: 'Power2'
-                    // });
-                    
-                    // var backgroundNews2 = this.add.rectangle(0,135,580,130,0xE5E5E5).setOrigin(0.5);
-                    // backgroundNews2.depth = -2;
-                    
-                    // // animation entrée du fond des news
-                    // this.tween = this.tweens.add({
-                    //     targets: backgroundNews2,
-                    //     x: 640,
-                    //     delay: 2500,
-                    //     duration: 500,
-                    //     ease: 'Power2'
-                    // });
 
                     // ajouter des petits like-particules
                     let particles = this.add.particles("like");
@@ -548,16 +523,11 @@ class gameplayScene extends Phaser.Scene {
                         emitter.frequency = -1;
                     });
 
-                } else if (this.consecutiveArrows != 5) {
-                    // "Share" n'est plus visible après combo
-                    this.shared.visible = false;
-
                 } else if (this.consecutiveArrows == 5 && this.sharedNews >= 26 && this.sharedNews < 44) {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.shared.visible = true;
                     this.shared.setText("DISORDER!");
-                    this.sound.play('mouseClick',{volume: 0.2});
 
                     this.showNextNews();
 
@@ -584,7 +554,6 @@ class gameplayScene extends Phaser.Scene {
                     this.consecutiveArrows = 0;
                     this.shared.visible = true;
                     this.shared.setText("DEATH!");
-                    this.sound.play('mouseClick',{volume: 0.2});
 
                     this.showNextNews();
 
@@ -781,10 +750,12 @@ class gameplayScene extends Phaser.Scene {
  
         this.currentNews++;
 
+        // le tableau se réinitialise lorsqu'on arrive à la dernière news
         if (this.currentNews == this.newsData["fakeNews"].length) {
             this.currentNews = 0;
         }
 
+        // création d'une copie de la news afin qu'elle demeure à sa place initiale malgré l'animation qui suit
         this.shared.alpha = 1;
         this.shared.y = 200;
 
@@ -806,6 +777,7 @@ class gameplayScene extends Phaser.Scene {
         this.titleNews.setText(this.newsData["fakeNews"][this.currentNews]["newspaperTitle"]);
         this.textNews.setText(this.newsData["fakeNews"][this.currentNews]["content"]);
 
+        // les éléments visés tombent en s'estompant
         this.tween = this.tweens.add({
 
             targets: [this.backgroundNews, this.titleNews, this.textNews],
@@ -862,7 +834,7 @@ class gameplayScene extends Phaser.Scene {
             ease: "Power1",
         });
 
-
+        // si le nombre de hashtag n'est pas suffisant, le jeu ne plante pas
         if (this.newsData["fakeNews"][this.currentNews]["hashtag"][0]) {
             this.hashtag1.setText(this.newsData["fakeNews"][this.currentNews]["hashtag"][0]);
         }
