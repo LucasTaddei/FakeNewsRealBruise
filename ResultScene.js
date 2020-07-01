@@ -31,6 +31,8 @@ class resultScene extends Phaser.Scene {
         this.load.image('bomb14', 'Bomb14.png');
 
         this.load.audio("titleBruise","assets/sounds/titleBruise.m4a");
+
+        this.populationDeath = 0;
     }
 
     create() {
@@ -39,6 +41,8 @@ class resultScene extends Phaser.Scene {
 
         this.endsong.play();
 
+        this.populationDeath = Math.round(100-((this.score.missedArrows/(this.score.missedArrows + this.score.catchedArrows))*100));
+
         // Ajout du délai
         this.time.addEvent({
 
@@ -46,7 +50,7 @@ class resultScene extends Phaser.Scene {
             callback: ()=>{
 
                 var congrats = this.add.text(640,100, "CONGRATS! You've shared " + this.score.sharedNews + " news", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
-                var congratsText = this.add.text(640,250, "Thanks to your talent at sharing fake news " + "birthdays have been canceled forever, 100 people overdosed on avocadoes and trains are banned from Switzerland... As a result, the third world war started and 98% of the population died", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
+                var congratsText = this.add.text(640,250, "Thanks to your talent at sharing fake news " + "birthdays have been canceled forever, 100 people overdosed on avocadoes and trains are banned from Switzerland... As a result, the third world war started and " + this.populationDeath + "% of the population died", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
                 congratsText.setWordWrapWidth(600, false).setAlign('center');
                 var scoreText = this.add.text(20, 350, "Catched arrows: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
                 var failText = this.add.text(20, 390, "Missed arrows: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
