@@ -40,28 +40,28 @@
 			"newspaperTitle":"Naturally",
 			"content":"According to a very serious study published by the University of Stanford, people with big feet and long noses don't get along with their partner's elephant",
 			"category":"Science",
-			"hashtag": ["#stanford", "#whereismyelephant", "#phrenology", "#fetichism", "#uglyfoot"]
+			"hashtag":["#stanford", "#whereismyelephant", "#phrenology", "#fetichism", "#uglyfoot"]
 		},
 		{
 			"id":7,
 			"newspaperTitle":"The New York Dime",
 			"content":"According an investigation from the New York Lost, Fake news do NOT constitute a big danger for democraties",
 			"category":"Presse",
-			"hashtag": ["#fakenewsfakebruise", "#realnewsrealbruise", "#whereisTrump", "#democralitarism", "#bigdatadanger"]
+			"hashtag":["#fakenewsfakebruise", "#realnewsrealbruise", "#whereisTrump", "#democralitarism", "#bigdatadanger"]
 		},
 		{
 			"id":8,
 			"newspaperTitle":"Daily Bruise",
 			"content":"The total weight of all châteaux de la Loire is equivalent to the yearly average wine consumption for swiss residents",
 			"category":"Suisse",
-			"hashtag": ["#Loire", "#allalcooholics", "#eatfivefruits", "#castlepositive", "#castlecards"]
+			"hashtag":["#Loire", "#allalcooholics", "#eatfivefruits", "#castlepositive", "#castlecards"]
 		},
 		{
 			"id":9,
 			"newspaperTitle":"24 Leurres",
 			"content":"The cheese Vacherin fribourgeois has calming attributes, especially when melted in a Fondue",
 			"category":"Gastronomie",
-			"hashtag": ["#Ilovevacherin", "#IloveFribourg", "#Ilovefondue", "#relaxation", "#cheesonomy"]
+			"hashtag":["#Ilovevacherin", "#IloveFribourg", "#Ilovefondue", "#relaxation", "#cheesonomy"]
 		},
 		{
 			"id":10,
@@ -75,70 +75,70 @@
 			"newspaperTitle":"The Minute",
 			"content":"After years of waiting, swiss trains will finally be free for all citizens who will want to use them",
 			"category":"Suisse",
-			"hashtag": ["#GreenSwizerland", "#cheepSwitzerland", "#fastSwitzerland", "#Ilovecars", "#CFF"]
+			"hashtag":["#GreenSwizerland", "#cheepSwitzerland", "#fastSwitzerland", "#Ilovecars", "#CFF"]
 		},
 		{
 			"id":12,
 			"newspaperTitle":"The Flying Duck",
 			"content":"Avancer sur les mains rejetterait moins de CO2 dans l'atmosphère selon une étude de l'université de la Chaux-de-fonds",
 			"category":"écologie",
-			"hashtag": ["#walkonmyhandsisgreat", "#intrus", "#newsenfrançais", "#WhereisJessica", "#LaTchaux"]
+			"hashtag":["#walkonmyhandsisgreat", "#intrus", "#newsenfrançais", "#WhereisJessica", "#LaTchaux"]
 		},
 		{
 			"id":13,
 			"newspaperTitle":"The Morning Ghost",
 			"content":"Eating five carambars per day makes you look like a million dollars",
 			"category":"nutrition",
-			"hashtag": ["#lovecarambar", "#baby", "#nutrition", "#caramba", "#whereisthejournalist"]
+			"hashtag":["#lovecarambar", "#baby", "#nutrition", "#caramba", "#whereisthejournalist"]
 		},
 		{
 			"id":14,
 			"newspaperTitle":"The Washington Toast",
 			"content":"Water and soil pollution could be a 21st century invention created with the sole purpose of generating fear",
 			"category":"écologie",
-			"hashtag": ["#everythingisfine", "#fear", "#21stcentury", "#greenution", "#nomoreidea"]
+			"hashtag":["#everythingisfine", "#fear", "#21stcentury", "#greenution", "#nomoreidea"]
 		},
 		{
 			"id":15,
 			"newspaperTitle":"The Yearly Mail",
 			"content":"University students' complaints about tiredness seems to be just a pretext to study less and less",
 			"category":"études",
-			"hashtag": ["#slackerstudents", "#Beaude", "#whereisGunti", "#lazy", "#tomuchworkmake"]
+			"hashtag":["#slackerstudents", "#Beaude", "#whereisGunti", "#lazy", "#tomuchworkmake"]
 		},
 		{
 			"id":16,
 			"newspaperTitle":"The Guardiner",
 			"content":"The COP21, the international climate change conference, has come to the decision that all polluting industries are to be fined and the money thus collected will go to the poor",
 			"category":"écologie",
-			"hashtag": ["#COP21bestworld", "#lol", "#climatechange", "#whereisGreta", "#poorworld"]
+			"hashtag":["#COP21bestworld", "#lol", "#climatechange", "#whereisGreta", "#poorworld"]
 		},
 		{
 			"id":17,
 			"newspaperTitle":"The New York Dime",
 			"content":"Eating five fruits and vegetables a day; an invention from farmers to sell more of their products",
 			"category":"nourriture & santé",
-			"hashtag": ["#legumesnotessential", "#lovepizza", "#saladboy", "#farmersindustry", "#broccolikilledaliens"]
+			"hashtag":["#legumesnotessential", "#lovepizza", "#saladboy", "#farmersindustry", "#broccolikilledaliens"]
 		},
 		{
 			"id":18,
 			"newspaperTitle":"Daily Bruise",
 			"content":"According to a recent studies by Pr. Jene Mangerien, the human body doesn't need nutriments to sustain itself anymore thanks to a new spontaneous mutation in our genetic codes",
 			"category":"Science",
-			"hashtag": ["#nofood", "#Raoult", "#lovepizza", "#mutation", "#CRISPR-Cas9"]
+			"hashtag":["#nofood", "#Raoult", "#lovepizza", "#mutation", "#CRISPR-Cas9"]
 		},
 		{
 			"id":19,
 			"newspaperTitle":"24 leurres",
 			"content":"As of this summer, the swiss governement has forbbiden the consumption of ice cream in order to prevent the melting of glaciers",
 			"category":"Suisse",
-			"hashtag": ["#nomoreice", "#tohottohandle", "#Switzerlandgreatagain", "#climatosceptic", "#skialwayspossible"]
+			"hashtag":["#nomoreice", "#tohottohandle", "#Switzerlandgreatagain", "#climatosceptic", "#skialwayspossible"]
 		},
 		{
 			"id":20,
 			"newspaperTitle":"New York Lost",
 			"content":"As Einstein predicted, bees, aware of their importance, are on strike until they get better work conditions",
 			"category":"Environnement",
-			"hashtag": ["#beesStrike", "#thanksforthefishs", "#R2D2", "#cleverthanman", "#sadwinnie"]
+			"hashtag":["#beesStrike", "#thanksforthefishs", "#R2D2", "#cleverthanman", "#sadwinnie"]
 		}
 	],
 
