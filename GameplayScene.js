@@ -69,6 +69,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("trump","assets/sounds/trump.m4a");
         this.load.audio("bombDrop", "assets/sounds/bombDrop.m4a");
         this.load.audio("impact","assets/sounds/impact.m4a");
+        this.load.audio("woop","assets/sounds/woop.mp3");
 
         this.load.image("flame1","assets/animations/flame1.png");
         this.load.image("flame2","assets/animations/flame2.png");
@@ -235,7 +236,7 @@ class gameplayScene extends Phaser.Scene {
 
         var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         var wellText2 = this.add.text(640, 380, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText3 = this.add.text(690, 460, "So much fun, isn't it?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText3 = this.add.text(690, 460, "Is that really fun?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         // si le joueur partage moins de dix news
         var wellText4 = this.add.text(690, 460, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         // Si le joueur monte des niveaux sans partager de news
@@ -502,6 +503,7 @@ class gameplayScene extends Phaser.Scene {
                     this.sharedNews++;
                     this.consecutiveArrows = 0;
                     this.shared.visible = true;
+                    this.sound.play('woop', {volume:0.3});
 
                     this.showNextNews();
 
@@ -528,6 +530,7 @@ class gameplayScene extends Phaser.Scene {
                     this.consecutiveArrows = 0;
                     this.shared.visible = true;
                     this.shared.setText("DISORDER!");
+                    this.sound.play('woop', {volume:0.5});
 
                     this.showNextNews();
 
@@ -554,6 +557,7 @@ class gameplayScene extends Phaser.Scene {
                     this.consecutiveArrows = 0;
                     this.shared.visible = true;
                     this.shared.setText("DEATH!");
+                    this.sound.play('woop', {volume:0.5});
 
                     this.showNextNews();
 

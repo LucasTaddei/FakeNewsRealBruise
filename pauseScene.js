@@ -13,6 +13,8 @@ class pauseScene extends Phaser.Scene {
         this.load.image('cloud1', 'assets/images/cloud1.png');
         this.load.image('cloud2', 'assets/images/cloud2.png');
         this.load.image('cloud3', 'assets/images/cloud3.png');
+
+        this.load.audio("elevator","assets/sounds/elevator.mp3");
     }
 
     create() {
@@ -24,6 +26,9 @@ class pauseScene extends Phaser.Scene {
 
         // ajouter les textes et images fixes
         this.add.text(640, 300,"Pause", {font: '80px jack', fill: '#112b1a'}).setOrigin(0.5);
+
+        this.elevator = this.sound.add("elevator");
+        this.elevator.play({volume: 0.5, loop: true});
     }
 
     update() {
@@ -38,6 +43,7 @@ class pauseScene extends Phaser.Scene {
             this.time.addEvent( {
                 callback: ()=>{
                     this.scene.resume("gameplay");
+                    this.elevator.stop();
                     this.scene.stop();
                 }
             });
