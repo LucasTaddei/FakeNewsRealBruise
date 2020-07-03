@@ -14,7 +14,7 @@ class pauseScene extends Phaser.Scene {
         this.load.image('cloud2', 'assets/images/cloud2.png');
         this.load.image('cloud3', 'assets/images/cloud3.png');
 
-        this.load.audio("elevator","assets/sounds/elevator.mp3");
+        this.load.audio("elevator","assets/sounds/elevator.m4a");
     }
 
     create() {

@@ -69,7 +69,7 @@ class gameplayScene extends Phaser.Scene {
         this.load.audio("trump","assets/sounds/trump.m4a");
         this.load.audio("bombDrop", "assets/sounds/bombDrop.m4a");
         this.load.audio("impact","assets/sounds/impact.m4a");
-        this.load.audio("woop","assets/sounds/woop.mp3");
+        this.load.audio("woop","assets/sounds/woop.m4a");
 
         this.load.image("flame1","assets/animations/flame1.png");
         this.load.image("flame2","assets/animations/flame2.png");
