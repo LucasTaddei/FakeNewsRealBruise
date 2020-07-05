@@ -47,7 +47,7 @@
 			"newspaperTitle":"The New York Dime",
 			"content":"According an investigation from the New York Lost, Fake news do NOT constitute a big danger for democraties",
 			"category":"Presse",
-			"hashtag":["#fakenewsfakebruise", "#realnewsrealbruise", "#whereisTrump", "#democralitarism", "#bigdatadanger"]
+			"hashtag":["#fakenewsfakebruise", "#BigFish", "#whereisTrump", "#democralitarism", "#bigdatadanger"]
 		},
 		{
 			"id":8,
@@ -82,7 +82,7 @@
 			"newspaperTitle":"The Flying Duck",
 			"content":"Hand walking produces less CO2 than walking on feet according to a study from the University of la Chaux-de-fonds",
 			"category":"écologie",
-			"hashtag":["#walkonmyhandsisgreat", "#intrus", "#newsenfrançais", "#WhereisJessica", "#LaTchaux"]
+			"hashtag":["#walkonmyhandsisgreat", "#COP21", "#ecology", "#walkingonthemoon", "#LaTchaux"]
 		},
 		{
 			"id":13,
@@ -143,7 +143,6 @@
 	],
 
     "notifications":[
-
        {
         "id":1,
         "notif":"You have 10 new followers"

@@ -98,7 +98,7 @@ class gameplayScene extends Phaser.Scene {
             delay: 189000,
             callback: ()=>{
                 this.stopAllAudio();
-                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews});
+                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews, level: this.level});
             }
         })
 
@@ -235,12 +235,12 @@ class gameplayScene extends Phaser.Scene {
         /* ||| TEXTE AVANT BOMBE||| */
 
         var wellText = this.add.text(550, 300, "Well, how do you feel now?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText2 = this.add.text(640, 380, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
-        var wellText3 = this.add.text(690, 460, "Is that really fun?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText2 = this.add.text(640, 400, "...", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText3 = this.add.text(730, 450, "Is that really fun?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         // si le joueur partage moins de dix news
-        var wellText4 = this.add.text(690, 460, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText4 = this.add.text(700, 460, "Isn't the life beautiful?", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
         // Si le joueur monte des niveaux sans partager de news
-        var wellText5 = this.add.text(690, 460, "Eheh, you're a smart boy.", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
+        var wellText5 = this.add.text(700, 460, "Eheh, you're a smart boy.", {font:'25px jack', fill: 'grey'}).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({
             targets: [wellText],

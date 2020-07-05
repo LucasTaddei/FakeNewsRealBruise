@@ -42,6 +42,7 @@ class resultScene extends Phaser.Scene {
         this.endsong.play();
 
         this.populationDeath = Math.round(100-((this.score.missedArrows/(this.score.missedArrows + this.score.catchedArrows))*100));
+        this.avocadose = Math.round(this.score.level*7.543);
 
         // Ajout du délai
         this.time.addEvent({
@@ -49,12 +50,15 @@ class resultScene extends Phaser.Scene {
             delay: 1000,
             callback: ()=>{
 
-                var congrats = this.add.text(640,100, "CONGRATS! You've shared " + this.score.sharedNews + " news", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
-                var congratsText = this.add.text(640,250, "Thanks to your talent at sharing fake news " + "birthdays have been canceled forever, 100 people overdosed on avocadoes and trains are banned from Switzerland... As a result, the third world war started and " + this.populationDeath + "% of the population died", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
-                congratsText.setWordWrapWidth(600, false).setAlign('center');
-                var scoreText = this.add.text(20, 350, "Catched arrows: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
-                var failText = this.add.text(20, 390, "Missed arrows: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
-                var sharedText = this.add.text(20, 430, "Shared News: " + this.score.sharedNews, {font: "30px jack", fill: "#112b1a"});
+                var congrats = this.add.text(640,70, "CONGRATS!", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
+                var congratsText = this.add.text(640,120, "You've shared " + this.score.sharedNews + " news", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
+                var congratsTextBis = this.add.text(640,270, "Thanks to your talent at sharing fake news " + "birthdays have been canceled forever, " + this.avocadose + " people overdosed on avocadoes and trains are banned from Switzerland... As a result, the third world war started and " + this.populationDeath + "% of the population died", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
+                congratsTextBis.setWordWrapWidth(600, false).setAlign('center');
+                var scoreText = this.add.text(20, 370, "Catched arrows: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
+                var failText = this.add.text(20, 410, "Missed arrows: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
+                var sharedText = this.add.text(20, 450, "Shared News: " + this.score.sharedNews, {font: "30px jack", fill: "#112b1a"});
+                var levelText = this.add.text(20, 490, "Level: " + this.score.level, {font: "30px jack", fill: "#112b1a"});
+
                 //Créer le bouton next et lancer la phase 2 de l'animation
                 var next = this.add.text(640,570, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
                 next.on('pointerdown', function() {
@@ -66,9 +70,11 @@ class resultScene extends Phaser.Scene {
                     next.destroy();
                     congrats.destroy();
                     congratsText.destroy();
+                    congratsTextBis.destroy();
                     scoreText.destroy();
                     failText.destroy();
                     sharedText.destroy();
+                    levelText.destroy();
                     this.tweens.add({
                     targets: [congrats],
                     alpha: {value: 1, duration: 300, ease: 'Power1'},          
