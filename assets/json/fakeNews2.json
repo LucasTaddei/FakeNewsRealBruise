@@ -143,49 +143,85 @@
 	],
 
     "notifications":[
-       {
-        "id":1,
-        "notif":"You have 10 new followers"
-       },
-       {
-        "id":2,
-        "notif":"Barack Obama follows you"
-       },
-       {
-        "id":3,
-        "notif":"Your account is trending!"
-       },
-       {
-        "id":4,
-        "notif":"You have 50 new followers"
-       },
-       {
-        "id":5,
-        "notif":"Kim Kardashian follows you"
-       },
-       {
-        "id":6,
-        "notif":"Your account is the most popular on the plateform"
-       },
-       {
-        "id":7,
-        "notif":"Ueli Maurer follows you"
-       },
-       {
-        "id":8,
-        "notif":"Even Donald Trump likes your account"
-       },
-       {
-        "id":9,
-        "notif":"You're so popular you should try to run for the U.S. presidency"
-       },
-       {
-        "id":10,
-        "notif":"100'000'000 new followers"
-       },
-       {
-        "id":11,
-        "notif":"You're the king/queen of the plateform!"
-       }
+		{
+			"id":1,
+			"notif":"You have 10 new followers"
+		},
+		{
+			"id":2,
+			"notif":"Barack Obama follows you"
+		},
+		{
+			"id":3,
+			"notif":"Your account is trending!"
+		},
+		{
+			"id":4,
+			"notif":"You have 50 new followers"
+		},
+		{
+			"id":5,
+			"notif":"Kim Kardashian follows you"
+		},
+		{
+			"id":6,
+			"notif":"Your account is the most popular on the plateform"
+		},
+		{
+			"id":7,
+			"notif":"Ueli Maurer follows you"
+		},
+		{
+			"id":8,
+			"notif":"Even Donald Trump likes your account"
+		},
+		{
+			"id":9,
+			"notif":"You're so popular you should try to run for the U.S. presidency"
+		},
+		{
+			"id":10,
+			"notif":"You have 100 new followers"
+		},
+		{
+			"id":11,
+			"notif":"You're the king/queen of the plateform!"
+		},
+		{
+			"id":12,
+			"notif":"Your account is in the top five this week"
+		},
+		{
+			"id":13,
+			"notif":"Jessica Chautems follows you"
+		},
+		{
+			"id":14,
+			"notif":"You account overshadows the women's strike"
+		},
+		{
+			"id":15,
+			"notif":"Even Marielle Grass follows you"
+		},
+		{
+			"id":16,
+			"notif":"Your account has been viewed thousand time"
+		},
+		{
+			"id":17,
+			"notif":"Omar Sy follows you"
+		},
+		{
+			"id":18,
+			"notif":"Lucas Taddei follows you"
+		},
+		{
+			"id":19,
+			"notif":"FNRB nominated game of the 2020 year"
+		},
+		{
+			"id":20,
+			"notif":"You are first in the top since three weeks"
+		}
     ]
 }

@@ -35,6 +35,8 @@ class gameplayScene extends Phaser.Scene {
         this.sharedNews = 0;
         this.level = 1;
 
+        this.currentNotification = 0;
+
         this.scoreLabel;
         this.failLabel;
         this.sharedLabel;
@@ -144,16 +146,15 @@ class gameplayScene extends Phaser.Scene {
 
                     this.level++;
                     
-                    // // notification de level UP, mais pas nécessaire
-                    // this.levelText = this.add.text(650, 800, "LEVEL UP!", {font:'40px jack', fill: 'green'}).setOrigin(0.5).setAlpha(0);
-                    // this.tweens.add({
-                    //     targets: [this.levelText],
-                    //     alpha: {value: 1, duration: 500, ease: 'Power1'},
-                    //     hold: 100, // temps avant que la notification disparaisse
-                    //     yoyo: true, // effet miroir de l'animation
-                    //     loop: false,
-                    // });
-
+                    // notification de level UP
+                    this.levelText = this.add.text(1120, 580, "LEVEL UP!", {font:'40px jack', fill: 'green'}).setOrigin(0.5).setAlpha(0);
+                    this.tweens.add({
+                        targets: [this.levelText],
+                        alpha: {value: 1, duration: 500, ease: 'Power1'},
+                        hold: 1000, // temps avant que la notification disparaisse
+                        yoyo: true, // effet miroir de l'animation
+                        loop: false,
+                    });
                 }
                 
                 this.lastScoreMissedArrows = this.missedArrows;
@@ -203,7 +204,6 @@ class gameplayScene extends Phaser.Scene {
         this.backgroundNews2 = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
         this.backgroundNews2.depth = -2;
         this.alpha = 0;
-
 
         /* ||| NEWS PRINCIPALES ||| */
 
@@ -305,46 +305,61 @@ class gameplayScene extends Phaser.Scene {
         this.add.text(160, 220, 'Notifications', {font:'35px jack', fill: 'black'}).setOrigin(0.5);
 
         // prototype "Notifications"
-        var backgroundNotifications = this.add.rectangle(170,300,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
-        var notifications = this.add.text(170, 300, 'You have 10 new followers', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        notifications.setWordWrapWidth(300, false);
+        this.backgroundNotifications1 = this.add.rectangle(170,300,330,90,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        this.notifications1 = this.add.text(170,300, "", {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.notifications1.setWordWrapWidth(300, false);
 
-        // animation des notifications
-        this.tweens.add({
-            targets: [notifications, backgroundNotifications],
-            alpha: {value: 1, duration: 500, ease: 'Power1'},
-            hold: 1500, // temps avant que la notification disparaisse
-            yoyo: true, // effet miroir de l'animation
-            loop: -1,   
-        });
+        this.backgroundNotifications2 = this.add.rectangle(170,420,330,90,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        this.notifications2 = this.add.text(170,420, "", {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.notifications2.setWordWrapWidth(300, false);
 
-        var backgroundNotifications = this.add.rectangle(170,420,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
-        var notifications = this.add.text(170, 420, 'Your account is trending', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        notifications.setWordWrapWidth(300, false);
+        this.backgroundNotifications3 = this.add.rectangle(170,540,330,90,0xE5E5E5).setOrigin(0.5).setAlpha(0);
+        this.notifications3 = this.add.text(170,540, "", {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.notifications3.setWordWrapWidth(300, false);
 
-        // animation des notifications
-        this.tweens.add({
-            targets: [notifications, backgroundNotifications],
-            alpha: {value: 1, duration: 500, ease: 'Power1'},
-            hold: 1500, // temps avant que la notification disparaisse
-            yoyo: true, // effet miroir de l'animation
-            delay: 800,
-            loop: -1,  
-        });
+        // première et dernière notifications
+        this.time.addEvent({
 
-        var backgroundNotifications = this.add.rectangle(170,540,330,100,0xE5E5E5).setOrigin(0.5).setAlpha(0);
-        var notifications = this.add.text(170, 540, 'You have 50 new followers', {font:'20px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        notifications.setWordWrapWidth(300, false);
+            delay: 5000,
+            loop: true,
+            callback: ()=>{
 
-        // animation des notifications
-        this.tweens.add({
-            targets: [notifications, backgroundNotifications],
-            alpha: {value: 1, duration: 500, ease: 'Power1'},
-            hold: 1500, // temps avant que la notification disparaisse
-            yoyo: true, // effet miroir de l'animation
-            delay: 1600,
-            loop: -1,
-        });
+                // première notification
+                if (this.level < 7) {
+                    this.updateNotification(1, "You have " + (this.level * 5) + " new followers");   
+                    // this.updateNotification(1, "You have " + Math.pow(10, this.level) + " new followers");    
+                }
+
+                if (this.level >= 8) {
+                    this.updateNotification(1, "You have " + (this.level * 50) + " new followers");
+                    //this.updateNotification(1, "You have " + eval(100000 + (this.level*100000)) + " new followers");
+                }
+
+                if (this.level >= 14) {
+                    this.updateNotification(1, "You have " + eval(100000 + (this.level*100000)) + " new followers");
+                }
+
+                // seconde notification
+                this.time.addEvent({
+
+                    delay: 1000,
+                    callback: ()=>{
+        
+                        this.updateNotification(2, this.getNextRandomNotification());
+                    }
+                })
+        
+                // troisième notificiation
+                this.time.addEvent({
+        
+                    delay: 2000,
+                    callback: ()=>{
+        
+                        this.updateNotification(3, this.getNextRandomNotification());
+                    }
+                })
+            }
+        })
 
         /* ||| COLONNE DE DROITE ||| */
 
@@ -422,7 +437,6 @@ class gameplayScene extends Phaser.Scene {
             label.x = gameObject.x;
             label.y = gameObject.y;
         });
-        
     }
     
     update(time, delta) {
@@ -749,13 +763,95 @@ class gameplayScene extends Phaser.Scene {
         this.warSound.stop();
     }
 
+    getNextRandomNotification() {
+
+        // retour au début du tableau
+        if (this.currentNotification >= this.newsData["notifications"].length) {
+            
+            this.currentNotification = 0;
+        }
+
+        if (this.currentNotification == 0) {
+
+            // création d'un tableau contenant les index des notifications
+            this.randomNotifications = [];
+
+            for (var i = 0; i < this.newsData["notifications"].length; i++) {
+
+                this.randomNotifications[i] = i;
+            }
+
+            // mélange le tableau où sont indexées les notifications (optionnel)
+            for (var i = this.randomNotifications.length - 1; i > 0; i--)
+            {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = this.randomNotifications[i];
+                this.randomNotifications[i] = this.randomNotifications[j];
+                this.randomNotifications[j] = temp;
+            }
+        }
+
+        // retourne le texte de la notification à l'index this.currentNotification avant de l'incrémenter
+        return this.newsData["notifications"][this.randomNotifications[this.currentNotification++]]["notif"];
+    }
+
+    // modifie le texte de la notification sélectionnée
+    updateNotification(notification, text) {
+
+        let currentNotification;
+        let currentBackground;
+
+        if (notification == 1) {
+
+            currentNotification = this.notifications1;
+            currentBackground = this.backgroundNotifications1;
+        }
+
+        else if (notification == 2) {
+
+            currentNotification = this.notifications2;
+            currentBackground = this.backgroundNotifications2;
+        }
+
+        else if (notification == 3) {
+
+            currentNotification = this.notifications3;
+            currentBackground = this.backgroundNotifications3;
+        }
+
+        // estompage de la notification précédement affichée
+        this.tweens.add({
+            targets: [currentNotification, currentBackground],
+            alpha: {value: 0, duration: 1000, ease: 'Power1'}, 
+        });
+
+        // event qui retarde la modification du text de la news jusqu'à qu'elle soit estompée
+        this.time.addEvent({
+
+            delay: 1000,
+            callback: ()=>{
+
+                // modification du texte de la notification
+                currentNotification.setText(text);
+            }
+        })
+
+        // affichage progressif de la nouvelle notification
+        this.tweens.add({
+            targets: [currentNotification, currentBackground],
+            alpha: {value: 1, duration: 1000, ease: 'Power1'},
+            delay: 1000
+        });
+
+    }
+
     // animation du passage à la news suivante
     showNextNews() {
  
         this.currentNews++;
 
         // le tableau se réinitialise lorsqu'on arrive à la dernière news
-        if (this.currentNews == this.newsData["fakeNews"].length) {
+        if (this.currentNews == this.newsData["notifications"].length) {
             this.currentNews = 0;
         }
 
