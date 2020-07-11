@@ -2,6 +2,8 @@ class resultScene extends Phaser.Scene {
 
     init(score) {
         this.score = score;
+
+        this.cameras.main.setBackgroundColor(this.score.backgroundColor);
     }
 
     constructor(data) {
@@ -43,6 +45,11 @@ class resultScene extends Phaser.Scene {
 
         this.populationDeath = Math.round(100-((this.score.missedArrows/(this.score.missedArrows + this.score.catchedArrows))*100));
         this.avocadose = Math.round(this.score.level*7.543);
+
+        if (this.score.isRaining) {
+
+            this.itsRaingingMen();
+        }
 
         // Ajout du délai
         this.time.addEvent({
@@ -137,6 +144,28 @@ class resultScene extends Phaser.Scene {
             ],
             frameRate: 10,
             repeat: 0,
+        });
+    }
+
+    // animation lorsqu'il commence à pleuvoir
+    itsRaingingMen() {
+
+        this.rain = this.add.particles('rain');
+
+        this.rain.setDepth(25);
+
+        this.rain.createEmitter({
+            
+            x: { min: -200, max: 1200 },
+            y: 0,
+            rotate: -10,
+            alpha: 0.2,
+            lifespan: { min: 1500, max: 2000 },
+            speedY: { min: 50, max: 150 },
+            gravityY: 400,
+            gravityX: Phaser.Math.Between(50, 100),
+            scale: 0.3,
+            frequency: 50
         });
     }
 }

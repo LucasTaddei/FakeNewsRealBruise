@@ -27,6 +27,8 @@ class gameplayScene extends Phaser.Scene {
         // variable du jeu en pause
         this.setToPause = false;
 
+        this.hasRainStarted = false;
+
         // définition des compteurs de score
         this.catchedArrows = 0;
         this.missedArrows = 0;
@@ -83,6 +85,8 @@ class gameplayScene extends Phaser.Scene {
         this.load.image('like', 'assets/images/reactions/like.png');
         this.load.image('skullHeart', 'assets/images/reactions/skullHeart.png');
 
+        this.load.image('rain', 'assets/images/rain.png');
+
         this.load.json('newsData', 'assets/json/fakeNews2.json');
     }
     
@@ -94,20 +98,50 @@ class gameplayScene extends Phaser.Scene {
 
     create() {
 
+        this.cameras.main.backgroundColor = "#65FF99";
+
         this.events.on('resume', this.resume, this);
 
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
                 this.stopAllAudio();
-                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews, level: this.level});
+                this.scene.start("result", {catchedArrows: this.catchedArrows, missedArrows: this.missedArrows, sharedNews: this.sharedNews, level: this.level, backgroundColor: this.resultSceneBackgroundColor, isRaining: this.hasRainStarted});
             }
         })
 
+        // EVENT DE FOUFOU, surtout les lignes 128 à 131 !
         // ajouter un event pour faire trembler la caméra juste avant le passage à la scène suivante
         this.time.addEvent({
             delay: 188500,
             callback: ()=>{
+
+                // récupération de la couleur actuelle du masque
+                var maskColor = Phaser.Display.Color.ValueToColor(this.backgroundMask.fillColor);
+
+                // alpha actuel du masque
+                var maskColorAlpha = this.backgroundMask.alpha;
+                
+                // récupération de la couleur actuelle du fond
+                var backgroundColor = Phaser.Display.Color.HexStringToColor(this.cameras.main.backgroundColor);
+                
+                // alpha blending de la couleur de fond et de celle du masque (https://en.wikipedia.org/wiki/Alpha_compositing#Alpha_blending)
+                var red = Math.round(((1-maskColorAlpha)*backgroundColor.red + (maskColorAlpha * maskColor.red)) / 1);
+                var green = Math.round(((1-maskColorAlpha)*backgroundColor.green + (maskColorAlpha * maskColor.green)) / 1);
+                var blue = Math.round(((1-maskColorAlpha)*backgroundColor.blue + (maskColorAlpha * maskColor.blue)) / 1);
+
+                // création de la nouvelle couleur, résultante de la combinaison des deux autres
+                var finalBackgroundColor = Phaser.Display.Color.GetColor32(red, green, blue, maskColorAlpha);
+
+                // passage de la couleur de fond actuelle à la scène suivante
+                this.resultSceneBackgroundColor = finalBackgroundColor;
+
+                // désactivation du masque devenu inutile
+                this.backgroundMask.alpha = 0;
+
+                // le fond a désormais la couleur du masque
+                this.cameras.main.setBackgroundColor(finalBackgroundColor);
+
                 this.cameras.main.shake(500, 0.03, 0.01); // duration, intensity, force 
             } 
         })
@@ -146,15 +180,20 @@ class gameplayScene extends Phaser.Scene {
 
                     this.level++;
                     
-                    // notification de level UP
-                    this.levelText = this.add.text(1120, 580, "LEVEL UP!", {font:'40px jack', fill: 'green'}).setOrigin(0.5).setAlpha(0);
-                    this.tweens.add({
-                        targets: [this.levelText],
-                        alpha: {value: 1, duration: 500, ease: 'Power1'},
-                        hold: 1000, // temps avant que la notification disparaisse
-                        yoyo: true, // effet miroir de l'animation
-                        loop: false,
-                    });
+                    // première notification
+                    if (this.level < 7) {
+                        this.updateNotification(1, "You have " + (this.level * 5) + " new followers");   
+                        // this.updateNotification(1, "You have " + Math.pow(10, this.level) + " new followers");    
+                    }
+
+                    if (this.level >= 8) {
+                        this.updateNotification(1, "You have " + (this.level * 50) + " new followers");
+                        //this.updateNotification(1, "You have " + eval(100000 + (this.level*100000)) + " new followers");
+                    }
+
+                    if (this.level >= 14) {
+                        this.updateNotification(1, "You have " + eval(100000 + (this.level*100000)) + " new followers");
+                    }
                 }
                 
                 this.lastScoreMissedArrows = this.missedArrows;
@@ -192,7 +231,7 @@ class gameplayScene extends Phaser.Scene {
         this.mainSong.play();
 
         // fond blanc "zone de jeu"
-        var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);
+        var backgroundRectangle = this.add.rectangle(640,360,580,700,0xFFFFFF).setOrigin(0.5);
         backgroundRectangle.depth = -4;
 
         // titre de la page 
@@ -227,10 +266,10 @@ class gameplayScene extends Phaser.Scene {
         // pour que le texte ne dépasse pas le fond de la News
         this.textNews2.setWordWrapWidth(570, false);
 
+        //ajout d'un masque
+        this.backgroundMask = this.add.rectangle(640,360,1280,720,0x68786D).setOrigin(0.5).setAlpha(0);
 
-        //ajout de colonne à droite et à gauche pour que les news et le fond passent derrière
-        var columnRight = this.add.rectangle(1110,360,340,720,0x65FF99).setOrigin(0.5);
-        var columnLeft = this.add.rectangle(170,360,340,720,0x65FF99).setOrigin(0.5);
+        this.backgroundMask.depth = -25;
 
         /* ||| TEXTE AVANT BOMBE||| */
 
@@ -320,24 +359,9 @@ class gameplayScene extends Phaser.Scene {
         // première et dernière notifications
         this.time.addEvent({
 
-            delay: 5000,
+            delay: 8000,
             loop: true,
             callback: ()=>{
-
-                // première notification
-                if (this.level < 7) {
-                    this.updateNotification(1, "You have " + (this.level * 5) + " new followers");   
-                    // this.updateNotification(1, "You have " + Math.pow(10, this.level) + " new followers");    
-                }
-
-                if (this.level >= 8) {
-                    this.updateNotification(1, "You have " + (this.level * 50) + " new followers");
-                    //this.updateNotification(1, "You have " + eval(100000 + (this.level*100000)) + " new followers");
-                }
-
-                if (this.level >= 14) {
-                    this.updateNotification(1, "You have " + eval(100000 + (this.level*100000)) + " new followers");
-                }
 
                 // seconde notification
                 this.time.addEvent({
@@ -380,11 +404,11 @@ class gameplayScene extends Phaser.Scene {
     
         this.add.sprite(1180, 80, 'flame1').setScale(3.4).play('flames');
 
-        this.hashtag1 = this.add.text(1100,200, this.newsData["fakeNews"][0]["hashtag"][0], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        this.hashtag2 = this.add.text(1100,270, this.newsData["fakeNews"][0]["hashtag"][1], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        this.hashtag3 = this.add.text(1100,340, this.newsData["fakeNews"][0]["hashtag"][2], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        this.hashtag4 = this.add.text(1100,410, this.newsData["fakeNews"][0]["hashtag"][3], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
-        this.hashtag5 = this.add.text(1100,480, this.newsData["fakeNews"][0]["hashtag"][4], {font:'25px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag1 = this.add.text(1100,200, this.newsData["fakeNews"][0]["hashtag"][0], {font:'23px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag2 = this.add.text(1100,270, this.newsData["fakeNews"][0]["hashtag"][1], {font:'23px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag3 = this.add.text(1100,340, this.newsData["fakeNews"][0]["hashtag"][2], {font:'23px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag4 = this.add.text(1100,410, this.newsData["fakeNews"][0]["hashtag"][3], {font:'23px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
+        this.hashtag5 = this.add.text(1100,480, this.newsData["fakeNews"][0]["hashtag"][4], {font:'23px imperator', fill: 'black'}).setOrigin(0.5).setAlpha(0);
 
         this.tweens.add({
             targets: [this.hashtag1,this.hashtag4],
@@ -519,6 +543,9 @@ class gameplayScene extends Phaser.Scene {
                     this.shared.visible = true;
                     this.sound.play('woop', {volume:0.3});
 
+                    // assombri progressivement la couleur des colonnes droite et gauche
+                    this.backgroundMask.alpha += 0.01;
+
                     this.showNextNews();
 
                     // ajouter des petits like-particules
@@ -546,6 +573,9 @@ class gameplayScene extends Phaser.Scene {
                     this.shared.setText("DISORDER!");
                     this.sound.play('woop', {volume:0.5});
 
+                    // assombri progressivement la couleur des colonnes droite et gauche
+                    this.backgroundMask.alpha += 0.01;
+
                     this.showNextNews();
 
                     // ajouter des petits coeur-particules
@@ -572,6 +602,9 @@ class gameplayScene extends Phaser.Scene {
                     this.shared.visible = true;
                     this.shared.setText("DEATH!");
                     this.sound.play('woop', {volume:0.5});
+
+                    // assombri progressivement la couleur des colonnes droite et gauche
+                    this.backgroundMask.alpha += 0.01;
 
                     this.showNextNews();
 
@@ -659,6 +692,13 @@ class gameplayScene extends Phaser.Scene {
             }
         });
 
+        // s'il ne pleut pas encore
+        if (!this.hasRainStarted && this.sharedNews == 50) {
+
+            this.itsRaingingMen();
+            this.hasRainStarted = true;
+        }
+
         // actualisation des scores
         this.levelLabel.setText('Level : ' + this.level);
         this.sharedLabel.setText(' Shared News : ' + this.sharedNews + '  ');
@@ -732,7 +772,7 @@ class gameplayScene extends Phaser.Scene {
         }
 
         newImage.depth = -3;
-    }
+    };
 
     pauseAllAudio() {
         this.mainSong.pause();
@@ -767,7 +807,7 @@ class gameplayScene extends Phaser.Scene {
 
         // retour au début du tableau
         if (this.currentNotification >= this.newsData["notifications"].length) {
-            
+
             this.currentNotification = 0;
         }
 
@@ -825,7 +865,7 @@ class gameplayScene extends Phaser.Scene {
             alpha: {value: 0, duration: 1000, ease: 'Power1'}, 
         });
 
-        // event qui retarde la modification du text de la news jusqu'à qu'elle soit estompée
+        // event qui retarde la modification du texte de la news jusqu'à qu'elle soit estompée
         this.time.addEvent({
 
             delay: 1000,
@@ -843,6 +883,28 @@ class gameplayScene extends Phaser.Scene {
             delay: 1000
         });
 
+    }
+
+    // animation lorsqu'il commence à pleuvoir
+    itsRaingingMen() {
+
+        this.rain = this.add.particles('rain');
+
+        this.rain.setDepth(25);
+
+        this.rain.createEmitter({
+            
+            x: { min: -200, max: 1200 },
+            y: 0,
+            rotate: -10,
+            alpha: 0.2,
+            lifespan: { min: 1500, max: 2000 },
+            speedY: { min: 50, max: 150 },
+            gravityY: 400,
+            gravityX: Phaser.Math.Between(50, 100),
+            scale: 0.3,
+            frequency: 50
+        });
     }
 
     // animation du passage à la news suivante

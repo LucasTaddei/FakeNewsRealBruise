@@ -19,7 +19,7 @@ class endScene extends Phaser.Scene {
 
 
         //création du bouton qui renvoit à la page Hero
-        var hero = this.add.text(1150,700, "Be a hero", {font: "35px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
+        var hero = this.add.text(1100,650, "Be a hero", {font: "35px jack", fill: 'white'}).setOrigin(0.5).setInteractive();
         hero.on('pointerdown', function () {
 
             this.scene.start('learnMore');

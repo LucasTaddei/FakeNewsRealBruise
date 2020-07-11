@@ -6,6 +6,9 @@ class titleScene extends Phaser.Scene {
 
     preload() {
 
+        this.load.image('rain', 'assets/images/rain.png');
+        this.load.image('raindrop', 'assets/images/raindrop.png');
+
         this.load.image('logo','assets/images/LOGO.png');
         this.load.image('skyline', 'assets/images/Skyline.png');
         this.load.image('cloud1', 'assets/images/cloud1.png');
@@ -73,6 +76,7 @@ class titleScene extends Phaser.Scene {
 
     // faire se déplacer les nuages
     update() {
+        
         this.moveClouds(this.cloud1, 0.3);
         this.moveClouds(this.cloud2, 0.1);
         this.moveClouds(this.cloud3, 0.2);
