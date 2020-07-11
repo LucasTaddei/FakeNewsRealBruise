@@ -46,7 +46,12 @@ class resultScene extends Phaser.Scene {
         this.populationDeath = Math.round(100-((this.score.missedArrows/(this.score.missedArrows + this.score.catchedArrows))*100));
         this.avocadose = Math.round(this.score.level*7.543);
 
-        if (this.score.isRaining) {
+        if (this.score.isRain) {
+
+            this.itsRaingingMan();
+        }
+
+        if (this.score.isStrongRain) {
 
             this.itsRaingingMen();
         }
@@ -61,10 +66,10 @@ class resultScene extends Phaser.Scene {
                 var congratsText = this.add.text(640,120, "You've shared " + this.score.sharedNews + " news", {font: "40px jack", fill: "#112b1a"}).setOrigin(0.5);
                 var congratsTextBis = this.add.text(640,270, "Thanks to your talent at sharing fake news " + "birthdays have been canceled forever, " + this.avocadose + " people overdosed on avocadoes and trains are banned from Switzerland... As a result, the third world war started and " + this.populationDeath + "% of the population died", {font: "30px imperator", fill: "#112b1a",lineSpacing: 5}).setOrigin(0.5);
                 congratsTextBis.setWordWrapWidth(600, false).setAlign('center');
-                var scoreText = this.add.text(20, 370, "Catched arrows: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
-                var failText = this.add.text(20, 410, "Missed arrows: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
-                var sharedText = this.add.text(20, 450, "Shared News: " + this.score.sharedNews, {font: "30px jack", fill: "#112b1a"});
-                var levelText = this.add.text(20, 490, "Level: " + this.score.level, {font: "30px jack", fill: "#112b1a"});
+                // var scoreText = this.add.text(20, 370, "Catched arrows: " + this.score.catchedArrows, {font: "30px jack", fill: "#112b1a"});
+                // var failText = this.add.text(20, 410, "Missed arrows: " + this.score.missedArrows, {font: "30px jack", fill: "#112b1a"});
+                // var sharedText = this.add.text(20, 450, "Shared News: " + this.score.sharedNews, {font: "30px jack", fill: "#112b1a"});
+                // var levelText = this.add.text(20, 490, "Level: " + this.score.level, {font: "30px jack", fill: "#112b1a"});
 
                 //Créer le bouton next et lancer la phase 2 de l'animation
                 var next = this.add.text(640,570, "Next", {font: "50px jack", fill: "#112b1a"}).setOrigin(0.5).setInteractive();
@@ -78,10 +83,10 @@ class resultScene extends Phaser.Scene {
                     congrats.destroy();
                     congratsText.destroy();
                     congratsTextBis.destroy();
-                    scoreText.destroy();
-                    failText.destroy();
-                    sharedText.destroy();
-                    levelText.destroy();
+                    // scoreText.destroy();
+                    // failText.destroy();
+                    // sharedText.destroy();
+                    // levelText.destroy();
                     this.tweens.add({
                     targets: [congrats],
                     alpha: {value: 1, duration: 300, ease: 'Power1'},          
@@ -148,6 +153,26 @@ class resultScene extends Phaser.Scene {
     }
 
     // animation lorsqu'il commence à pleuvoir
+    itsRaingingMan() {
+
+        this.rain = this.add.particles('rain');
+
+        this.rain.setDepth(25);
+    
+        this.rain.createEmitter({
+            
+            x: { min: -200, max: 1200 },
+            y: 0,
+            rotate: -10,
+            alpha: 0.1,
+            lifespan: { min: 1500, max: 2000 },
+            speedY: { min: 50, max: 150 },
+            gravityY: 400,
+            gravityX: Phaser.Math.Between(50, 100),
+            frequency: 80
+        });
+    }
+
     itsRaingingMen() {
 
         this.rain = this.add.particles('rain');
@@ -164,7 +189,6 @@ class resultScene extends Phaser.Scene {
             speedY: { min: 50, max: 150 },
             gravityY: 400,
             gravityX: Phaser.Math.Between(50, 100),
-            scale: 0.3,
             frequency: 50
         });
     }
