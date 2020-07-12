@@ -17,14 +17,14 @@
 		{
 			"id":3,
 			"newspaperTitle":"The Nightly Telegraph",
-			"content":"Jessica, the famous filmmaker, declared she hates ukulele since the unexpected success of her short film about digital humanities",
+			"content":"Jessica, the famous filmmaker, declared she now hates ukulele since the unexpected success of her short film about digital humanities",
 			"category":"people",
 			"hashtag":["#Jessica", "#digitalhumanities", "#filmmaker", "#ukulélé", "#poorvanessa"]
 		},
 		{
 			"id":4,
 			"newspaperTitle":"The Washington Toast",
-			"content":"Dream jobs promised by Donald Trump for all who present themselves every first Mondays of each month in front of the White House",
+			"content":"Dream jobs promised by Donald Trump for all who show themselves every first Mondays of each month in front of the White House",
 			"category":"breaking news",
 			"hashtag":["#Trumpbestpresident", "#whiteHouse", "#greatagain", "#earlybirdcatchesworm", "#nowecant"]
 		},
@@ -45,21 +45,21 @@
 		{
 			"id":7,
 			"newspaperTitle":"The New York Dime",
-			"content":"According an investigation from the New York Lost, Fake news do NOT constitute a big danger for democraties",
+			"content":"According an investigation from the New York Lost, Fake news do NOT constitute a big danger for democracies",
 			"category":"Presse",
 			"hashtag":["#fakenewsfakebruise", "#BigFish", "#whereisTrump", "#democralitarism", "#bigdatadanger"]
 		},
 		{
 			"id":8,
 			"newspaperTitle":"Daily Bruise",
-			"content":"The total weight of all châteaux de la Loire is equivalent to the yearly average wine consumption for swiss residents",
+			"content":"The total weight of all châteaux de la Loire is equivalent to the yearly average wine consumption of swiss residents",
 			"category":"Suisse",
 			"hashtag":["#Loire", "#allalcooholics", "#eatfivefruits", "#castlepositive", "#castlecards"]
 		},
 		{
 			"id":9,
 			"newspaperTitle":"24 Leurres",
-			"content":"The cheese Vacherin fribourgeois has calming attributes, especially when melted in a Fondue",
+			"content":"The cheese Vacherin fribourgeois has calming properties, especially when melted in a Fondue",
 			"category":"Gastronomie",
 			"hashtag":["#Ilovevacherin", "#IloveFribourg", "#Ilovefondue", "#relaxation", "#cheesonomy"]
 		},
@@ -87,7 +87,7 @@
 		{
 			"id":13,
 			"newspaperTitle":"The Morning Ghost",
-			"content":"Eating five carambars per day makes you look like a million dollars",
+			"content":"Eating five carambars per day makes you look like a million bucks",
 			"category":"nutrition",
 			"hashtag":["#lovecarambar", "#baby", "#nutrition", "#caramba", "#whereisthejournalist"]
 		},
@@ -101,7 +101,7 @@
 		{
 			"id":15,
 			"newspaperTitle":"The Yearly Mail",
-			"content":"University students' complaints about tiredness seems to be just a pretext to study less and less",
+			"content":"University students' complaints about tiredness seem to be just a pretext for studying less",
 			"category":"études",
 			"hashtag":["#slackerstudents", "#Beaude", "#whereisGunti", "#lazy", "#tomuchworkmake"]
 		},
@@ -122,7 +122,7 @@
 		{
 			"id":18,
 			"newspaperTitle":"Daily Bruise",
-			"content":"According to a recent studies by Pr. Jene Mangerien, the human body doesn't need nutriments to sustain itself anymore thanks to a new spontaneous mutation in our genetic codes",
+			"content":"According to a recent studies by Pr. Jene Mangerien, the human body doesn't need nutriments to sustain itself anymore thanks to a new spontaneous mutation in our genetic code",
 			"category":"Science",
 			"hashtag":["#nofood", "#Raoult", "#lovepizza", "#mutation", "#CRISPR-Cas9"]
 		},
@@ -138,7 +138,7 @@
 			"newspaperTitle":"New York Lost",
 			"content":"As Einstein predicted, bees, aware of their importance, are on strike until they get better work conditions",
 			"category":"Environnement",
-			"hashtag":["#beesStrike", "#thanksforthefishs", "#R2D2", "#cleverthanman", "#sadwinnie"]
+			"hashtag":["#beesstrike", "#thanksforthefishes", "#R2D2", "#smarterthanman", "#sadwinnie"]
 		}
 	],
 
@@ -149,7 +149,7 @@
 		},
 		{
 			"id":2,
-			"notif":"Barack Obama follows you"
+			"notif":"Barack Obama started following you"
 		},
 		{
 			"id":3,
@@ -161,7 +161,7 @@
 		},
 		{
 			"id":5,
-			"notif":"Kim Kardashian follows you"
+			"notif":"Kim Kardashian started following you"
 		},
 		{
 			"id":6,
@@ -169,7 +169,7 @@
 		},
 		{
 			"id":7,
-			"notif":"Ueli Maurer follows you"
+			"notif":"Ueli Maurer started following you"
 		},
 		{
 			"id":8,
@@ -193,7 +193,7 @@
 		},
 		{
 			"id":13,
-			"notif":"Jessica Chautems follows you"
+			"notif":"Jessica Chautems started following you"
 		},
 		{
 			"id":14,
@@ -201,19 +201,19 @@
 		},
 		{
 			"id":15,
-			"notif":"Even Marielle Grass follows you"
+			"notif":"Even Marielle Grass started following you"
 		},
 		{
 			"id":16,
-			"notif":"Your account has been viewed thousand time"
+			"notif":"Your account has been viewed a thousand times"
 		},
 		{
 			"id":17,
-			"notif":"Omar Sy follows you"
+			"notif":"Omar Sy started following you"
 		},
 		{
 			"id":18,
-			"notif":"Lucas Taddei follows you"
+			"notif":"Lucas Taddei started following you"
 		},
 		{
 			"id":19,
@@ -221,7 +221,7 @@
 		},
 		{
 			"id":20,
-			"notif":"You are first in the top since three weeks"
+			"notif":"Léa Keller started following you"
 		}
     ]
 }
