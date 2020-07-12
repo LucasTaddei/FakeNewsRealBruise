@@ -46,11 +46,11 @@ class resultScene extends Phaser.Scene {
         this.avocadose = Math.round(this.score.level*7.543);
 
         if (this.score.isRain) {
-            this.itsRaingingMan();
+            this.itsRainingMan();
         }
 
         if (this.score.isStrongRain) {
-            this.itsRaingingMen();
+            this.itsRainingMen();
         }
 
         // ajout du délai
@@ -189,7 +189,7 @@ class resultScene extends Phaser.Scene {
     }
 
     // animation lorsqu'il commence à pleuvoir
-    itsRaingingMan() {
+    itsRainingMan() {
         this.rain = this.add.particles('rain');
         this.rain.setDepth(25);
     
@@ -206,7 +206,7 @@ class resultScene extends Phaser.Scene {
         });
     }
 
-    itsRaingingMen() {
+    itsRainingMen() {
         this.rain = this.add.particles('rain');
         this.rain.setDepth(25);
 

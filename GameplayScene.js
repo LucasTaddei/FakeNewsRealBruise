@@ -98,6 +98,9 @@ class gameplayScene extends Phaser.Scene {
 
     create() {
 
+        // définition du fond de la page
+        this.cameras.main.backgroundColor = "#65FF99";
+
         // définition de la fonction callback pour l'event resume (pause)
         this.events.on('resume', this.resume, this);
 
@@ -232,7 +235,7 @@ class gameplayScene extends Phaser.Scene {
         backgroundRectangle.depth = -4;
 
         // titre de la page 
-        var home = this.add.text(350,20,'NEWSFIELD', {font:'45px jack', fill: 'black'});
+        var home = this.add.text(350,20,'NEWSFEED', {font:'45px jack', fill: 'black'});
 
         this.backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
         this.backgroundNews.depth = -2;
@@ -688,7 +691,7 @@ class gameplayScene extends Phaser.Scene {
 
         // s'il ne pleut pas encore fort
         if (!this.hasStrongRainStarted && this.sharedNews == 55) {
-            this.itsRaingingMan(false);
+            this.rain.destroy();
             this.itsRaingingMen();
             this.hasStrongRainStarted = true;
         }
