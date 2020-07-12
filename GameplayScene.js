@@ -27,6 +27,7 @@ class gameplayScene extends Phaser.Scene {
         // variable du jeu en pause
         this.setToPause = false;
 
+        // variables de météo
         this.hasRainStarted = false;
         this.hasStrongRainStarted = false;
 
@@ -52,18 +53,16 @@ class gameplayScene extends Phaser.Scene {
         this.lastKeyPressedAt =  0;
         this.lastSpaceBarPressedAt = 0;
 
-        // arrows outline
         this.load.image("leftOutline","assets/images/arrows/leftOutlineRed.png");
         this.load.image("upOutline","assets/images/arrows/upOutlineYellow.png");
         this.load.image("downOutline","assets/images/arrows/downOutlinePurple.png");
         this.load.image("rightOutline","assets/images/arrows/rightOutlineblue.png");
-        
-        // arrows filled
+
         this.load.image("leftFilled","assets/images/arrows/leftFilledRed.png");
         this.load.image("upFilled","assets/images/arrows/upFilledYellow.png");
         this.load.image("downFilled","assets/images/arrows/downFilledPurple.png");
         this.load.image("rightFilled","assets/images/arrows/rightFilledBlue.png");
-        
+
         this.load.image('logo','assets/images/LOGO.png');
 
         this.load.audio("realBruise4","assets/sounds/realbruise4.m4a");
@@ -99,10 +98,10 @@ class gameplayScene extends Phaser.Scene {
 
     create() {
 
-        this.cameras.main.backgroundColor = "#65FF99";
-
+        // définition de la fonction callback pour l'event resume (pause)
         this.events.on('resume', this.resume, this);
 
+        // variables à passer dans la scène suivante, et arrêt des sons
         this.time.addEvent({
             delay: 189000,
             callback: ()=>{
@@ -111,7 +110,8 @@ class gameplayScene extends Phaser.Scene {
             }
         })
 
-        // passage à la scène suivante (EVENT DE FOUFOU, surtout les lignes 128 à 133 !)
+        // passage à la scène suivante (EVENT DE FOUFOU)
+        // Pourquoi tout ça? Comme le fond change progressivement de couleur, il faut le récupérer en cours pour l'appliquer à la scène suivante
         this.time.addEvent({
             delay: 188500,
             callback: ()=>{
@@ -166,11 +166,9 @@ class gameplayScene extends Phaser.Scene {
 
         // suppression du timer précédent et en ajoute un nouveau qui augmente la vitesse de défilement et réduit le délai d'apparition des nouvelles flèches
         this.time.addEvent({
-
             delay: 10000,
             loop: true,
             callback: ()=>{
-
                 this.newArrowsTimer.remove();
 
                 if (this.missedArrows - this.lastScoreMissedArrows < 10) {
@@ -207,9 +205,7 @@ class gameplayScene extends Phaser.Scene {
 
                         // ajoute une flèche supplémentaire à capturer
                         if (this.level >= 10) {
-                        
                             if (Math.random() < (this.level / 100)) {
-                        
                                 this.addArrow(true);
                             }
                         }
@@ -232,11 +228,11 @@ class gameplayScene extends Phaser.Scene {
         this.mainSong.play();
 
         // fond blanc "zone de jeu"
-        var backgroundRectangle = this.add.rectangle(640,360,580,700,0xFFFFFF).setOrigin(0.5);
+        var backgroundRectangle = this.add.rectangle(640,360,600,700,0xFFFFFF).setOrigin(0.5);
         backgroundRectangle.depth = -4;
 
         // titre de la page 
-        var home = this.add.text(350,20,'HOME', {font:'45px jack', fill: 'black'});
+        var home = this.add.text(350,20,'NEWSFIELD', {font:'45px jack', fill: 'black'});
 
         this.backgroundNews = this.add.rectangle(640,135,580,130,0xE5E5E5).setOrigin(0.5);
         this.backgroundNews.depth = -2;
@@ -269,7 +265,6 @@ class gameplayScene extends Phaser.Scene {
 
         //ajout d'un masque
         this.backgroundMask = this.add.rectangle(640,360,1280,720,0x68786D).setOrigin(0.5).setAlpha(0);
-
         this.backgroundMask.depth = -25;
 
         /* ||| TEXTE AVANT BOMBE||| */
@@ -301,7 +296,6 @@ class gameplayScene extends Phaser.Scene {
         });
 
         this.time.addEvent({
-
             delay: 170000,
             loop: false,
             callback: ()=>{
@@ -359,27 +353,22 @@ class gameplayScene extends Phaser.Scene {
 
         // première et dernière notifications
         this.time.addEvent({
-
             delay: 8000,
             loop: true,
             callback: ()=>{
 
                 // seconde notification
                 this.time.addEvent({
-
                     delay: 1000,
                     callback: ()=>{
-        
                         this.updateNotification(2, this.getNextRandomNotification());
                     }
                 })
         
                 // troisième notificiation
                 this.time.addEvent({
-        
                     delay: 2000,
                     callback: ()=>{
-        
                         this.updateNotification(3, this.getNextRandomNotification());
                     }
                 })
@@ -485,13 +474,11 @@ class gameplayScene extends Phaser.Scene {
         }
 
         if (isSpaceKeyPressed && (new Date().getTime() - this.lastSpaceBarPressedAt >= this.keyDownDelay)) {
-
             this.lastSpaceBarPressedAt = new Date().getTime();
 
             // le jeu se met en pause
             this.time.addEvent({
                 callback: ()=>{
-
                     this.pauseAllAudio();
 
                     this.scene.pause();
@@ -695,14 +682,12 @@ class gameplayScene extends Phaser.Scene {
 
         // s'il ne pleut pas encore
         if (!this.hasRainStarted && this.sharedNews == 30) {
-
             this.itsRaingingMan();
             this.hasRainStarted = true;
         }
 
         // s'il ne pleut pas encore fort
         if (!this.hasStrongRainStarted && this.sharedNews == 55) {
-
             this.itsRaingingMan(false);
             this.itsRaingingMen();
             this.hasStrongRainStarted = true;
@@ -727,6 +712,7 @@ class gameplayScene extends Phaser.Scene {
     }
 
     moveArrowToCapturedArray(arrow) {
+
         // la flèche capturée
         var arrowToBeDeleted = arrow;
 
@@ -816,7 +802,6 @@ class gameplayScene extends Phaser.Scene {
 
         // retour au début du tableau
         if (this.currentNotification >= this.newsData["notifications"].length) {
-
             this.currentNotification = 0;
         }
 
@@ -826,13 +811,11 @@ class gameplayScene extends Phaser.Scene {
             this.randomNotifications = [];
 
             for (var i = 0; i < this.newsData["notifications"].length; i++) {
-
                 this.randomNotifications[i] = i;
             }
 
             // mélange le tableau où sont indexées les notifications (optionnel)
-            for (var i = this.randomNotifications.length - 1; i > 0; i--)
-            {
+            for (var i = this.randomNotifications.length - 1; i > 0; i--) {
                 var j = Math.floor(Math.random() * (i + 1));
                 var temp = this.randomNotifications[i];
                 this.randomNotifications[i] = this.randomNotifications[j];
@@ -851,19 +834,16 @@ class gameplayScene extends Phaser.Scene {
         let currentBackground;
 
         if (notification == 1) {
-
             currentNotification = this.notifications1;
             currentBackground = this.backgroundNotifications1;
         }
 
         else if (notification == 2) {
-
             currentNotification = this.notifications2;
             currentBackground = this.backgroundNotifications2;
         }
 
         else if (notification == 3) {
-
             currentNotification = this.notifications3;
             currentBackground = this.backgroundNotifications3;
         }
@@ -876,10 +856,8 @@ class gameplayScene extends Phaser.Scene {
 
         // event qui retarde la modification du texte de la news jusqu'à qu'elle soit estompée
         this.time.addEvent({
-
             delay: 1000,
             callback: ()=>{
-
                 // modification du texte de la notification
                 currentNotification.setText(text);
             }
@@ -894,15 +872,12 @@ class gameplayScene extends Phaser.Scene {
 
     }
 
-    // animation lorsqu'il commence à pleuvoir        
+    // animations lorsqu'il commence à pleuvoir        
     itsRaingingMan() {
-
         this.rain = this.add.particles('rain');
-
         this.rain.setDepth(25);
     
         this.rain.createEmitter({
-            
             x: { min: -200, max: 1200 },
             y: 0,
             rotate: -10,
@@ -916,13 +891,10 @@ class gameplayScene extends Phaser.Scene {
     }
 
     itsRaingingMen() {
-
         this.rain = this.add.particles('rain');
-
         this.rain.setDepth(25);
 
         this.rain.createEmitter({
-            
             x: { min: -200, max: 1200 },
             y: 0,
             rotate: -10,
@@ -977,7 +949,6 @@ class gameplayScene extends Phaser.Scene {
         });
 
         this.tween = this.tweens.add({
-
             targets: [this.shared],
             y: {
                 getStart: () => this.shared.y,
@@ -989,7 +960,6 @@ class gameplayScene extends Phaser.Scene {
         });
 
         this.tween = this.tweens.add({
-
             targets: [this.backgroundNews2],
             y: {
                 getStart: () => this.backgroundNews2.y,
@@ -1001,7 +971,6 @@ class gameplayScene extends Phaser.Scene {
         });
 
         this.tween = this.tweens.add({
-
             targets: [this.titleNews2],
             y: {
                 getStart: () => this.titleNews2.y,
@@ -1013,7 +982,6 @@ class gameplayScene extends Phaser.Scene {
         });
 
         this.tween = this.tweens.add({
-
             targets: [this.textNews2],
             y: {
                 getStart: () => this.textNews2.y,
